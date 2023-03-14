@@ -8,7 +8,16 @@ include_directories(src)
 
 add_executable(Project_DA
         Data/network.csv
-        Data/network.png
         Data/stations.csv
         src/station.cpp
-        src/station.h)
+        src/station.h
+        data_structures/Graph.h
+        data_structures/Graph.cpp
+        data_structures/Heap.h
+        data_structures/Heap.cpp
+        data_structures/MutablePriorityQueue.h
+        data_structures/MutablePriorityQueue.cpp
+        data_structures/UFDS.cpp
+        data_structures/UFDS.h
+        data_structures/VertexEdge.cpp
+        data_structures/VertexEdge.h)
