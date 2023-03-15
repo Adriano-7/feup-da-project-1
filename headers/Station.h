@@ -5,11 +5,11 @@
 
 using namespace std;
 
-class station {
+class Station {
     public:
 
     // Constructor
-        station(string name, string district, string municipality, string township, string line);
+        Station(string name, string district, string municipality, string township, string line);
 
     // Getters
         string getName();
