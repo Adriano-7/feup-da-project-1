@@ -1,4 +1,4 @@
-#include "station.h"
+#include "../headers/station.h"
 
 station::station(string name, string district, string municipality, string township, string line) {
     this->name = name;
