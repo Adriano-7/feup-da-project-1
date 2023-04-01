@@ -4,8 +4,6 @@
 #include <sstream>
 #include <vector>
 
-#include "data_structures/Edge.h"
-
 using namespace std;
 
 Database::Database() {
@@ -42,7 +40,7 @@ void Database::readStations() {
         string line = fields[4];
 
         Station *station = new Station(name, district, municipality, township, line);
-        graph.addVertex(station);
+        graph.addNode(*station);
         nameToStation[name] = station;
     }
     file.close();
@@ -88,8 +86,7 @@ void Database::readNetwork() {
             return;
         }
 
-        Edge *edge = new Edge(origStation, destStation, capacity, service);
-        graph.addEdge(edge);
+        graph.addEdge(*origStation, *destStation, capacity, service);
     }
     file.close();
     return;

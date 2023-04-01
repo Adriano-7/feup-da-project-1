@@ -1,4 +1,5 @@
-#include "main.h"
+#include "headers/Database.h"
+#include "headers/Menu.h"
 
 int main(){
     Database database;

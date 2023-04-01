@@ -3,19 +3,22 @@
 
 #include <string>
 #include <set>
-#include <unordered_map>
+#include <map>
 #include "Station.h"
+#include "NodeEdge.h"
+#include "ServiceType.h"
 using namespace std;
 
 class Graph {
-    private:
-        set<Node *> nodeSet;
-
     public:
-        Graph() = default;
+        Node* getNode(string stationName);
+        bool addNode(Station& station);
 
-        void addNode(Station& station);
-        void addEdge(Station& source, Station& dest, int capacity, string service);
+        bool addEdge(Station& source, Station& dest, int capacity, ServiceType service);
+
+        int getNumNodes();
+    private:
+        map<string, Node*> nodes;
 };
 
 #endif //PROJECT_DA_GRAPH_H

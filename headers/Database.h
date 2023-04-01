@@ -2,6 +2,7 @@
 #define PROJECT_DA_DATABASE_H
 
 #include "Graph.h"
+#include <unordered_map>
 
 class Database {
     public:

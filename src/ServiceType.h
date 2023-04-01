@@ -1,0 +1,9 @@
+#ifndef PROJECT_DA_SERVICETYPE_H
+#define PROJECT_DA_SERVICETYPE_H
+
+enum ServiceType {
+    STANDARD,
+    ALFA_PENDULAR
+};
+
+#endif //PROJECT_DA_SERVICETYPE_H
