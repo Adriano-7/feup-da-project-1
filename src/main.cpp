@@ -1,5 +1,8 @@
-//
-// Created by adria_ek1ciji on 15/03/2023.
-//
-
 #include "main.h"
+
+int main(){
+    Database database;
+    Menu menu(database);
+    menu.showInitialMenu();
+    return 0;
+}
