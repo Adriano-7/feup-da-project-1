@@ -25,7 +25,7 @@ void Database::readStations() {
         vector<string> fields;
         istringstream stream(line);
         string field;
-        while (getline(stream, field, ',')) {
+        while (getline(stream, field, ';')) {
             fields.push_back(field);
         }
         if (fields.size() != 5) {
@@ -61,7 +61,7 @@ void Database::readNetwork() {
         vector<string> fields;
         istringstream stream(line);
         string field;
-        while (getline(stream, field, ',')) {
+        while (getline(stream, field, ';')) {
             fields.push_back(field);
         }
         if (fields.size() != 4) {
