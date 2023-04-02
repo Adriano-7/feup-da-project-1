@@ -111,14 +111,17 @@ void Database::readNetwork() {
 void Database::printNodes() {
     map<string, Node*> nodes = graph.getNodeMap();
     for (auto it = nodes.begin(); it != nodes.end(); it++) {
-        cout << it->first << endl;
+        cout << it->first << endl ;
     }
 }
 
 void Database::printEdges(){
+    int count = 0;
      for(auto node: graph.getNodeMap()) {
          for (auto edge: node.second->getAdj()) {
-             cout << node.first << " -> " << edge->getDest()->getStationName() << endl;
+             count++;
+             cout << node.first << " -> " << edge->getDest()->getStationName() << " | Capacity: " << edge->getCapacity() << endl;
          }
      }
+        cout << count << endl;
 }

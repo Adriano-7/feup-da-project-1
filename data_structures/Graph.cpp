@@ -1,6 +1,7 @@
 #include "Graph.h"
 #include "Station.h"
 #include <iostream>
+#include <cmath>
 
 using namespace std;
 
@@ -28,8 +29,9 @@ bool Graph::addEdge(Station& source, Station& dest, int capacity, ServiceType se
         return false;
     }
 
-    Edge* e1 = sourceNode->addEdge(destNode, capacity, service);
-    Edge* e2 = destNode->addEdge(sourceNode, capacity, service);
+
+    Edge* e1 = sourceNode->addEdge(destNode, floor(capacity/2.0), service);
+    Edge* e2 = destNode->addEdge(sourceNode, ceil(capacity/2.0), service);
 
     e1->setReverse(e2);
     e2->setReverse(e1);
@@ -50,26 +52,5 @@ map<string, Node*> & Graph::getNodeMap() {
 }
 
 int Graph::maxFlow(Station& source, Station& dest) {
-    /*Using Edmonds-karp algorithm*/
-    int maxFlow = 0;
-    Node* sourceNode = nodes[source.getName()];
-    Node* destNode = nodes[dest.getName()];
-    if (sourceNode== nullptr){
-        cout << "Station " << source.getName() << " does not exist." << endl;
-        return -1;
-    }
-
-    if (destNode== nullptr){
-        cout << "Station " << dest.getName() << " does not exist." << endl;
-        return -1;
-    }
-
-    while (true){
-        for (auto it = nodes.begin(); it != nodes.end(); it++) {
-            it->second->setVisited(false);
-        }
-        //int flow = sourceNode->augmentPath(destNode, INT_MAX);
-        //if (flow == 0) break;
-        //maxFlow += flow;
-    }
+    return 1;
 }
