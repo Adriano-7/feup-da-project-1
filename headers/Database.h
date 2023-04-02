@@ -9,16 +9,14 @@ class Database {
         Database() = default;
         void printNodes();
         void loadWithoutFilters();
-        void loadWithFilters(set<string> stations, set<string> lines, ServiceType service);
+        void loadWithFilters(set<string> stations, set<string> lines);
 
     private:
         Graph graph;
         unordered_map<string, Station*> nameToStation;
 
-        void readStations();
         void readStations(set<string> stations, set<string> lines);
         void readNetwork();
-        void readNetwork(ServiceType services);
 };
 
 

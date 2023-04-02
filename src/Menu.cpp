@@ -43,7 +43,6 @@ void Menu::showSubsetMenu() {
     cout << "Please select an option:" << endl;
     cout << "1 - Filter by lines" << endl;
     cout << "2 - Filter by railway stations" << endl;
-    cout << "3 - Filter by type of service" << endl;
 
     int option;
     cin >> option;
@@ -61,21 +60,12 @@ void Menu::showSubsetMenu() {
             case 2:
                 stations = getStringsFromInput();
                 break;
-            case 3:
-                serviceType = *(getStringsFromInput().begin());
-                if(serviceType == "Standard" || serviceType == "STANDARD" || serviceType == "standard")
-                    service = STANDARD;
-                else if(serviceType == "ALFA PENDULAR" || serviceType == "Alfa Pendular" || serviceType == "alfa pendular")
-                    service = ALFA_PENDULAR;
-                else
-                    cout << "Invalid service type" << endl;
-                break;
             default:
                 cout << "Invalid option" << endl;
                 break;
         }
     }
-    database.loadWithFilters(stations, lines, service);
+    database.loadWithFilters(stations, lines);
     showMainMenu();
 }
 
@@ -87,17 +77,19 @@ void Menu::showMainMenu(){
 set<string> Menu::getStringsFromInput() {
     set<string> strings;
     string input;
+    bool firstTime = true;
     cout << "Please enter the strings, one per line. Enter 0 to finish." << endl;
 
     while (true) {
         getline(cin, input);
         if (input == "0")
             return strings;
-        else if (input.empty()) {
+        else if (input.empty() && !firstTime) {
             cout << "Invalid input" << endl;
         }
         else {
             strings.insert(input);
         }
+        firstTime = false;
     }
 }
