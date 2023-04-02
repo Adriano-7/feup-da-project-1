@@ -11,12 +11,18 @@ using namespace std;
 
 class Graph {
     public:
-        Node* getNode(string stationName);
         bool addNode(Station& station);
-
         bool addEdge(Station& source, Station& dest, int capacity, ServiceType service);
 
+        Node* getNode(string stationName);
         int getNumNodes();
+        map<string, Node*> & getNodeMap();
+
+        //Algorithms
+        /*Edmond's karp*/
+        int maxFlow(Station& source, Station& dest);
+
+
     private:
         map<string, Node*> nodes;
 };

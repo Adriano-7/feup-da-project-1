@@ -6,7 +6,11 @@
 class Menu {
     public:
         Menu(Database& database) : database(database) {};
-        void showInitialMenu();
+        void showDataSelectionMenu();
+        void showMainMenu();
+        void showSubsetMenu();
+
+        set<string> getStringsFromInput();
 
     private:
         Database database;
