@@ -7,7 +7,7 @@
 using namespace std;
 
 void Database::loadWithoutFilters() {
-    readStations();
+    readStations({}, {});
     readNetwork();
 }
 
@@ -80,11 +80,17 @@ void Database::readStations(set<string> stations, set<string> lines) {
         string township = fields[3];
         string line = fields[4];
 
-        if ((line.empty() || (lines.find(line) != lines.end())) && (stations.empty() || (stations.find(name) != stations.end()))) {
-            Station *station = new Station(name, district, municipality, township, line);
-            graph.addNode(*station);
-            nameToStation[name] = station;
+        if (!stations.empty() && stations.find(name) == stations.end()) {
+            continue;
         }
+
+        if (!lines.empty() && lines.find(line) == lines.end()) {
+            continue;
+        }
+
+        Station *station = new Station(name, district, municipality, township, line);
+        graph.addNode(*station);
+        nameToStation[name] = station;
     }
     file.close();
     return;
@@ -120,10 +126,10 @@ void Database::readNetwork() {
         ServiceType service;
             if(serviceType == "STANDARD")
                 service = STANDARD;
-            else if(serviceType == "ALFA_PENDULAR")
+            else if(serviceType == "ALFA PENDULAR")
                 service = ALFA_PENDULAR;
             else{
-                cout << "Line" << lineCount << " service type is invalid: " << line << endl;
+                cout << "Line " << lineCount << " service type is invalid: " << line << endl;
             }
 
         Station *origStation = nameToStation[orig];
@@ -164,7 +170,7 @@ void Database::readNetwork(ServiceType serviceFilter) {
             fields.push_back(field);
         }
         if (fields.size() != 4) {
-            cout << "Line" << lineCount << " is invalid: " << line << endl;
+            cout << "Line " << lineCount << " is invalid: " << line << endl;
         }
 
         string orig = fields[0];
@@ -175,19 +181,20 @@ void Database::readNetwork(ServiceType serviceFilter) {
         ServiceType service;
         if(serviceType == "STANDARD")
             service = STANDARD;
-        else if(serviceType == "ALFA_PENDULAR")
+        else if(serviceType == "ALFA PENDULAR")
             service = ALFA_PENDULAR;
         else{
-            cout << "Line" << lineCount << " service type is invalid: " << line << endl;
+            cout << "Line " << lineCount << " service type is invalid: " << line << endl;
         }
 
         Station *origStation = nameToStation[orig];
         Station *destStation = nameToStation[dest];
 
-        if(serviceFilter != ServiceType::NONE){
-            if(service != serviceFilter || origStation == nullptr || destStation == nullptr)
-                continue;
-        }
+        if(origStation == nullptr || destStation == nullptr)
+            continue;
+
+        if(serviceFilter != ServiceType::NONE && service != serviceFilter)
+            continue;
 
         graph.addEdge(*origStation, *destStation, capacity, service);
     }
