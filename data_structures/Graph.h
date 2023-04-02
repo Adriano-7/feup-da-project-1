@@ -18,9 +18,8 @@ class Graph {
         int getNumNodes();
         map<string, Node*> & getNodeMap();
 
-        //Algorithms
-        /*Edmond's karp*/
-        int maxFlow(Station& source, Station& dest);
+        int maxFlow(Node* source, Node* dest);
+        bool bfs(Node* source, Node* dest);
 
 
     private:

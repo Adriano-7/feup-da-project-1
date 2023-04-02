@@ -2,6 +2,7 @@
 #include "Station.h"
 #include <iostream>
 #include <cmath>
+#include <queue>
 
 using namespace std;
 
@@ -51,6 +52,30 @@ map<string, Node*> & Graph::getNodeMap() {
     return nodes;
 }
 
-int Graph::maxFlow(Station& source, Station& dest) {
-    return 1;
+bool Graph::bfs(Node* source, Node* dest){
+    queue<Node*> q;
+
+    for (pair<string, Node*> nodePair : nodes){
+        Node* node = nodePair.second;
+
+        node->setVisited(false);
+        node->setPath(nullptr);
+    }
+
+    q.push(source);
+    source->setVisited(true);
+    while (!q.empty()){
+        Node* v = q.front();
+        q.pop();
+
+        for (Edge* edge : v->getAdj()){
+            if (!edge->getDest()->isVisited() && edge->getCapacity() > edge->getFlow()){
+                edge->getDest()->setVisited(true);
+                edge->getDest()->setPath(edge);
+                q.push(edge->getDest());
+            }
+        }
+    }
+    return dest->isVisited();
 }
+
