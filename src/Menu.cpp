@@ -72,6 +72,7 @@ void Menu::showSubsetMenu() {
 void Menu::showMainMenu(){
         printf("_________________________________________________\n");
         database.printNodes();
+        database.printEdges();
 }
 
 set<string> Menu::getStringsFromInput() {

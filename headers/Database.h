@@ -8,6 +8,7 @@ class Database {
     public:
         Database() = default;
         void printNodes();
+        void printEdges();
         void loadWithoutFilters();
         void loadWithFilters(set<string> stations, set<string> lines);
 

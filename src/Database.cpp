@@ -114,3 +114,11 @@ void Database::printNodes() {
         cout << it->first << endl;
     }
 }
+
+void Database::printEdges(){
+     for(auto node: graph.getNodeMap()) {
+         for (auto edge: node.second->getAdj()) {
+             cout << node.first << " -> " << edge->getDest()->getStationName() << endl;
+         }
+     }
+}
