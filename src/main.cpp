@@ -4,6 +4,6 @@
 int main(){
     Database database;
     Menu menu(database);
-    menu.showInitialMenu();
+    menu.showDataSelectionMenu();
     return 0;
 }

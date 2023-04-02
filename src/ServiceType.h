@@ -3,7 +3,8 @@
 
 enum ServiceType {
     STANDARD,
-    ALFA_PENDULAR
+    ALFA_PENDULAR,
+    NONE
 };
 
 #endif //PROJECT_DA_SERVICETYPE_H
