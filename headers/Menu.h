@@ -9,8 +9,13 @@ class Menu {
         void showDataSelectionMenu();
         void showMainMenu();
         void showSubsetMenu();
+        void showStationInfoMenu();
+        void showTwoStationsInfoMenu();
+        void showNetworkInfoMenu();
 
-        set<string> getStringsFromInput();
+        set<string> getStringsFromUser();
+        string getStringFromUser();
+        int getIntFromUser();
 
     private:
         Database database;

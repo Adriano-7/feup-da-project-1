@@ -11,6 +11,9 @@ class Database {
         void printEdges();
         void loadWithoutFilters();
         void loadWithFilters(set<string> stations, set<string> lines);
+        Station* getStation(string stationName);
+
+        int getMaxFlowBetweenStations(string station1, string station2);
 
     private:
         Graph graph;

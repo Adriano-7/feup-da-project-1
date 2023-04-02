@@ -59,6 +59,8 @@ public:
     double getFlow();
 
     void setFlow(double flow);
+    void addFlow(double flow);
+    void removeFlow(double flow);
     void setReverse(Edge* reverse);
     void setSelected(bool selected);
 

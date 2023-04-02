@@ -83,6 +83,7 @@ bool Node::removeEdgeTo(Node *dest) {
         else
             it++;
     }
+    return removedEdge;
 }
 
 /********************** Edge  ****************************/
@@ -120,6 +121,14 @@ double Edge::getFlow() {
 
 void Edge::setFlow(double flow) {
     this->flow = flow;
+}
+
+void Edge::addFlow(double flow) {
+    this->flow += flow;
+}
+
+void Edge::removeFlow(double flow) {
+    this->flow -= flow;
 }
 
 void Edge::setReverse(Edge* reverse) {

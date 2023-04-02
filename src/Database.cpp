@@ -16,6 +16,14 @@ void Database::loadWithFilters(set<string> stations, set<string> lines) {
     readNetwork();
 }
 
+Station* Database::getStation(string stationName) {
+    return nameToStation[stationName];
+}
+
+int Database::getMaxFlowBetweenStations(std::string station1, std::string station2) {
+    return graph.maxFlow(graph.getNode(station1), graph.getNode(station2));
+}
+
 void Database::readStations(set<string> stations, set<string> lines) {
     ifstream file("../data/stations.csv");
     file.ignore(1000, '\n'); // ignore first line

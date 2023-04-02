@@ -3,6 +3,7 @@
 #include <iostream>
 #include <cmath>
 #include <queue>
+#include <algorithm>
 
 using namespace std;
 
@@ -41,7 +42,12 @@ bool Graph::addEdge(Station& source, Station& dest, int capacity, ServiceType se
 }
 
 Node* Graph::getNode(string stationName) {
-    return nodes.at(stationName);
+    Node* node = nodes["Afife"];
+    if (node == nullptr)
+        cout << "Station " << stationName << " does not exist." << endl;
+        return nullptr;
+
+    return node;
 }
 
 int Graph::getNumNodes() {
@@ -50,6 +56,30 @@ int Graph::getNumNodes() {
 
 map<string, Node*> & Graph::getNodeMap() {
     return nodes;
+}
+
+int Graph::maxFlow(Node* source, Node* dest){
+    int maxFlow = 0;
+    for(Edge* edge : source->getAdj())
+        edge->setFlow(0);
+
+    while (bfs(source, dest)){
+        int pathFlow = INT_MAX;
+
+        for (Node* node = dest; node != source; node = node->getPath()->getOrig()){
+            int residualCapacity = node->getPath()->getCapacity() -node->getPath()->getFlow();
+            pathFlow = min(pathFlow, residualCapacity);
+        }
+
+        for (Node* v = dest; v != source; v = v->getPath()->getOrig()){
+            v->getPath()->addFlow(pathFlow);
+            v->getPath()->getReverse()->removeFlow(pathFlow);
+        }
+
+        maxFlow += pathFlow;
+    }
+
+    return maxFlow;
 }
 
 bool Graph::bfs(Node* source, Node* dest){
