@@ -16,7 +16,25 @@ bool Graph::addNode(Station& station) {
     return true;
 }
 
-bool Graph::addEdge(Station& source, Station& dest, int capacity, ServiceType service) {
+bool Graph::addEdge(Station &source, Station &dest, int capacity, ServiceType service) {
+    Node* sourceNode = nodes[source.getName()];
+    Node* destNode = nodes[dest.getName()];
+
+    if (sourceNode== nullptr){
+        cout << "Station " << source.getName() << " does not exist." << endl;
+        return false;
+    }
+
+    if (destNode== nullptr){
+        cout << "Station " << dest.getName() << " does not exist." << endl;
+        return false;
+    }
+
+    sourceNode->addEdge(destNode, capacity, service);
+    return true;
+}
+
+bool Graph::addBidirectionalEdge(Station& source, Station& dest, int capacity, ServiceType service) {
     Node* sourceNode = nodes[source.getName()];
     Node* destNode = nodes[dest.getName()];
 
@@ -31,8 +49,8 @@ bool Graph::addEdge(Station& source, Station& dest, int capacity, ServiceType se
     }
 
 
-    Edge* e1 = sourceNode->addEdge(destNode, floor(capacity/2), service);
-    Edge* e2 = destNode->addEdge(sourceNode, ceil(capacity/2), service);
+    Edge* e1 = sourceNode->addEdge(destNode, ceil(capacity / 2), service);
+    Edge* e2 = destNode->addEdge(sourceNode, floor(capacity/2), service);
 
     e1->setReverse(e2);
     e2->setReverse(e1);
