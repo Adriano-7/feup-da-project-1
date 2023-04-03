@@ -1,10 +1,10 @@
 #include "Graph.h"
 #include "Station.h"
 #include <iostream>
-#include <cmath>
 #include <queue>
 #include <algorithm>
 #include <xmath.h>
+
 
 using namespace std;
 
@@ -33,8 +33,8 @@ bool Graph::addEdge(Station& source, Station& dest, int capacity, ServiceType se
     }
 
 
-    Edge* e1 = sourceNode->addEdge(destNode, capacity, service);
-    Edge* e2 = destNode->addEdge(sourceNode, capacity, service);
+    Edge* e1 = sourceNode->addEdge(destNode, floor(capacity/2), service);
+    Edge* e2 = destNode->addEdge(sourceNode, ceil(capacity/2), service);
 
     e1->setReverse(e2);
     e2->setReverse(e1);
