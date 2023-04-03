@@ -3,10 +3,8 @@
 #include <iostream>
 #include <queue>
 #include <algorithm>
-#include <xmath.h>
-
-
-using namespace std;
+#include <cmath>
+#include <limits>
 
 bool Graph::addNode(Station& station) {
     if (nodes.find(station.getName()) != nodes.end()){
@@ -72,7 +70,7 @@ int Graph::EdmondsKarp(Node* source, Node* dest){
 
     int maxFlow = 0;
     while( bfs(source, dest) ) {
-        double pathFlow = INF;
+        double pathFlow = numeric_limits<double>::infinity();
         for(Node* v = dest; v != source; ) {
             Edge* edge = v->getPath();
             if (edge->getDest() == v) {
@@ -138,4 +136,16 @@ bool Graph::bfs(Node* source, Node* dest){
     return dest->isVisited();
 
 }
+
+int Graph::maxTrains(Node *station) {
+    Station *superSourceStation = new Station("SuperSource", "", "", "", "");
+    Node* superSource = new Node(*superSourceStation);
+    for(pair<string, Node*> nodePair : nodes) {
+            Node* node = nodePair.second;
+            if (node != station) {
+                Edge* e = superSource->addEdge(node, numeric_limits<double>::infinity(),STANDARD);
+            }
+        }
+        return 0;
+    }
 

@@ -20,6 +20,7 @@ class Graph {
 
         int EdmondsKarp(Node* source, Node* dest);
         bool bfs(Node* source, Node* dest);
+        int maxTrains (Node* station);
 
 
     private:
