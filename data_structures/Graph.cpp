@@ -4,6 +4,7 @@
 #include <cmath>
 #include <queue>
 #include <algorithm>
+#include <xmath.h>
 
 using namespace std;
 
@@ -32,8 +33,8 @@ bool Graph::addEdge(Station& source, Station& dest, int capacity, ServiceType se
     }
 
 
-    Edge* e1 = sourceNode->addEdge(destNode, floor(capacity/2.0), service);
-    Edge* e2 = destNode->addEdge(sourceNode, ceil(capacity/2.0), service);
+    Edge* e1 = sourceNode->addEdge(destNode, capacity, service);
+    Edge* e2 = destNode->addEdge(sourceNode, capacity, service);
 
     e1->setReverse(e2);
     e2->setReverse(e1);
@@ -42,12 +43,10 @@ bool Graph::addEdge(Station& source, Station& dest, int capacity, ServiceType se
 }
 
 Node* Graph::getNode(string stationName) {
-    Node* node = nodes["Afife"];
-    if (node == nullptr)
-        cout << "Station " << stationName << " does not exist." << endl;
+    if (nodes.find(stationName) != nodes.end())
+        return nodes[stationName];
+    else
         return nullptr;
-
-    return node;
 }
 
 int Graph::getNumNodes() {
@@ -58,54 +57,85 @@ map<string, Node*> & Graph::getNodeMap() {
     return nodes;
 }
 
-int Graph::maxFlow(Node* source, Node* dest){
-    int maxFlow = 0;
-    for(Edge* edge : source->getAdj())
-        edge->setFlow(0);
-
-    while (bfs(source, dest)){
-        int pathFlow = INT_MAX;
-
-        for (Node* node = dest; node != source; node = node->getPath()->getOrig()){
-            int residualCapacity = node->getPath()->getCapacity() -node->getPath()->getFlow();
-            pathFlow = min(pathFlow, residualCapacity);
-        }
-
-        for (Node* v = dest; v != source; v = v->getPath()->getOrig()){
-            v->getPath()->addFlow(pathFlow);
-            v->getPath()->getReverse()->removeFlow(pathFlow);
-        }
-
-        maxFlow += pathFlow;
+int Graph::EdmondsKarp(Node* source, Node* dest){
+    if(source == nullptr || dest == nullptr || source == dest){
+        cout << "Invalid source or destination" << endl;
+        return -1;
     }
 
+    for(pair<string, Node*> nodePair : nodes) {
+        Node* node = nodePair.second;
+        for(Edge* e: node->getAdj()) {
+            e->setFlow(0);
+        }
+    }
+
+    int maxFlow = 0;
+    while( bfs(source, dest) ) {
+        double pathFlow = INF;
+        for(Node* v = dest; v != source; ) {
+            Edge* edge = v->getPath();
+            if (edge->getDest() == v) {
+                double residualCapacity = edge->getCapacity() - edge->getFlow();
+                pathFlow = std::min(pathFlow, residualCapacity);
+                v = edge->getOrig();
+            }
+            else{
+                pathFlow = std::min(pathFlow, edge->getFlow());
+                v = edge->getDest();
+            }
+        }
+        for(Node* v = dest; v != source; ) {
+            Edge* e = v->getPath();
+            if (e->getDest() == v) {
+                e->setFlow(e->getFlow() + pathFlow);
+                v = e->getOrig();
+            }
+            else {
+                e->setFlow(e->getFlow() - pathFlow);
+                v = e->getDest();
+            }
+        }
+        maxFlow += pathFlow;
+    }
     return maxFlow;
 }
 
 bool Graph::bfs(Node* source, Node* dest){
-    queue<Node*> q;
-
-    for (pair<string, Node*> nodePair : nodes){
+    for(pair<string, Node*> nodePair : nodes) {
         Node* node = nodePair.second;
-
         node->setVisited(false);
         node->setPath(nullptr);
     }
 
-    q.push(source);
+    queue<Node *> q;
     source->setVisited(true);
-    while (!q.empty()){
+    q.push(source);
+
+    while (!q.empty() && !dest->isVisited()) {
         Node* v = q.front();
         q.pop();
-
-        for (Edge* edge : v->getAdj()){
-            if (!edge->getDest()->isVisited() && edge->getCapacity() > edge->getFlow()){
-                edge->getDest()->setVisited(true);
-                edge->getDest()->setPath(edge);
-                q.push(edge->getDest());
+        for(Edge* e: v->getAdj()) {
+            Node* w = e->getDest();
+            double residualCapacity = e->getCapacity() - e->getFlow();
+            if (!w->isVisited() && residualCapacity > 0) {
+                w->setVisited(true);
+                w->setPath(e);
+                q.push(w);
+            }
+        }
+        for(Edge* e: v->getIncoming()) {
+            Node* w = e->getOrig();
+            double residualCapacity = e->getFlow();
+            if (!w->isVisited() && residualCapacity > 0) {
+                w->setVisited(true);
+                w->setPath(e);
+                q.push(w);
             }
         }
     }
+
     return dest->isVisited();
+
 }
 

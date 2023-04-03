@@ -165,8 +165,19 @@ void Menu::showTwoStationsInfoMenu() {
     cout << "_________________________________________________" << endl;
     cout << "Please enter the name of the first station:" << endl;
     string stationName1=getStringFromUser();
+    Station* station1 = database.getStation(stationName1);
+    if (station1 == nullptr) {
+        cout << "Station not found" << endl;
+        showTwoStationsInfoMenu();
+    }
+
     cout << "Please enter the name of the second station:" << endl;
     string stationName2=getStringFromUser();
+    Station* station2 = database.getStation(stationName2);
+    if (station2 == nullptr) {
+        cout << "Station not found" << endl;
+        showTwoStationsInfoMenu();
+    }
 
     int flow = database.getMaxFlowBetweenStations(stationName1, stationName2);
     cout << "_________________________________________________" << endl;
