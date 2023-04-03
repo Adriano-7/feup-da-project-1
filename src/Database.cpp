@@ -110,7 +110,7 @@ void Database::readNetwork() {
         if (origStation == nullptr || destStation== nullptr)
             continue;
 
-        graph.addEdge(*origStation, *destStation, capacity, service);
+        graph.addBidirectionalEdge(*origStation, *destStation, capacity, service);
     }
     file.close();
     return;
