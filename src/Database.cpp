@@ -20,6 +20,10 @@ Station* Database::getStation(string stationName) {
     return nameToStation[stationName];
 }
 
+vector<pair<Node *, Node *>> Database::maxFlowAllPairs(int *maxFlow){
+    return graph.maxFlowAllPairs(maxFlow);
+}
+
 int Database::getMaxFlowBetweenStations(std::string station1, std::string station2) {
     return graph.EdmondsKarp(graph.getNode(station1), graph.getNode(station2));
 }

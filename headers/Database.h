@@ -12,6 +12,7 @@ class Database {
         void loadWithoutFilters();
         void loadWithFilters(set<string> stations, set<string> lines);
         Station* getStation(string stationName);
+        vector<pair<Node *, Node *>> maxFlowAllPairs(int *maxFlow);
 
         int getMaxFlowBetweenStations(string station1, string station2);
 

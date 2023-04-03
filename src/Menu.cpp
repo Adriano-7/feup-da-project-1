@@ -242,9 +242,17 @@ void Menu::showNetworkInfoMenu() {
     cout<< "3 - Return to main menu" << endl;
 
     int option = getIntFromUser();
+    int maxFlow;
+
+    vector<pair<Node*, Node*>> pairs;
     switch(option){
         case 1:
-            cout << "This feature isn't yet implemented" << endl;
+            pairs = database.maxFlowAllPairs(&maxFlow);
+            cout << "The max flow is " << maxFlow << endl;
+
+            for(auto pair: pairs){
+                cout << pair.first->getStationName() << " -> " << pair.second->getStationName() << endl;
+            }
             break;
         case 2:
             cout << "This feature isn't yet implemented" << endl;
