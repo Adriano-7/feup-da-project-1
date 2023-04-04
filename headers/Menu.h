@@ -16,6 +16,7 @@ class Menu {
         set<string> getStringsFromUser();
         string getStringFromUser();
         int getIntFromUser();
+        void waitForInput();
 
     private:
         Database database;

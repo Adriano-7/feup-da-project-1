@@ -1,6 +1,7 @@
 #include "Menu.h"
 #include <iostream>
 #include <limits>
+#include <unistd.h>
 
 void Menu::showDataSelectionMenu() {
     cout << "_________________________________________________" << endl;
@@ -42,59 +43,59 @@ void Menu::showSubsetMenu() {
     cout << "1 - Filter by lines" << endl;
     cout << "2 - Filter by railway stations" << endl;
 
-    int option;
-    cin >> option;
-    if (cin.fail()) {
-        cout << "Invalid input" << endl;
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        showSubsetMenu();
+    int option = getIntFromUser();
+
+    switch (option) {
+        case 1:
+            lines = getStringsFromUser();
+            break;
+        case 2:
+            stations = getStringsFromUser();
+            break;
+        default:
+            cout << "Invalid option" << endl;
+            break;
     }
-    else {
-        switch (option) {
-            case 1:
-                lines = getStringsFromUser();
-                break;
-            case 2:
-                stations = getStringsFromUser();
-                break;
-            default:
-                cout << "Invalid option" << endl;
-                break;
-        }
-    }
+
     database.loadWithFilters(stations, lines);
     showMainMenu();
 }
 
 void Menu::showMainMenu(){
-    cout << "_________________________________________________" << endl;
-    cout << "Please select an option:" << endl;
-    cout << "1 - See information about a single station" << endl;
-    cout << "2 - See information about two stations" << endl;
-    cout << "3 - See information about the entire network" << endl;
-    cout << "4 - Return to data selection menu" << endl;
-    cout << "5 - exit" << endl;
 
-    int option = getIntFromUser();
-    switch (option) {
-        case 1:
-            showStationInfoMenu();
-            break;
-        case 2:
-            showTwoStationsInfoMenu();
-            break;
-        case 3:
-            showNetworkInfoMenu();
-            break;
-        case 4:
-            showDataSelectionMenu();
-            break;
-        case 5:
-            exit(0);
-        default:
-            cout << "Invalid option" << endl;
-            showMainMenu();
+    while (true){
+        cout << "_________________________________________________" << endl;
+        cout << "Please select an option:" << endl;
+        cout << "1 - See information about a single station" << endl;
+        cout << "2 - See information about two stations" << endl;
+        cout << "3 - See information about the entire network" << endl;
+        cout << "4 - Return to data selection menu" << endl;
+        cout << "5 - exit" << endl;
+
+        int option = getIntFromUser();
+        switch (option) {
+            case 1:
+                showStationInfoMenu();
+                waitForInput();
+                break;
+            case 2:
+                showTwoStationsInfoMenu();
+                waitForInput();
+                break;
+            case 3:
+                showNetworkInfoMenu();
+                waitForInput();
+                break;
+            case 4:
+                showDataSelectionMenu();
+                waitForInput();
+                break;
+            case 5:
+                return;
+            default:
+                cout << "Invalid option" << endl;
+                showMainMenu();
+        }
     }
 }
 
@@ -119,12 +120,11 @@ set<string> Menu::getStringsFromUser() {
 }
 
 string Menu::getStringFromUser() {
-    string input;
-    getline(cin, input);
-    if (input.empty()) {
-        cout << "Invalid input" << endl;
-        return getStringFromUser();
+    string input = "";
+    while (input.empty()) {
+        getline(cin, input);
     }
+
     return input;
 }
 
@@ -140,6 +140,14 @@ int Menu::getIntFromUser() {
     return input;
 }
 
+void Menu::waitForInput() {
+    usleep(800000);
+    string q;
+    cout << endl << "Insert any key to continue: ";
+    cin >> q;
+    cout << endl;
+}
+
 void Menu::showStationInfoMenu() {
     cout << "_________________________________________________" << endl;
     cout << "Please enter the name of the station:" << endl;
@@ -148,16 +156,35 @@ void Menu::showStationInfoMenu() {
     Station *station = database.getStation(stationName);
     if (station == nullptr) {
         cout << "Station not found" << endl;
-        showStationInfoMenu();
+        return showStationInfoMenu();
     }
-    else {
-        cout << "_________________________________________________" << endl;
-        cout << "Station name: " << station->getName() << endl;
-        cout << "District: " << station->getDistrict() << endl;
-        cout << "Municipality: " << station->getMunicipality() << endl;
-        cout << "Township: " << station->getTownship() << endl;
-        cout << "Line: " << station->getLine() << endl;
-        cout << "_________________________________________________" << endl;
+    cout << "_________________________________________________" << endl;
+    cout<< "Please select an option:" << endl;
+    cout<< "1 - See the maximum number of trains that can arrive to the station" << endl;
+    cout<< "2 - See more information about the station" << endl;
+    cout<< "3 - Return to main menu" << endl;
+
+    int option = getIntFromUser();
+
+    switch(option){
+        case 1:
+            cout << "This feature isn't yet implemented" << endl;
+            break;
+        case 2:
+            cout << "_________________________________________________" << endl;
+            cout << "Station name: " << station->getName() << endl;
+            cout << "District: " << station->getDistrict() << endl;
+            cout << "Municipality: " << station->getMunicipality() << endl;
+            cout << "Township: " << station->getTownship() << endl;
+            cout << "Line: " << station->getLine() << endl;
+            cout << "_________________________________________________" << endl;
+            break;
+        case 3:
+            showMainMenu();
+            break;
+        default:
+            cout << "Invalid option" << endl;
+            showStationInfoMenu();
     }
 }
 
@@ -179,15 +206,54 @@ void Menu::showTwoStationsInfoMenu() {
         showTwoStationsInfoMenu();
     }
 
-    int flow = database.getMaxFlowBetweenStations(stationName1, stationName2);
     cout << "_________________________________________________" << endl;
-    cout << "Station 1: " << stationName1 << endl;
-    cout << "Station 2: " << stationName2 << endl;
-    cout << "The maximum number of trains that can pass between the two stations is: " << flow << endl;
+    cout<< "Please select an option:" << endl;
+    cout<< "1 - Maximum number of trains that can travel between the two" << endl;
+    cout<< "2 - Maximum number of trains that can travel between the two taking cost into account" << endl;
+    cout<< "3 - Return to main menu" << endl;
 
+    int option = getIntFromUser();
+    int flow;
+    switch(option){
+        case 1:
+            flow = database.getMaxFlowBetweenStations(stationName1, stationName2);
+            cout << "_________________________________________________" << endl;
+            cout << "Station 1: " << stationName1 << endl;
+            cout << "Station 2: " << stationName2 << endl;
+            cout << "The maximum number of trains that can pass between the two stations is: " << flow << endl;
+            break;
+        case 2:
+            cout << "This feature isn't yet implemented" << endl;
+            break;
+        case 3:
+            showMainMenu();
+            break;
+        default:
+            cout << "Invalid option" << endl;
+            showTwoStationsInfoMenu();
+    }
 }
 
 void Menu::showNetworkInfoMenu() {
     cout << "_________________________________________________" << endl;
-    cout << "Not implemented yet" << endl;
+    cout<< "Please select an option:" << endl;
+    cout<< "1 - Pairs of stations with the maximum number of trains that can travel between them" << endl;
+    cout<< "2 - Top-k municipalities and districts" << endl;
+    cout<< "3 - Return to main menu" << endl;
+
+    int option = getIntFromUser();
+    switch(option){
+        case 1:
+            cout << "This feature isn't yet implemented" << endl;
+            break;
+        case 2:
+            cout << "This feature isn't yet implemented" << endl;
+            break;
+        case 3:
+            showMainMenu();
+            break;
+        default:
+            cout << "Invalid option" << endl;
+            showNetworkInfoMenu();
+    }
 }
