@@ -33,8 +33,8 @@ bool Graph::addEdge(Station& source, Station& dest, int capacity, ServiceType se
     }
 
 
-    Edge* e1 = sourceNode->addEdge(destNode, floor(capacity/2), service);
-    Edge* e2 = destNode->addEdge(sourceNode, ceil(capacity/2), service);
+    Edge* e1 = sourceNode->addEdge(destNode, capacity, service);
+    Edge* e2 = destNode->addEdge(sourceNode, capacity, service);
 
     e1->setReverse(e2);
     e2->setReverse(e1);
@@ -146,10 +146,6 @@ vector<pair<Node *, Node *>> Graph::maxFlowAllPairs(int *maxFlow) {
              else{
                  int curFlow = EdmondsKarp(it1->second, it2->second);
                  cout<< "Max flow from " << it1->second->getStation().getName() << " to " << it2->second->getStation().getName() << " is " << curFlow << endl;
-                 if(it1->second->getStation().getName() == "Vila Nova da Cerveira" && it2->second->getStation().getName() == "Viana do Castelo"){
-                     cout << "hey";
-                     int out = 0;
-                 }
                  if(curFlow > *maxFlow){
                      result.erase(result.begin(), result.end());
                      *maxFlow = curFlow;
