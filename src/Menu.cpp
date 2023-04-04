@@ -148,7 +148,7 @@ void Menu::waitForInput() {
     cout << endl;
 }
 
-void Menu::showStationInfoMenu() {
+Station& Menu::selectStation() {
     cout << "_________________________________________________" << endl;
     cout << "Select the district:" << endl;
     //print the district vector
@@ -176,12 +176,12 @@ void Menu::showStationInfoMenu() {
     id = getIntFromUser();
 
 
-    Station& station = database.getStation(id);
+    return database.getStation(stations[id - 1]);
+}
 
-    if (station == Station::nullStation) {
-        cout << "Station not found" << endl;
-        return showStationInfoMenu();
-    }
+void Menu::showStationInfoMenu() {
+    Station& station = selectStation();
+
     cout << "_________________________________________________" << endl;
     cout<< "Please select an option:" << endl;
     cout<< "1 - See the maximum number of trains that can arrive to the station" << endl;
@@ -193,17 +193,17 @@ void Menu::showStationInfoMenu() {
 
     switch(option){
         case 1:
-            num = database.getMaxTrainsStation(station->getName());
+            num = database.getMaxTrainsStation(station.getId());
             cout << "_________________________________________________" << endl;
             cout << "The maximum number of trains that can arrive to the station is: " << num << endl;
             break;
         case 2:
             cout << "_________________________________________________" << endl;
-            cout << "Station name: " << station->getName() << endl;
-            cout << "District: " << station->getDistrict() << endl;
-            cout << "Municipality: " << station->getMunicipality() << endl;
-            cout << "Township: " << station->getTownship() << endl;
-            cout << "Line: " << station->getLine() << endl;
+            cout << "Station name: " << station.getName() << endl;
+            cout << "District: " << station.getDistrict() << endl;
+            cout << "Municipality: " << station.getMunicipality() << endl;
+            cout << "Township: " << station.getTownship()<< endl;
+            cout << "Line: " << station.getLine() << endl;
             cout << "_________________________________________________" << endl;
             break;
         case 3:
@@ -218,20 +218,10 @@ void Menu::showStationInfoMenu() {
 void Menu::showTwoStationsInfoMenu() {
     cout << "_________________________________________________" << endl;
     cout << "Please enter the name of the first station:" << endl;
-    int stationId1=getIntFromUser();
-    Station* station1 = database.getStation(stationId1);
-    if (station1 == nullptr) {
-        cout << "Station not found" << endl;
-        showTwoStationsInfoMenu();
-    }
+    Station& station1 = selectStation();
 
     cout << "Please enter the name of the second station:" << endl;
-    int stationId2= getIntFromUser();
-    Station* station2 = database.getStation(stationId2);
-    if (station2 == nullptr) {
-        cout << "Station not found" << endl;
-        showTwoStationsInfoMenu();
-    }
+    Station& station2 = selectStation();
 
     cout << "_________________________________________________" << endl;
     cout<< "Please select an option:" << endl;
@@ -243,10 +233,10 @@ void Menu::showTwoStationsInfoMenu() {
     int flow;
     switch(option){
         case 1:
-            flow = database.getMaxFlowBetweenStations(stationId1, stationId2);
+            flow = database.getMaxFlowBetweenStations(station1.getId(), station2.getId());
             cout << "_________________________________________________" << endl;
-            cout << "Station 1: " <<  station1->getName() << endl;
-            cout << "Station 2: " << station2->getName() << endl;
+            cout << "Station 1: " <<  station1.getName() << endl;
+            cout << "Station 2: " << station2.getName() << endl;
             cout << "The maximum number of trains that can pass between the two stations is: " << flow << endl;
             break;
         case 2:

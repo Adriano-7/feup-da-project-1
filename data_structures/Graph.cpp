@@ -8,12 +8,18 @@
 #include <climits>
 
 bool Graph::addNode(Station& station) {
-    if (nodes[station.getId()] != nullptr){
-        cout << "Station " << station.getName() << " already exists." << endl;
-        return false;
+    // add the node to the nodes vector, if it is not already there
+    for (auto & node : nodes){
+        if (node->getStation().getName() == station.getName()){
+            return false;
+        }
     }
+    Node* node = new Node(station);
+    nodes.push_back(node);
 
-    nodes[station.getId()] = new Node(station);
+
+
+
     return true;
 }
 

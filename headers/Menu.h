@@ -12,6 +12,7 @@ class Menu {
         void showStationInfoMenu();
         void showTwoStationsInfoMenu();
         void showNetworkInfoMenu();
+        Station& selectStation();
 
         set<string> getStringsFromUser();
         string getStringFromUser();

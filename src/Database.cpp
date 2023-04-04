@@ -17,6 +17,10 @@ void Database::loadWithFilters(set<string> stations, set<string> lines) {
 }
 
 Station& Database::getStation(int id) {
+    if (id < 0 || id >= graph.getNumNodes()) {
+        cout << "Invalid station id" << endl;
+        exit(1);
+    }
     return graph.getNode(id)->getStation();
 }
 
@@ -138,8 +142,11 @@ void Database::readNetwork() {
 
         if (origStation == nullptr || destStation== nullptr)
             continue;
+        //I want the nodes that have this station
+        Node* origNode = graph.getNode(origStation->getId());
+        Node* destNode = graph.getNode(destStation->getId());
 
-        graph.addBidirectionalEdge(*origStation, *destStation, capacity, service);
+        graph.addBidirectionalEdge(origNode, destNode, capacity, service);
     }
     file.close();
 
@@ -147,25 +154,24 @@ void Database::readNetwork() {
 }
 
 void Database::printNodes() {
-    map<string, Node*> nodes = graph.getNodeMap();
-    for (auto it = nodes.begin(); it != nodes.end(); it++) {
-        cout << it->first << endl ;
+    vector<Node *> nodes = graph.getNodeVector();
+    for (auto node: nodes) {
+        cout << node->getStation().getName() << endl;
     }
 }
 
 void Database::printEdges(){
     int count = 0;
-     for(auto node: graph.getNodeMap()) {
-         for (auto edge: node.second->getAdj()) {
-             count++;
-             cout << node.first << " -> " << edge->getDest()->getStationName() << " | Capacity: " << edge->getCapacity() << endl;
-         }
+     for(auto node: graph.getNodeVector()){
+         for (auto edge: node->getAdj()) {
+             cout << node->getStation().getName() << " " << edge->getDest()->getStation().getName() << " " << edge->getCapacity() << " " << edge->getService() << endl;
+             count++;}
      }
-        cout << count << endl;
+     cout << count << endl;
 }
 
-int Database::getMaxTrainsStation(string station) {
-    return graph.maxTrains(graph.getNode(station));
+int Database::getMaxTrainsStation(int id) {
+    return graph.maxTrains(graph.getNode(id));
 }
 
 vector<string> Database::getDistricts() {
