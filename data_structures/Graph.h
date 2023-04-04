@@ -15,12 +15,13 @@ class Graph {
         bool addEdge(Station& source, Station& dest, int capacity, ServiceType service);
 
         Node* getNode(string stationName);
-        int getNumNodes();
         map<string, Node*> & getNodeMap();
         vector<pair<Node*, Node*>> maxFlowAllPairs(int *max_flow);
 
         int EdmondsKarp(Node* source, Node* dest);
         bool bfs(Node* source, Node* dest);
+        vector<Node*> FordFulkersonDijkstra(Node* source, Node* dest, double *flow, double *cost);
+        double dijkstra(Node* source, Node* dest);
 
 
     private:

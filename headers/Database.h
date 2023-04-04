@@ -15,6 +15,7 @@ class Database {
         vector<pair<Node *, Node *>> maxFlowAllPairs(int *maxFlow);
 
         int getMaxFlowBetweenStations(string station1, string station2);
+        vector<Node*> getMinCostFlow(string station1, string station2, double *flow, double *cost);
 
     private:
         Graph graph;

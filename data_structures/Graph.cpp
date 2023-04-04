@@ -3,8 +3,7 @@
 #include <iostream>
 #include <queue>
 #include <algorithm>
-#include <xmath.h>
-
+#include <limits>
 
 using namespace std;
 
@@ -49,10 +48,6 @@ Node* Graph::getNode(string stationName) {
         return nullptr;
 }
 
-int Graph::getNumNodes() {
-    return nodes.size();
-}
-
 map<string, Node*> & Graph::getNodeMap() {
     return nodes;
 }
@@ -71,8 +66,8 @@ int Graph::EdmondsKarp(Node* source, Node* dest){
     }
 
     int maxFlow = 0;
-    while( bfs(source, dest) ) {
-        double pathFlow = INF;
+    while(bfs(source, dest)) {
+        double pathFlow = numeric_limits<double>::infinity();
         for(Node* v = dest; v != source; ) {
             Edge* edge = v->getPath();
             if (edge->getDest() == v) {
@@ -162,3 +157,104 @@ vector<pair<Node *, Node *>> Graph::maxFlowAllPairs(int *maxFlow) {
     return result;
 }
 
+vector<Node*> Graph::FordFulkersonDijkstra(Node* source, Node* dest, double* flow, double* cost){
+    if(source == nullptr || dest == nullptr || source == dest){
+        cout << "Invalid source or destination" << endl;
+        flow = nullptr;
+        return vector<Node*>{};
+    }
+
+    *cost = dijkstra(source, dest);
+    if(*cost==-1){
+        cout << "No path found" << "for source " << source->getStation().getName() << " and destination " << dest->getStation().getName() << endl;
+        *flow = 0;
+        *cost = -1;
+        return vector<Node*>{};
+    }
+
+    double pathFlow = numeric_limits<double>::infinity();
+    for(Node* v = dest; v != source; ) {
+        Edge* edge = v->getPath();
+
+        if(edge== nullptr){
+            cout << "No path found" << "for source " << source->getStation().getName() << " and destination " << dest->getStation().getName() << endl;
+            flow = nullptr;
+            return vector<Node*>{};
+        }
+
+        if (edge->getDest() == v) {
+            double residualCapacity = edge->getCapacity() - edge->getFlow();
+            pathFlow = std::min(pathFlow, residualCapacity);
+            v = edge->getOrig();
+        }
+        else{
+            pathFlow = std::min(pathFlow, edge->getFlow());
+            v = edge->getDest();
+        }
+    }
+
+    vector<Node*> path;
+    for(Node* v = dest; v != source;) {
+        Edge* e = v->getPath();
+        if (e->getDest() == v) {
+            e->setFlow(e->getFlow() + pathFlow);
+            v = e->getOrig();
+        }
+        else {
+            e->setFlow(e->getFlow() - pathFlow);
+            v = e->getDest();
+        }
+        path.push_back(v);
+    }
+
+    *flow = pathFlow;
+    return path;
+}
+
+double Graph::dijkstra(Node* source, Node* dest){
+    queue<Node*> q;
+    map<ServiceType, double> serviceCosts = {{ServiceType::STANDARD,2}, {ServiceType::ALFA_PENDULAR, 4}};
+
+    for(pair<string, Node*> nodePair : nodes) {
+        Node* node = nodePair.second;
+        node->setVisited(false);
+        node->setPath(nullptr);
+        node->setDistance(numeric_limits<double>::infinity());
+
+        for(Edge* e: node->getAdj()) {
+            e->setFlow(0);
+        }
+    }
+
+    source->setDistance(0);
+    q.push(source);
+    vector<Node*> path;
+
+    while(!q.empty()){
+        Node* v = q.front();
+        q.pop();
+        v->setVisited(true);
+
+        if(v == dest){
+            break;
+        }
+
+        for(Edge* e: v->getAdj()){
+            Node* w = e->getDest();
+            if(!w->isVisited()){
+                double distance = v->getDistance() + serviceCosts[e->getService()];
+                if(distance < w->getDistance()){
+                    w->setDistance(distance);
+                    w->setPath(e);
+                    q.push(w);
+                }
+            }
+        }
+    }
+
+    if(dest->getPath() == nullptr){
+        cout << "No path found" << "for source " << source->getStation().getName() << " and destination " << dest->getStation().getName() << endl;
+        return -1;
+    }
+    return dest->getDistance();
+}

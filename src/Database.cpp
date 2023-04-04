@@ -24,8 +24,12 @@ vector<pair<Node *, Node *>> Database::maxFlowAllPairs(int *maxFlow){
     return graph.maxFlowAllPairs(maxFlow);
 }
 
-int Database::getMaxFlowBetweenStations(std::string station1, std::string station2) {
+int Database::getMaxFlowBetweenStations(string station1, string station2) {
     return graph.EdmondsKarp(graph.getNode(station1), graph.getNode(station2));
+}
+
+vector<Node*> Database::getMinCostFlow(string station1, string station2, double *flow, double *cost){
+    return graph.FordFulkersonDijkstra(graph.getNode(station1), graph.getNode(station2), flow, cost);
 }
 
 void Database::readStations(set<string> stations, set<string> lines) {
