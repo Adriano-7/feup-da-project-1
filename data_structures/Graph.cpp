@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <cmath>
 #include <limits>
+#include <climits>
 
 bool Graph::addNode(Station& station) {
     if (nodes.find(station.getName()) != nodes.end()){
@@ -16,17 +17,15 @@ bool Graph::addNode(Station& station) {
     return true;
 }
 
-bool Graph::addEdge(Station &source, Station &dest, int capacity, ServiceType service) {
-    Node* sourceNode = nodes[source.getName()];
-    Node* destNode = nodes[dest.getName()];
+bool Graph::addEdge(Node* sourceNode, Node* destNode, int capacity, ServiceType service) {
 
     if (sourceNode== nullptr){
-        cout << "Station " << source.getName() << " does not exist." << endl;
+        cout << "Station " << sourceNode->getStationName() << " does not exist." << endl;
         return false;
     }
 
     if (destNode== nullptr){
-        cout << "Station " << dest.getName() << " does not exist." << endl;
+        cout << "Station " << destNode->getStationName() << " does not exist." << endl;
         return false;
     }
 
@@ -49,8 +48,8 @@ bool Graph::addBidirectionalEdge(Station& source, Station& dest, int capacity, S
     }
 
 
-    Edge* e1 = sourceNode->addEdge(destNode, ceil(capacity / 2), service);
-    Edge* e2 = destNode->addEdge(sourceNode, floor(capacity/2), service);
+    Edge* e1 = sourceNode->addEdge(destNode, capacity, service);
+    Edge* e2 = destNode->addEdge(sourceNode, capacity, service);
 
     e1->setReverse(e2);
     e2->setReverse(e1);
@@ -160,10 +159,11 @@ int Graph::maxTrains(Node *station) {
     Node* superSource = new Node(*superSourceStation);
     for(pair<string, Node*> nodePair : nodes) {
             Node* node = nodePair.second;
-            if (node != station) {
-                Edge* e = superSource->addEdge(node, numeric_limits<double>::infinity(),STANDARD);
+            if (node != station && node->getAdj().size() == 1) {
+                this->addEdge(superSource, nodePair.second, INT_MAX, ServiceType::NONE);
             }
         }
-        return 0;
+
+    return EdmondsKarp(superSource, station);
     }
 

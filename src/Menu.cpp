@@ -165,10 +165,13 @@ void Menu::showStationInfoMenu() {
     cout<< "3 - Return to main menu" << endl;
 
     int option = getIntFromUser();
+    int num;
 
     switch(option){
         case 1:
-            cout << "This feature isn't yet implemented" << endl;
+            num = database.getMaxTrainsStation(station->getName());
+            cout << "_________________________________________________" << endl;
+            cout << "The maximum number of trains that can arrive to the station is: " << num << endl;
             break;
         case 2:
             cout << "_________________________________________________" << endl;

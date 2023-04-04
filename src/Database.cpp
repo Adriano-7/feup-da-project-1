@@ -133,3 +133,7 @@ void Database::printEdges(){
      }
         cout << count << endl;
 }
+
+int Database::getMaxTrainsStation(string station) {
+    return graph.maxTrains(graph.getNode(station));
+}
