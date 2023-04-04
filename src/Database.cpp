@@ -114,7 +114,7 @@ void Database::readNetwork() {
         if (origStation == nullptr || destStation== nullptr)
             continue;
 
-        graph.addEdge(*origStation, *destStation, capacity, service);
+        graph.addBidirectionalEdge(*origStation, *destStation, capacity, service);
     }
     file.close();
     return;
@@ -136,4 +136,8 @@ void Database::printEdges(){
          }
      }
         cout << count << endl;
+}
+
+int Database::getMaxTrainsStation(string station) {
+    return graph.maxTrains(graph.getNode(station));
 }

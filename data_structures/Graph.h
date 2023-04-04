@@ -12,7 +12,8 @@ using namespace std;
 class Graph {
     public:
         bool addNode(Station& station);
-        bool addEdge(Station& source, Station& dest, int capacity, ServiceType service);
+        bool addEdge(Node* source, Node* dest, int capacity, ServiceType service);
+        bool addBidirectionalEdge(Station& source, Station& dest, int capacity, ServiceType service);
 
         Node* getNode(string stationName);
         int getNumNodes();
@@ -21,6 +22,7 @@ class Graph {
 
         int EdmondsKarp(Node* source, Node* dest);
         bool bfs(Node* source, Node* dest);
+        int maxTrains (Node* station);
 
 
     private:

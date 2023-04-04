@@ -3,10 +3,9 @@
 #include <iostream>
 #include <queue>
 #include <algorithm>
-#include <xmath.h>
-
-
-using namespace std;
+#include <cmath>
+#include <limits>
+#include <climits>
 
 bool Graph::addNode(Station& station) {
     if (nodes.find(station.getName()) != nodes.end()){
@@ -18,7 +17,23 @@ bool Graph::addNode(Station& station) {
     return true;
 }
 
-bool Graph::addEdge(Station& source, Station& dest, int capacity, ServiceType service) {
+bool Graph::addEdge(Node* sourceNode, Node* destNode, int capacity, ServiceType service) {
+
+    if (sourceNode== nullptr){
+        cout << "Station " << sourceNode->getStationName() << " does not exist." << endl;
+        return false;
+    }
+
+    if (destNode== nullptr){
+        cout << "Station " << destNode->getStationName() << " does not exist." << endl;
+        return false;
+    }
+
+    sourceNode->addEdge(destNode, capacity, service);
+    return true;
+}
+
+bool Graph::addBidirectionalEdge(Station& source, Station& dest, int capacity, ServiceType service) {
     Node* sourceNode = nodes[source.getName()];
     Node* destNode = nodes[dest.getName()];
 
@@ -72,7 +87,7 @@ int Graph::EdmondsKarp(Node* source, Node* dest){
 
     int maxFlow = 0;
     while( bfs(source, dest) ) {
-        double pathFlow = INF;
+        double pathFlow = numeric_limits<double>::infinity();
         for(Node* v = dest; v != source; ) {
             Edge* edge = v->getPath();
             if (edge->getDest() == v) {
@@ -161,4 +176,17 @@ vector<pair<Node *, Node *>> Graph::maxFlowAllPairs(int *maxFlow) {
 
     return result;
 }
+
+int Graph::maxTrains(Node *station) {
+    Station *superSourceStation = new Station("SuperSource", "", "", "", "");
+    Node* superSource = new Node(*superSourceStation);
+    for(pair<string, Node*> nodePair : nodes) {
+            Node* node = nodePair.second;
+            if (node != station && node->getAdj().size() == 1) {
+                this->addEdge(superSource, nodePair.second, INT_MAX, ServiceType::NONE);
+            }
+        }
+
+    return EdmondsKarp(superSource, station);
+    }
 

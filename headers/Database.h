@@ -15,13 +15,16 @@ class Database {
         vector<pair<Node *, Node *>> maxFlowAllPairs(int *maxFlow);
 
         int getMaxFlowBetweenStations(string station1, string station2);
+        int getMaxTrainsStation(string station);
 
-    private:
+
+private:
         Graph graph;
         unordered_map<string, Station*> nameToStation;
 
         void readStations(set<string> stations, set<string> lines);
         void readNetwork();
+
 };
 
 
