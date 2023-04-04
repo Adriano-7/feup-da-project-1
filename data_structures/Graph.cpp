@@ -146,7 +146,7 @@ vector<pair<Node *, Node *>> Graph::maxFlowAllPairs(int *maxFlow) {
              if(it1==it2) { continue;}
              else{
                  int curFlow = EdmondsKarp(it1->second, it2->second);
-                 cout<< "Max flow from " << it1->second->getStation().getName() << " to " << it2->second->getStation().getName() << " is " << curFlow << endl;
+                 //cout<< "Max flow from " << it1->second->getStation().getName() << " to " << it2->second->getStation().getName() << " is " << curFlow << endl;
                  if(curFlow > *maxFlow){
                      result.erase(result.begin(), result.end());
                      *maxFlow = curFlow;
