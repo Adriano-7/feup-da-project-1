@@ -8,7 +8,7 @@ bool Node::operator<(Node &node) {
     return this->distance < node.distance;
 }
 
-Station &Node::getStation() {
+Station& Node::getStation() {
     return station;
 }
 

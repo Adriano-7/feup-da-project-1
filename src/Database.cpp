@@ -3,7 +3,7 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
-
+#include <algorithm>
 using namespace std;
 
 void Database::loadWithoutFilters() {
@@ -16,15 +16,15 @@ void Database::loadWithFilters(set<string> stations, set<string> lines) {
     readNetwork();
 }
 
-Station* Database::getStation(string stationName) {
-    return nameToStation[stationName];
+Station& Database::getStation(int id) {
+    return graph.getNode(id)->getStation();
 }
 
 vector<pair<Node *, Node *>> Database::maxFlowAllPairs(int *maxFlow){
     return graph.maxFlowAllPairs(maxFlow);
 }
 
-int Database::getMaxFlowBetweenStations(std::string station1, std::string station2) {
+int Database::getMaxFlowBetweenStations(int station1, int station2) {
     return graph.EdmondsKarp(graph.getNode(station1), graph.getNode(station2));
 }
 
@@ -36,7 +36,7 @@ void Database::readStations(set<string> stations, set<string> lines) {
         cout << "Error opening stations.csv" << endl;
         return;
     }
-
+    int id = -1;
     string line;
     while (getline(file, line)) {
         vector<string> fields;
@@ -50,6 +50,8 @@ void Database::readStations(set<string> stations, set<string> lines) {
             return;
         }
 
+
+        id++;
         string name = fields[0];
         string district = fields[1];
         string municipality = fields[2];
@@ -64,9 +66,32 @@ void Database::readStations(set<string> stations, set<string> lines) {
             continue;
         }
 
-        Station *station = new Station(name, district, municipality, township, line);
+        Station *station = new Station(id,name, district, municipality, township, line);
         graph.addNode(*station);
-        nameToStation[name] = station;
+        nameToStation[name] = station; //TO REMOVE
+
+        if(district.empty() || municipality.empty()) continue;
+        if(municipalitiesByDistrict.find(district) == municipalitiesByDistrict.end()){
+            vector<string> municipalities;
+            municipalities.push_back(municipality);
+            municipalitiesByDistrict[district] = municipalities;
+            districts.push_back(district);
+        }
+        else{
+            if(find(municipalitiesByDistrict[district].begin(), municipalitiesByDistrict[district].end(), municipality) == municipalitiesByDistrict[district].end())
+                municipalitiesByDistrict[district].push_back(municipality);
+        }
+
+        if(stationsByMunicipality.find(municipality) == stationsByMunicipality.end()){
+            vector<int> ids;
+            ids.push_back(station->getId());
+            stationsByMunicipality[municipality] = ids;
+        }
+        else{
+            if(find(stationsByMunicipality[municipality].begin(), stationsByMunicipality[municipality].end(), id) == stationsByMunicipality[municipality].end())
+                stationsByMunicipality[municipality].push_back(id);
+        }
+
     }
     file.close();
     return;
@@ -117,6 +142,7 @@ void Database::readNetwork() {
         graph.addBidirectionalEdge(*origStation, *destStation, capacity, service);
     }
     file.close();
+
     return;
 }
 
@@ -140,4 +166,17 @@ void Database::printEdges(){
 
 int Database::getMaxTrainsStation(string station) {
     return graph.maxTrains(graph.getNode(station));
+}
+
+vector<string> Database::getDistricts() {
+    return districts;
+}
+
+vector<string> Database::getMunicipalities(string district) {
+    return municipalitiesByDistrict[district];
+}
+
+vector<int> Database::getStations(string municipality) {
+    return stationsByMunicipality[municipality];
+
 }

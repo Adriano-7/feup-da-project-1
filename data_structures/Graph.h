@@ -13,11 +13,10 @@ class Graph {
     public:
         bool addNode(Station& station);
         bool addEdge(Node* source, Node* dest, int capacity, ServiceType service);
-        bool addBidirectionalEdge(Station& source, Station& dest, int capacity, ServiceType service);
-
-        Node* getNode(string stationName);
+        bool addBidirectionalEdge(Node* sourceNode, Node* destNode, int capacity, ServiceType service);
+        Node* getNode(int id);
         int getNumNodes();
-        map<string, Node*> & getNodeMap();
+        vector<Node*> & getNodeVector();
         vector<pair<Node*, Node*>> maxFlowAllPairs(int *max_flow);
 
         int EdmondsKarp(Node* source, Node* dest);
@@ -26,7 +25,8 @@ class Graph {
 
 
     private:
-        map<string, Node*> nodes;
+       vector<Node*> nodes;
+
 };
 
 #endif //PROJECT_DA_GRAPH_H

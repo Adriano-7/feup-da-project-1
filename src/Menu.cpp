@@ -150,11 +150,35 @@ void Menu::waitForInput() {
 
 void Menu::showStationInfoMenu() {
     cout << "_________________________________________________" << endl;
-    cout << "Please enter the name of the station:" << endl;
-    string stationName = getStringFromUser();
+    cout << "Select the district:" << endl;
+    //print the district vector
+    vector<string> districts = database.getDistricts();
+    for (int i = 0; i < districts.size(); i++) {
+        cout << i + 1 << " - " << districts[i] << endl;
+    }
+    int id = getIntFromUser();
 
-    Station *station = database.getStation(stationName);
-    if (station == nullptr) {
+    vector<string> municipalities = database.getMunicipalities(districts[id - 1]);
+    cout << "_________________________________________________" << endl;
+    cout << "Select the municipality:" << endl;
+    for (int i = 0; i < municipalities.size(); i++) {
+        cout << i + 1 << " - " << municipalities[i] << endl;
+    }
+    id = getIntFromUser();
+
+    vector<int> stations = database.getStations(municipalities[id - 1]);
+    cout << "_________________________________________________" << endl;
+    cout << "Select the station:" << endl;
+    for (int i = 0; i < stations.size(); i++) {
+        int idi = stations[i];
+        cout << i + 1 << " - " << database.getStation(idi).getName() << endl;
+    }
+    id = getIntFromUser();
+
+
+    Station& station = database.getStation(id);
+
+    if (station == Station::nullStation) {
         cout << "Station not found" << endl;
         return showStationInfoMenu();
     }
@@ -194,16 +218,16 @@ void Menu::showStationInfoMenu() {
 void Menu::showTwoStationsInfoMenu() {
     cout << "_________________________________________________" << endl;
     cout << "Please enter the name of the first station:" << endl;
-    string stationName1=getStringFromUser();
-    Station* station1 = database.getStation(stationName1);
+    int stationId1=getIntFromUser();
+    Station* station1 = database.getStation(stationId1);
     if (station1 == nullptr) {
         cout << "Station not found" << endl;
         showTwoStationsInfoMenu();
     }
 
     cout << "Please enter the name of the second station:" << endl;
-    string stationName2=getStringFromUser();
-    Station* station2 = database.getStation(stationName2);
+    int stationId2= getIntFromUser();
+    Station* station2 = database.getStation(stationId2);
     if (station2 == nullptr) {
         cout << "Station not found" << endl;
         showTwoStationsInfoMenu();
@@ -219,10 +243,10 @@ void Menu::showTwoStationsInfoMenu() {
     int flow;
     switch(option){
         case 1:
-            flow = database.getMaxFlowBetweenStations(stationName1, stationName2);
+            flow = database.getMaxFlowBetweenStations(stationId1, stationId2);
             cout << "_________________________________________________" << endl;
-            cout << "Station 1: " << stationName1 << endl;
-            cout << "Station 2: " << stationName2 << endl;
+            cout << "Station 1: " <<  station1->getName() << endl;
+            cout << "Station 2: " << station2->getName() << endl;
             cout << "The maximum number of trains that can pass between the two stations is: " << flow << endl;
             break;
         case 2:

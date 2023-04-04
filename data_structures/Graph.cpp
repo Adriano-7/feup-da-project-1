@@ -8,24 +8,24 @@
 #include <climits>
 
 bool Graph::addNode(Station& station) {
-    if (nodes.find(station.getName()) != nodes.end()){
+    if (nodes[station.getId()] != nullptr){
         cout << "Station " << station.getName() << " already exists." << endl;
         return false;
     }
 
-    nodes[station.getName()] = new Node(station);
+    nodes[station.getId()] = new Node(station);
     return true;
 }
 
 bool Graph::addEdge(Node* sourceNode, Node* destNode, int capacity, ServiceType service) {
 
     if (sourceNode== nullptr){
-        cout << "Station " << sourceNode->getStationName() << " does not exist." << endl;
+        cout << "Station does not exist." << endl;
         return false;
     }
 
     if (destNode== nullptr){
-        cout << "Station " << destNode->getStationName() << " does not exist." << endl;
+        cout << "Station does not exist." << endl;
         return false;
     }
 
@@ -33,17 +33,15 @@ bool Graph::addEdge(Node* sourceNode, Node* destNode, int capacity, ServiceType 
     return true;
 }
 
-bool Graph::addBidirectionalEdge(Station& source, Station& dest, int capacity, ServiceType service) {
-    Node* sourceNode = nodes[source.getName()];
-    Node* destNode = nodes[dest.getName()];
+bool Graph::addBidirectionalEdge(Node* sourceNode, Node* destNode, int capacity, ServiceType service) {
 
     if (sourceNode== nullptr){
-        cout << "Station " << source.getName() << " does not exist." << endl;
+        cout << "Station  does not exist." << endl;
         return false;
     }
 
     if (destNode== nullptr){
-        cout << "Station " << dest.getName() << " does not exist." << endl;
+        cout << "Station does not exist." << endl;
         return false;
     }
 
@@ -57,9 +55,9 @@ bool Graph::addBidirectionalEdge(Station& source, Station& dest, int capacity, S
     return true;
 }
 
-Node* Graph::getNode(string stationName) {
-    if (nodes.find(stationName) != nodes.end())
-        return nodes[stationName];
+Node* Graph::getNode(int id) {
+    if (nodes[id] != nullptr)
+        return nodes[id];
     else
         return nullptr;
 }
@@ -68,7 +66,7 @@ int Graph::getNumNodes() {
     return nodes.size();
 }
 
-map<string, Node*> & Graph::getNodeMap() {
+vector<Node*> & Graph::getNodeVector() {
     return nodes;
 }
 
@@ -78,8 +76,7 @@ int Graph::EdmondsKarp(Node* source, Node* dest){
         return -1;
     }
 
-    for(pair<string, Node*> nodePair : nodes) {
-        Node* node = nodePair.second;
+    for(Node*  node :  nodes) {
         for(Edge* e: node->getAdj()) {
             e->setFlow(0);
         }
@@ -117,8 +114,8 @@ int Graph::EdmondsKarp(Node* source, Node* dest){
 }
 
 bool Graph::bfs(Node* source, Node* dest){
-    for(pair<string, Node*> nodePair : nodes) {
-        Node* node = nodePair.second;
+    for(Node* node : nodes) {
+
         node->setVisited(false);
         node->setPath(nullptr);
     }
@@ -160,15 +157,15 @@ vector<pair<Node *, Node *>> Graph::maxFlowAllPairs(int *maxFlow) {
          for(auto it2 = it1; it2 != nodes.end(); it2++){
              if(it1==it2) { continue;}
              else{
-                 int curFlow = EdmondsKarp(it1->second, it2->second);
+                 int curFlow = EdmondsKarp(*it1, *it2);
                  //cout<< "Max flow from " << it1->second->getStation().getName() << " to " << it2->second->getStation().getName() << " is " << curFlow << endl;
                  if(curFlow > *maxFlow){
                      result.erase(result.begin(), result.end());
                      *maxFlow = curFlow;
-                     result.push_back(make_pair(it1->second, it2->second));
+                     result.push_back(make_pair(*it1, *it2));
                  }
                  else if(curFlow == *maxFlow){
-                     result.push_back(make_pair(it1->second, it2->second));
+                     result.push_back(make_pair(*it1, *it2));
                  }
              }
          }
@@ -178,15 +175,17 @@ vector<pair<Node *, Node *>> Graph::maxFlowAllPairs(int *maxFlow) {
 }
 
 int Graph::maxTrains(Node *station) {
-    Station *superSourceStation = new Station("SuperSource", "", "", "", "");
+    Station *superSourceStation = new Station(999, "SuperSource", "", "", "", "");
     Node* superSource = new Node(*superSourceStation);
-    for(pair<string, Node*> nodePair : nodes) {
-            Node* node = nodePair.second;
+    for(Node* node : nodes) {
             if (node != station && node->getAdj().size() == 1) {
-                this->addEdge(superSource, nodePair.second, INT_MAX, ServiceType::NONE);
+                this->addEdge(superSource, node, INT_MAX, ServiceType::NONE);
             }
         }
 
-    return EdmondsKarp(superSource, station);
+    int max =  EdmondsKarp(superSource, station);
+    delete superSourceStation;
+    delete superSource;
+    return max;
     }
 
