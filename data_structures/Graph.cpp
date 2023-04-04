@@ -140,6 +140,7 @@ bool Graph::bfs(Node* source, Node* dest){
 vector<pair<Node *, Node *>> Graph::maxFlowAllPairs(int *maxFlow) {
     *maxFlow = INT_MIN;
     vector<pair<Node *, Node *>> result;
+
      for(auto it1 = nodes.begin(); it1 != nodes.end(); it1++){
          for(auto it2 = it1; it2 != nodes.end(); it2++){
              if(it1==it2) { continue;}
@@ -151,12 +152,13 @@ vector<pair<Node *, Node *>> Graph::maxFlowAllPairs(int *maxFlow) {
                      *maxFlow = curFlow;
                      result.push_back(make_pair(it1->second, it2->second));
                  }
-                 if(curFlow == *maxFlow){
+                 else if(curFlow == *maxFlow){
                      result.push_back(make_pair(it1->second, it2->second));
                  }
              }
          }
      }
+
     return result;
 }
 
