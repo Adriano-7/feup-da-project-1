@@ -61,6 +61,7 @@ public:
     Node* getOrig();
     Edge* getReverse();
     double getFlow();
+    double getCostService();
 
     void setFlow(double flow);
     void addFlow(double flow);
@@ -83,8 +84,6 @@ private:
     //Used for bidirectional edges
     Edge *reverse = nullptr;
     Node *orig;
-
-
 };
 
 

@@ -70,8 +70,8 @@ int Database::getMaxFlowBetweenStations(Station* station1, Station* station2) {
  * @param station1 - source station
  * @param station2 - destination station
 */
-vector<Node*> Database::getMinCostFlow(Station* station1, Station* station2, double *flow, double *cost){
-    return graph.FordFulkersonDijkstra(graph.getNode(station1), graph.getNode(station2), flow, cost);
+stack<Edge*> Database::getMinCostFlow(Station* station1, Station* station2, double *flow, double *costService){
+    return graph.FordFulkersonDijkstra(graph.getNode(station1), graph.getNode(station2), flow, costService);
 }
 
 int Database::getMaxTrainsStation(Station* station){

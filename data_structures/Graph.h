@@ -7,6 +7,7 @@
 #include "Station.h"
 #include "NodeEdge.h"
 #include "ServiceType.h"
+#include <stack>
 using namespace std;
 /**
  * @brief Class that processes everything that uses graphs.
@@ -20,12 +21,11 @@ class Graph {
 
         Node* getNode(string stationName);
         Node* getNode(Station* station);
-        int getNumNodes();
 
         bool bfs(Node* source, Node* dest);
         double dijkstra(Node* source, Node* dest);
         int EdmondsKarp(Node* source, Node* dest);
-        vector<Node*> FordFulkersonDijkstra(Node* source, Node* dest, double *flow, double *cost);
+        stack<Edge*> FordFulkersonDijkstra(Node* source, Node* dest, double *flow, double *cost);
         vector<pair<Node*, Node*>> maxFlowAllPairs(int *max_flow);
         void sumSomePairsFlow(set<Node*> nodes, int *max_flow);
         int maxIncomingFlow(Node* node);

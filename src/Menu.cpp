@@ -36,6 +36,7 @@ void Menu::showDataSelectionMenu() {
         }
     }
 }
+
 /**
  * @brief Creates Subset Menu.
  */
@@ -65,6 +66,7 @@ void Menu::showSubsetMenu() {
     database.loadWithFilters(stations, lines);
     showMainMenu();
 }
+
 /**
  * @brief Creates Main Menu.
  */
@@ -76,7 +78,7 @@ void Menu::showMainMenu(){
         cout << "2 - See information about two stations" << endl;
         cout << "3 - See information about the entire network" << endl;
         cout << "4 - Make a change to the capacity of a connection" << endl;
-        cout << "5 - exit" << endl;
+        cout << "5 - Exit" << endl;
 
         int option = getIntFromUser();
         switch (option) {
@@ -103,6 +105,171 @@ void Menu::showMainMenu(){
         }
     }
 }
+
+/**
+ * @brief Creates Station Info Menu.
+ */
+void Menu::showStationInfoMenu() {
+    Station* station = getStationFromUser();
+    if (station == nullptr) {
+        cout << "Station not found" << endl;
+        return showStationInfoMenu();
+    }
+
+    cout << "_________________________________________________" << endl;
+    cout<< "Please select an option:" << endl;
+    cout<< "1 - See the maximum number of trains that can arrive to the station" << endl;
+    cout<< "2 - See more information about the station" << endl;
+    cout<< "3 - Return to main menu" << endl;
+
+    int option = getIntFromUser();
+    int maxTrains;
+
+    switch(option){
+        case 1:
+            maxTrains = database.getMaxTrainsStation(station);
+            cout << "_________________________________________________" << endl;
+            cout << "The maximum number of trains that can arrive to the station is: " << maxTrains << endl;
+            break;
+        case 2:
+            cout << "_________________________________________________" << endl;
+            cout << "Station name: " << station->getName() << endl;
+            cout << "District: " << station->getDistrict() << endl;
+            cout << "Municipality: " << station->getMunicipality() << endl;
+            cout << "Township: " << station->getTownship() << endl;
+            cout << "Line: " << station->getLine() << endl;
+            cout << "_________________________________________________" << endl;
+            break;
+        case 3:
+            return;
+        default:
+            cout << "Invalid option" << endl;
+            showStationInfoMenu();
+    }
+}
+
+void Menu::showTwoStationsInfoMenu() {
+    cout << "_________________________________________________" << endl;
+    cout << "First station:" << endl;
+    Station* station1 = getStationFromUser();
+
+    if (station1 == nullptr) {
+        cout << "Station not found" << endl;
+        return showTwoStationsInfoMenu();
+    }
+
+    cout << "_________________________________________________" << endl;
+    cout << "Second station:" << endl;
+    Station* station2 = getStationFromUser();
+
+    if (station2 == nullptr) {
+        cout << "Station not found" << endl;
+        return showTwoStationsInfoMenu();
+    }
+
+    cout << "_________________________________________________" << endl;
+    cout<< "Please select an option:" << endl;
+    cout<< "1 - Maximum number of trains that can travel between the two" << endl;
+    cout<< "2 - Maximum number of trains that can travel between the two taking cost into account" << endl;
+    cout<< "3 - Return to main menu" << endl;
+
+    int option = getIntFromUser();
+    double flow, cost;
+    stack<Edge*> pathFlow;
+    switch(option){
+        case 1:
+            flow = database.getMaxFlowBetweenStations(station1, station2);
+            cout << "_________________________________________________" << endl;
+            cout << "Station 1: " << station1->getName() << endl;
+            cout << "Station 2: " << station2->getName() << endl;
+            cout << "The maximum number of trains that can pass between the two stations is: " << flow << endl;
+            break;
+        case 2:
+            pathFlow = database.getMinCostFlow(station1, station2, &flow, &cost);
+            if(pathFlow.empty()){
+                cout << "There is no path between " << station1->getName() << " and " << station2->getName() << endl;
+                return;
+            }
+
+            cout << "_________________________________________________" << endl;
+            cout << "Station 1: " << station1->getName() << endl;
+            cout << "Station 2: " << station2->getName() << endl;
+            cout << "The maximum number of trains that can pass between the two stations is: " << flow << endl;
+            cout << "The cost of service is: " << cost << endl;
+            cout << "The path is: " << endl;
+
+            while(!pathFlow.empty()){
+                Edge* edge = pathFlow.top();
+                pathFlow.pop();
+                cout << edge->getOrig()->getStationName() << " -> " << edge->getDest()->getStationName() << " | " << serviceToString(edge->getService()) << endl;
+            }
+            cout << endl;
+            break;
+        case 3:
+            return;
+        default:
+            cout << "Invalid option" << endl;
+            showTwoStationsInfoMenu();
+    }
+}
+
+/**
+ * @brief Creates Network Info Menu.
+ */
+void Menu::showNetworkInfoMenu() {
+    cout << "_________________________________________________" << endl;
+    cout<< "Please select an option:" << endl;
+    cout<< "1 - Pairs of stations with the maximum number of trains that can travel between them" << endl;
+    cout<< "2 - Top-k municipalities and districts" << endl;
+    cout<< "3 - Return to main menu" << endl;
+
+    int option = getIntFromUser();
+    int maxFlow;
+
+    vector<pair<Node*, Node*>> pairs;
+    vector<pair<string, int>> topK;
+    int k;
+
+    switch(option){
+        case 1:
+            pairs = database.maxFlowAllPairs(&maxFlow);
+            cout << "The max flow is " << maxFlow << endl;
+
+            for(auto pair: pairs){
+                cout << pair.first->getStationName() << " -> " << pair.second->getStationName() << endl;
+            }
+            break;
+        case 2:
+            cout << "1 -Districts" << endl;
+            cout << "2 -Municipalities" << endl;
+            option = getIntFromUser();
+
+            cout << "Enter the k number of top districts/municipalities" << endl;
+            k = getIntFromUser();
+
+            if(option == 1){
+                topK = database.getTopDistricts(k);
+            }
+            else if(option == 2){
+                topK = database.getTopMunicipalities(k);
+            }
+            else{
+                cout << "Invalid option" << endl;
+                showNetworkInfoMenu();
+            }
+
+            for(auto pair: topK){
+                cout << pair.first << " -> " << pair.second << endl;
+            }
+            break;
+        case 3:
+            return;
+        default:
+            cout << "Invalid option" << endl;
+            showNetworkInfoMenu();
+    }
+}
+
 /**
  * @brief Creates Change Capacity Menu.
  */
@@ -260,6 +427,7 @@ Station* Menu::selectStationFromList(){
 
     return database.getStation(*it3);
 }
+
 /**
  * @brief Gets input from the User.
  * @return
@@ -275,174 +443,22 @@ int Menu::getIntFromUser() {
     }
     return input;
 }
-/**
- * @brief Waits for input from the User.
- */
+
+string Menu::serviceToString(ServiceType service){
+    switch(service){
+        case ServiceType::STANDARD:
+            return "Standard";
+        case ServiceType::ALFA_PENDULAR:
+            return "Alfa Pendular";
+        default:
+            return "Invalid Service";
+    }
+}
+
 void Menu::waitForInput() {
     usleep(800000);
     string q;
     cout << endl << "Insert any key to continue: ";
     cin >> q;
     cout << endl;
-}
-/**
- * @brief Creates Station Info Menu.
- */
-void Menu::showStationInfoMenu() {
-    Station* station = getStationFromUser();
-    if (station == nullptr) {
-        cout << "Station not found" << endl;
-        return showStationInfoMenu();
-    }
-
-    cout << "_________________________________________________" << endl;
-    cout<< "Please select an option:" << endl;
-    cout<< "1 - See the maximum number of trains that can arrive to the station" << endl;
-    cout<< "2 - See more information about the station" << endl;
-    cout<< "3 - Return to main menu" << endl;
-
-    int option = getIntFromUser();
-    int maxTrains;
-
-    switch(option){
-        case 1:
-            maxTrains = database.getMaxTrainsStation(station);
-            cout << "_________________________________________________" << endl;
-            cout << "The maximum number of trains that can arrive to the station is: " << maxTrains << endl;
-            break;
-        case 2:
-            cout << "_________________________________________________" << endl;
-            cout << "Station name: " << station->getName() << endl;
-            cout << "District: " << station->getDistrict() << endl;
-            cout << "Municipality: " << station->getMunicipality() << endl;
-            cout << "Township: " << station->getTownship() << endl;
-            cout << "Line: " << station->getLine() << endl;
-            cout << "_________________________________________________" << endl;
-            break;
-        case 3:
-            return;
-        default:
-            cout << "Invalid option" << endl;
-            showStationInfoMenu();
-    }
-}
-/**
- * @brief Creates Two Stations Info Menu.
- */
-void Menu::showTwoStationsInfoMenu() {
-    cout << "_________________________________________________" << endl;
-    cout << "First station:" << endl;
-    Station* station1 = getStationFromUser();
-
-    if (station1 == nullptr) {
-        cout << "Station not found" << endl;
-        return showTwoStationsInfoMenu();
-    }
-
-    cout << "_________________________________________________" << endl;
-    cout << "Second station:" << endl;
-    Station* station2 = getStationFromUser();
-
-    if (station2 == nullptr) {
-        cout << "Station not found" << endl;
-        return showTwoStationsInfoMenu();
-    }
-
-    cout << "_________________________________________________" << endl;
-    cout<< "Please select an option:" << endl;
-    cout<< "1 - Maximum number of trains that can travel between the two" << endl;
-    cout<< "2 - Maximum number of trains that can travel between the two taking cost into account" << endl;
-    cout<< "3 - Return to main menu" << endl;
-
-    int option = getIntFromUser();
-    double flow, cost;
-    vector<Node*> pathFlow;
-    switch(option){
-        case 1:
-            flow = database.getMaxFlowBetweenStations(station1, station2);
-            cout << "_________________________________________________" << endl;
-            cout << "Station 1: " << station1->getName() << endl;
-            cout << "Station 2: " << station2->getName() << endl;
-            cout << "The maximum number of trains that can pass between the two stations is: " << flow << endl;
-            break;
-        case 2:
-            pathFlow = database.getMinCostFlow(station1, station2, &flow, &cost);
-            if(pathFlow.empty()){
-                cout << "There is no path between " << station1->getName() << " and " << station2->getName() << endl;
-                return;
-            }
-
-            cout << "_________________________________________________" << endl;
-            cout << "Station 1: " << station1->getName() << endl;
-            cout << "Station 2: " << station2->getName() << endl;
-            cout << "The maximum number of trains that can pass between the two stations is: " << flow << endl;
-            cout << "The minimum cost is: " << cost << endl;
-            cout << "The path is: " << endl;
-            for(auto node: pathFlow){
-                cout << node->getStationName() << " - ";
-            }
-            cout << endl;
-            break;
-        case 3:
-            return;
-        default:
-            cout << "Invalid option" << endl;
-            showTwoStationsInfoMenu();
-    }
-}
-/**
- * @brief Creates Network Info Menu.
- */
-void Menu::showNetworkInfoMenu() {
-    cout << "_________________________________________________" << endl;
-    cout<< "Please select an option:" << endl;
-    cout<< "1 - Pairs of stations with the maximum number of trains that can travel between them" << endl;
-    cout<< "2 - Top-k municipalities and districts" << endl;
-    cout<< "3 - Return to main menu" << endl;
-
-    int option = getIntFromUser();
-    int maxFlow;
-
-    vector<pair<Node*, Node*>> pairs;
-    vector<pair<string, int>> topK;
-    int k;
-
-    switch(option){
-        case 1:
-            pairs = database.maxFlowAllPairs(&maxFlow);
-            cout << "The max flow is " << maxFlow << endl;
-
-            for(auto pair: pairs){
-                cout << pair.first->getStationName() << " -> " << pair.second->getStationName() << endl;
-            }
-            break;
-        case 2:
-            cout << "1 -Districts" << endl;
-            cout << "2 -Municipalities" << endl;
-            option = getIntFromUser();
-
-            cout << "Enter the k number of top districts/municipalities" << endl;
-            k = getIntFromUser();
-
-            if(option == 1){
-                topK = database.getTopDistricts(k);
-            }
-            else if(option == 2){
-                topK = database.getTopMunicipalities(k);
-            }
-            else{
-                cout << "Invalid option" << endl;
-                showNetworkInfoMenu();
-            }
-
-            for(auto pair: topK){
-                cout << pair.first << " -> " << pair.second << endl;
-            }
-            break;
-        case 3:
-            return;
-        default:
-            cout << "Invalid option" << endl;
-            showNetworkInfoMenu();
-    }
 }

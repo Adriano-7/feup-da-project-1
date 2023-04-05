@@ -9,7 +9,7 @@
 using namespace std;
 /**
  * @brief Adds a node to the graph.
- * @details Time Complexity: O(n) Adds a new node to the graph representing station.
+ * @details Time Complexity: O() Adds a new node to the graph representing station.
  * @param station
  * @return
  */
@@ -24,7 +24,7 @@ bool Graph::addNode(Station& station) {
 }
 /**
  * @brief Adds an edge to the graph.
- * @details Time Complexity: O(1) Adds a new edge between two nodes to the graph.
+ * @details Time Complexity: O() Adds a new edge between two nodes to the graph.
  * @param sourceNode
  * @param destNode
  * @param capacity
@@ -47,7 +47,7 @@ bool Graph::addEdge(Node* sourceNode, Node* destNode, int capacity, ServiceType 
 }
 /**
  * @brief Adds a Bidirectional Edge to the graph.
- * @details Time Complexity: O(1) Adds a new bidirectional edge between two nodes to the graph.
+ * @details Time Complexity: O() Adds a new bidirectional edge between two nodes to the graph.
  * @param sourceNode
  * @param destNode
  * @param capacity
@@ -75,7 +75,7 @@ bool Graph::addBidirectionalEdge(Node* sourceNode, Node* destNode, int capacity,
 }
 /**
  * @brief Removes a node.
- * @details Time Complexity: O((number of edges connected)*log(n)) Removes a node from the graph.
+ * @details Time Complexity: O()
  * @param node
  * @return
  */
@@ -98,7 +98,7 @@ bool Graph::eraseNode(Node* node){
 }
 /**
  * @brief Gets a node.
- * @details Time Complexity: O(1) Gets a node.
+ * @details Time Complexity: O()
  * @param stationName
  * @return
  */
@@ -110,21 +110,14 @@ Node* Graph::getNode(string stationName) {
 }
 /**
  * @brief Gets a node.
- * @details Time Complexity: O(1) Gets a node.
+ * @details Time Complexity: O()
  * @param station
  * @return
  */
 Node* Graph::getNode(Station* station) {
     return getNode(station->getName());
 }
-/**
- * @brief Gets the number of nodes.
- * @details Time Complexity: O(1) Gets the number of nodes from the graph.
- * @return
- */
-int Graph::getNumNodes() {
-    return nodes.size();
-}
+
 /**
  * @brief BFS.
  * @details Time Complexity: O(E+V) Performs a breath first search on the graph starting from a source to a destination.
@@ -176,7 +169,6 @@ bool Graph::bfs(Node* source, Node* dest){
  */
 double Graph::dijkstra(Node* source, Node* dest){
     queue<Node*> q;
-    map<ServiceType, double> serviceCosts = {{ServiceType::STANDARD,2}, {ServiceType::ALFA_PENDULAR, 4}};
 
     for(pair<string, Node*> nodePair : nodes) {
         Node* node = nodePair.second;
@@ -198,14 +190,11 @@ double Graph::dijkstra(Node* source, Node* dest){
         q.pop();
         v->setVisited(true);
 
-        if(v == dest){
-            break;
-        }
-
+        if(v == dest){ break;}
         for(Edge* e: v->getAdj()){
             Node* w = e->getDest();
             if(!w->isVisited()){
-                double distance = v->getDistance() + serviceCosts[e->getService()];
+                double distance = v->getDistance() + e->getCostService()*e->getCapacity();
                 if(distance < w->getDistance()){
                     w->setDistance(distance);
                     w->setPath(e);
@@ -215,11 +204,7 @@ double Graph::dijkstra(Node* source, Node* dest){
         }
     }
 
-    if(dest->getPath() == nullptr){
-        cout << "No path found" << "for source " << source->getStation().getName() << " and destination " << dest->getStation().getName() << endl;
-        return -1;
-    }
-    return dest->getDistance();
+    return dest->getPath() == nullptr ? -1 : dest->getDistance();
 }
 /**
  * @brief Edmonds Karp.
@@ -271,28 +256,29 @@ int Graph::EdmondsKarp(Node* source, Node* dest){
     }
     return maxFlow;
 }
+
 /**
  * @brief Ford Fulkerson.
- * @details Time Complexity: O(f(E+V)log(V)) Performs the Ford Fulkerson algorithm using Dijkstra's to find the shortest augmenting path in each iteration.
+ * @details Time Complexity: O()
  * @param source
  * @param dest
  * @param flow
  * @param cost
  * @return
  */
-vector<Node*> Graph::FordFulkersonDijkstra(Node* source, Node* dest, double* flow, double* cost){
+stack<Edge*> Graph::FordFulkersonDijkstra(Node* source, Node* dest, double* flow, double* costService){
+    stack<Edge*> path;
     if(source == nullptr || dest == nullptr || source == dest){
         cout << "Invalid source or destination" << endl;
-        flow = nullptr;
-        return vector<Node*>{};
+        *flow = -1;
+        return path;
     }
 
-    *cost = dijkstra(source, dest);
-    if(*cost==-1){
-        cout << "No path found" << "for source " << source->getStation().getName() << " and destination " << dest->getStation().getName() << endl;
-        *flow = 0;
-        *cost = -1;
-        return vector<Node*>{};
+    *costService = dijkstra(source, dest);
+    if(*costService==-1){
+        *flow = -1;
+        *costService = -1;
+        return path;
     }
 
     double pathFlow = numeric_limits<double>::infinity();
@@ -300,9 +286,8 @@ vector<Node*> Graph::FordFulkersonDijkstra(Node* source, Node* dest, double* flo
         Edge* edge = v->getPath();
 
         if(edge== nullptr){
-            cout << "No path found" << "for source " << source->getStation().getName() << " and destination " << dest->getStation().getName() << endl;
-            flow = nullptr;
-            return vector<Node*>{};
+            *flow = -1;
+            return path;
         }
 
         if (edge->getDest() == v) {
@@ -316,7 +301,7 @@ vector<Node*> Graph::FordFulkersonDijkstra(Node* source, Node* dest, double* flo
         }
     }
 
-    vector<Node*> path = {dest};
+    *costService = 0;
     for(Node* v = dest; v != source;) {
         Edge* e = v->getPath();
         if (e->getDest() == v) {
@@ -327,7 +312,8 @@ vector<Node*> Graph::FordFulkersonDijkstra(Node* source, Node* dest, double* flo
             e->setFlow(e->getFlow() - pathFlow);
             v = e->getDest();
         }
-        path.push_back(v);
+        path.push(e);
+        *costService += e->getCostService();
     }
 
     *flow = pathFlow;
@@ -348,7 +334,6 @@ vector<pair<Node *, Node *>> Graph::maxFlowAllPairs(int *maxFlow) {
             if(it1==it2) { continue;}
             else{
                 int curFlow = EdmondsKarp(it1->second, it2->second);
-                //cout<< "Max flow from " << it1->second->getStation().getName() << " to " << it2->second->getStation().getName() << " is " << curFlow << endl;
                 if(curFlow > *maxFlow){
                     result.erase(result.begin(), result.end());
                     *maxFlow = curFlow;
@@ -361,6 +346,7 @@ vector<pair<Node *, Node *>> Graph::maxFlowAllPairs(int *maxFlow) {
         }
     }
 
+    if(*maxFlow == INT_MIN) { *maxFlow = 0;}
     return result;
 }
 /**
@@ -374,10 +360,8 @@ void Graph::sumSomePairsFlow(set<Node*> nodes, int* max_flow) {
     for(auto it1 = nodes.begin(); it1 != nodes.end(); it1++){
         for(auto it2 = it1; it2 != nodes.end(); it2++){
             if(it1==it2) { continue;}
-            else{
-                int curFlow = EdmondsKarp(*it1, *it2);
-                sum += curFlow;
-            }
+            int curFlow = EdmondsKarp(*it1, *it2);
+            sum += curFlow;
         }
     }
     *max_flow = sum;
@@ -394,17 +378,14 @@ int Graph::maxIncomingFlow(Node* node){
 
     for(pair<string, Node*> nodePair : nodes) {
         Node* nodeIt = nodePair.second;
-        if (nodeIt != node && nodeIt->getAdj().size() == 1) {
+        if(nodeIt != node && nodeIt->getAdj().size() == 1) {
             this->addEdge(superSource, nodeIt, INT_MAX, ServiceType::NONE);
         }
     }
 
     int max =  EdmondsKarp(superSource, node);
 
-    if(!eraseNode(superSource)){
-        cout << "Error erasing super source" << endl;
-    }
-
+    if(!eraseNode(superSource)){ cout << "Error erasing super source" << endl;}
     return max;
 }
 /**

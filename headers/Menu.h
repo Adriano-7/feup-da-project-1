@@ -9,24 +9,24 @@ class Menu {
     public:
         Menu(Database& database) : database(database) {};
         void showDataSelectionMenu();
-        void showMainMenu();
+    private:
+        Database database;
+
         void showSubsetMenu();
+        void showMainMenu();
         void showStationInfoMenu();
         void showTwoStationsInfoMenu();
         void showNetworkInfoMenu();
-        Station& selectStation();
+        void showChangeCapacityMenu();
 
         set<string> getStringsFromUser();
         string getStringFromUser();
         Station* getStationFromUser();
         Station* selectStationFromList();
         int getIntFromUser();
+        string serviceToString(ServiceType service);
+
         void waitForInput();
-
-    private:
-        Database database;
-
-    void showChangeCapacityMenu();
 };
 
 
