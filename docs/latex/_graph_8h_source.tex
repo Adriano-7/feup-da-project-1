@@ -1,0 +1,44 @@
+\hypertarget{_graph_8h_source}{}\doxysection{Graph.\+h}
+\label{_graph_8h_source}\index{data\_structures/Graph.h@{data\_structures/Graph.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ PROJECT\_DA\_GRAPH\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ PROJECT\_DA\_GRAPH\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <set>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Station.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}NodeEdge.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}ServiceType.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_graph}{Graph}}\ \{}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ addNode(\mbox{\hyperlink{class_station}{Station}}\&\ station);}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ addEdge(\mbox{\hyperlink{class_node}{Node}}*\ source,\ \mbox{\hyperlink{class_node}{Node}}*\ dest,\ \textcolor{keywordtype}{int}\ capacity,\ ServiceType\ service);}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ addBidirectionalEdge(\mbox{\hyperlink{class_node}{Node}}*\ sourceNode,\ \mbox{\hyperlink{class_node}{Node}}*\ destNode,\ \textcolor{keywordtype}{int}\ capacity,\ ServiceType\ service);}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ eraseNode(\mbox{\hyperlink{class_node}{Node}}*\ node);}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_node}{Node}}*\ getNode(\textcolor{keywordtype}{string}\ stationName);}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_node}{Node}}*\ getNode(\mbox{\hyperlink{class_station}{Station}}*\ station);}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ getNumNodes();}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ bfs(\mbox{\hyperlink{class_node}{Node}}*\ source,\ \mbox{\hyperlink{class_node}{Node}}*\ dest);}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ dijkstra(\mbox{\hyperlink{class_node}{Node}}*\ source,\ \mbox{\hyperlink{class_node}{Node}}*\ dest);}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ EdmondsKarp(\mbox{\hyperlink{class_node}{Node}}*\ source,\ \mbox{\hyperlink{class_node}{Node}}*\ dest);}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ vector<Node*>\ FordFulkersonDijkstra(\mbox{\hyperlink{class_node}{Node}}*\ source,\ \mbox{\hyperlink{class_node}{Node}}*\ dest,\ \textcolor{keywordtype}{double}\ *flow,\ \textcolor{keywordtype}{double}\ *cost);}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ vector<pair<Node*,\ Node*>>\ maxFlowAllPairs(\textcolor{keywordtype}{int}\ *max\_flow);}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ sumSomePairsFlow(set<Node*>\ nodes,\ \textcolor{keywordtype}{int}\ *max\_flow);}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ maxIncomingFlow(\mbox{\hyperlink{class_node}{Node}}*\ node);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ checkConnection(\mbox{\hyperlink{class_node}{Node}}*\ source,\ \mbox{\hyperlink{class_node}{Node}}*\ dest,\ \textcolor{keywordtype}{int}\&\ curCapacity);}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ changeCapacity(\mbox{\hyperlink{class_node}{Node}}*\ source,\ \mbox{\hyperlink{class_node}{Node}}*\ dest,\ \textcolor{keywordtype}{int}\ newCapacity);}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ map<string,\ Node*>\ nodes;}
+\DoxyCodeLine{00036\ \};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//PROJECT\_DA\_GRAPH\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,53 @@
+\hypertarget{class_database}{}\doxysection{Database Class Reference}
+\label{class_database}\index{Database@{Database}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_database_ad1e9fcc279dd0e45f1e6cca447360219}\label{class_database_ad1e9fcc279dd0e45f1e6cca447360219}} 
+void {\bfseries load\+Without\+Filters} ()
+\item 
+\mbox{\Hypertarget{class_database_a7e571cb4010ec9b6d585b3ab1bc6079a}\label{class_database_a7e571cb4010ec9b6d585b3ab1bc6079a}} 
+void {\bfseries load\+With\+Filters} (set$<$ string $>$ stations, set$<$ string $>$ lines)
+\item 
+\mbox{\Hypertarget{class_database_a3769df8d6001a8ef90e3ea32809eaec5}\label{class_database_a3769df8d6001a8ef90e3ea32809eaec5}} 
+void {\bfseries empty\+Database} ()
+\item 
+\mbox{\Hypertarget{class_database_aeae848e8964400b346e9c0d76e7ae984}\label{class_database_aeae848e8964400b346e9c0d76e7ae984}} 
+\mbox{\hyperlink{class_station}{Station}} $\ast$ {\bfseries get\+Station} (string station\+Name)
+\item 
+\mbox{\Hypertarget{class_database_a39c0710754f020a3a661e3c77b866e12}\label{class_database_a39c0710754f020a3a661e3c77b866e12}} 
+vector$<$ pair$<$ \mbox{\hyperlink{class_node}{Node}} $\ast$, \mbox{\hyperlink{class_node}{Node}} $\ast$ $>$ $>$ {\bfseries max\+Flow\+All\+Pairs} (int $\ast$max\+Flow)
+\item 
+\mbox{\Hypertarget{class_database_ae98d6da6d7228e9bbee3a4ecba89c15f}\label{class_database_ae98d6da6d7228e9bbee3a4ecba89c15f}} 
+map$<$ string, set$<$ string $>$ $>$ {\bfseries get\+District\+To\+Municipalities} ()
+\item 
+\mbox{\Hypertarget{class_database_acd8da1ab30207e9f5133661cf9613b5e}\label{class_database_acd8da1ab30207e9f5133661cf9613b5e}} 
+set$<$ string $>$ {\bfseries get\+Stations\+From\+Municipality} (string municipality)
+\item 
+\mbox{\Hypertarget{class_database_a54d0a0cdcf00c74a271c60cc4b59e027}\label{class_database_a54d0a0cdcf00c74a271c60cc4b59e027}} 
+int {\bfseries get\+Max\+Flow\+Between\+Stations} (\mbox{\hyperlink{class_station}{Station}} $\ast$station1, \mbox{\hyperlink{class_station}{Station}} $\ast$station2)
+\item 
+\mbox{\Hypertarget{class_database_a379afcc53a09766264774929d5022962}\label{class_database_a379afcc53a09766264774929d5022962}} 
+vector$<$ \mbox{\hyperlink{class_node}{Node}} $\ast$ $>$ {\bfseries get\+Min\+Cost\+Flow} (\mbox{\hyperlink{class_station}{Station}} $\ast$station1, \mbox{\hyperlink{class_station}{Station}} $\ast$station2, double $\ast$flow, double $\ast$cost)
+\item 
+\mbox{\Hypertarget{class_database_ad221311a8f1ab9a850903233db345f2a}\label{class_database_ad221311a8f1ab9a850903233db345f2a}} 
+int {\bfseries get\+Max\+Trains\+Station} (\mbox{\hyperlink{class_station}{Station}} $\ast$station)
+\item 
+\mbox{\Hypertarget{class_database_a1e206e04383f3ed0c4301edc323ba8c8}\label{class_database_a1e206e04383f3ed0c4301edc323ba8c8}} 
+vector$<$ pair$<$ string, int $>$ $>$ {\bfseries get\+Top\+Municipalities} (int k)
+\item 
+\mbox{\Hypertarget{class_database_a3bfdf09c2fd68938bb776d10f7fc9b07}\label{class_database_a3bfdf09c2fd68938bb776d10f7fc9b07}} 
+vector$<$ pair$<$ string, int $>$ $>$ {\bfseries get\+Top\+Districts} (int k)
+\item 
+\mbox{\Hypertarget{class_database_a1b4c02e3b1b47bf40138c3857521b011}\label{class_database_a1b4c02e3b1b47bf40138c3857521b011}} 
+bool {\bfseries check\+Connection} (\mbox{\hyperlink{class_station}{Station}} $\ast$station1, \mbox{\hyperlink{class_station}{Station}} $\ast$station2, int \&cur\+Capacity)
+\item 
+\mbox{\Hypertarget{class_database_a3789066cabc515c0c7fa346eb9045288}\label{class_database_a3789066cabc515c0c7fa346eb9045288}} 
+void {\bfseries change\+Capacity} (\mbox{\hyperlink{class_station}{Station}} $\ast$station1, \mbox{\hyperlink{class_station}{Station}} $\ast$station2, int new\+Capacity)
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+headers/Database.\+h\item 
+src/Database.\+cpp\end{DoxyCompactItemize}
