@@ -45,6 +45,13 @@ int Database::getMaxTrainsStation(Station* station){
     return graph.maxIncomingFlow(graph.getNode(station));
 }
 
+void Database::maxTrainAllStations(){
+    for(auto nodePair: nameToStation){
+        Node* node = graph.getNode(nodePair.second);
+        stationToNumTrains[node->getStationName()].push_back(graph.maxIncomingFlow(node));
+    }
+}
+
 vector<pair<string, int>> Database::getTopMunicipalities(int k){
     vector<pair<string, int>> res;
     for(pair<string, set<string>> municipality : municipalityToStations){
@@ -191,4 +198,8 @@ bool Database::checkConnection(Station* station1, Station* station2, int& curCap
 
 void Database::changeCapacity(Station* station1, Station* station2, int newCapacity) {
     graph.changeCapacity(graph.getNode(station1), graph.getNode(station2), newCapacity);
+}
+
+map<string, vector<int>> Database::getStationToNumTrains() {
+    return stationToNumTrains;
 }

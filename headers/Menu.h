@@ -25,6 +25,8 @@ class Menu {
         string serviceToString(ServiceType service);
 
         void waitForInput();
+
+    void printReport();
 };
 
 

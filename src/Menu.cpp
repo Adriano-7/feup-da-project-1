@@ -2,6 +2,7 @@
 #include <iostream>
 #include <limits>
 #include <unistd.h>
+#include <algorithm>
 
 void Menu::showDataSelectionMenu() {
     cout << "_________________________________________________" << endl;
@@ -257,33 +258,63 @@ void Menu::showNetworkInfoMenu() {
 
 void Menu::showChangeCapacityMenu() {
     cout << "_________________________________________________" << endl;
-    cout << "Please enter the name of the first station:" << endl;
-    Station* station1 = getStationFromUser();
+    cout << "Do you wish to receive a report of the changes made? (y/n)" << endl;
+    string s = getStringFromUser();
 
-    cout << "Please enter the name of the second station:" << endl;
-    Station* station2 = getStationFromUser();
-    int curCapacity;
-    if(!database.checkConnection(station1, station2, curCapacity)){
-        cout << "There is no path between the two stations" << endl;
-        showMainMenu();
-        return;
+    bool report = false;
+    if(s == "y"){
+        report = true;
+    } else if(s == "n"){
+        report = false;
+    } else {
+        cout << "Invalid option" << endl;
+        showChangeCapacityMenu();
     }
-    int newCapacity;
-    while(true){
-        cout << "Please enter the new capacity. It must be less than " << curCapacity << endl;
 
-        newCapacity = getIntFromUser();
-        if(newCapacity > curCapacity){
-            cout << "The new capacity must be less than " << curCapacity << endl;
-        } else { break; }
+    //Chamamos a thread
+    if(report) database.maxTrainAllStations();
+
+    cout << "How many changes do you wish to make :" << endl;
+    int nChanges = getIntFromUser();
+
+    for (int i = 0; i < nChanges; i++) {
+        cout << "_________________________________________________" << endl;
+        cout << "Change " << i+1 << ":" << endl;
+        cout << "Please enter the name of the first station:" << endl;
+        Station* station1 = getStationFromUser();
+
+        cout << "_________________________________________________" << endl;
+        cout << "Please enter the name of the second station:" << endl;
+        Station* station2 = getStationFromUser();
+
+        int curCapacity;
+        if(!database.checkConnection(station1, station2, curCapacity)){
+            cout << "There is no path between the two stations" << endl;
+            showMainMenu();
+            return;
+        }
+        int newCapacity;
+
+        while(true){
+            cout << "Please enter the new capacity. It must be equal or less than " << curCapacity << endl;
+
+            newCapacity = getIntFromUser();
+            if(newCapacity > curCapacity){
+                cout << "The new capacity must be less than " << curCapacity << endl;
+            } else { break; }
+        }
+        database.changeCapacity(station1, station2, newCapacity);
+        cout << "_________________________________________________" << endl;
+        cout << "The capacity was changed" << endl;
     }
-    database.changeCapacity(station1, station2, newCapacity);
-    cout << "_________________________________________________" << endl;
-    cout << "The capacity was changed successfully!" << endl;
+
+    if(report) {
+        database.maxTrainAllStations();
+        printReport();
+    }
+
     cout << "If you wish to undo your changes you must restart the program." << endl;
-    return;
 }
-
 
 set<string> Menu::getStringsFromUser() {
     set<string> strings;
@@ -440,4 +471,40 @@ void Menu::waitForInput() {
     cout << endl << "Insert any key to continue: ";
     cin >> q;
     cout << endl;
+}
+
+void Menu::printReport() {
+    int k;
+    cout << "Please enter the number of stations you wish to see" << endl;
+    k = getIntFromUser();
+    while(k < 0){
+        cout << "The number of stations must be positive" << endl;
+        k = getIntFromUser();
+    }
+
+    vector<pair<string, int>> stationToDifference;
+
+    auto stationToNumTrains = database.getStationToNumTrains();
+    for(auto something: stationToNumTrains){
+        if(something.second.size() != 2){
+            //print the station
+            cout << something.first << endl;
+
+            cout << "Found the problem " << endl;
+            return;
+
+        }
+        auto h = make_pair(something.first, something.second[1] - something.second[0]);
+        stationToDifference.push_back(h);
+    }
+    //Sort stationToDifference by the second element of the pair
+    sort(stationToDifference.begin(), stationToDifference.end(), [](const pair<string, int>& a, const pair<string, int>& b) {
+        return a.second > b.second;
+    });
+
+    cout << "_________________________________________________" << endl;
+    cout << "The " << k << " stations with the less trains are:" << endl;
+    for(int i = 0; i < k; i++){
+        cout << stationToDifference[i].first << " with " << stationToDifference[i].second << " less trains" << endl;
+    }
 }

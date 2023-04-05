@@ -326,6 +326,7 @@ void Graph::changeCapacity(Node* source, Node* dest, int newCapacity) {
     for (auto edge : source->getAdj()) {
         if (edge->getDest() == dest) {
             edge->setCapacity(newCapacity);
+            edge->getReverse()->setCapacity(newCapacity);
         }
     }
 }
