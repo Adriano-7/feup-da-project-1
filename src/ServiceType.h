@@ -1,7 +1,8 @@
 #ifndef PROJECT_DA_SERVICETYPE_H
 #define PROJECT_DA_SERVICETYPE_H
+
 /**
- * Class that stores the information about the service type.
+ * Each edge has a service type (standard or alfa-pendular)
  */
 enum ServiceType {
     STANDARD,

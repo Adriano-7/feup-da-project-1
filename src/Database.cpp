@@ -7,36 +7,69 @@
 
 using namespace std;
 
+/**
+ * @brief Reads data from the csv files whitout filters.
+ * @details Time complexity: O()
+ */
 void Database::loadWithoutFilters() {
     readStations({}, {});
     readNetwork();
 }
 
+/*
+ * @brief Reads data from the csv files with filters (stations or lines).
+ * @details Time complexity: O()
+*/
 void Database::loadWithFilters(set<string> stations, set<string> lines) {
     readStations(stations, lines);
     readNetwork();
 }
 
+/*
+ * @brief Given a station name, returns a pointer to the station.
+ * @details Time complexity: O(1)
+ * */
 Station* Database::getStation(string stationName) {
     return nameToStation[stationName];
 }
 
+/*
+ * @brief Calculates the maximum flow between all pairs of stations.
+ * @details Time complexity: O()
+ * */
 vector<pair<Node *, Node *>> Database::maxFlowAllPairs(int *maxFlow){
     return graph.maxFlowAllPairs(maxFlow);
 }
 
+/*
+ * @brief Gives the map of districts to municipalities.
+ * @details Time complexity: O(1)
+ * */
 map<string, set<string>> Database::getDistrictToMunicipalities(){
     return districtToMunicipalities;
 }
 
+/*
+ * @brief Given the municipality, returns the set of stations in that municipality.
+ * @details Time complexity: O(1)
+ * */
 set<string> Database::getStationsFromMunicipality(string municipality){
     return municipalityToStations[municipality];
 }
 
+/*
+ * @brief Using Edmonds-Karp algorithm, calculates the maximum flow between two stations.
+ * */
 int Database::getMaxFlowBetweenStations(Station* station1, Station* station2) {
     return graph.EdmondsKarp(graph.getNode(station1), graph.getNode(station2));
 }
 
+/*
+ * @brief Using dijkstra algorithm, calculates the minimum cost(cost of service * capacity) flow between two stations
+ * @details Time complexity: O()
+ * @param station1 - source station
+ * @param station2 - destination station
+*/
 vector<Node*> Database::getMinCostFlow(Station* station1, Station* station2, double *flow, double *cost){
     return graph.FordFulkersonDijkstra(graph.getNode(station1), graph.getNode(station2), flow, cost);
 }
@@ -46,7 +79,7 @@ int Database::getMaxTrainsStation(Station* station){
 }
 /**
  * @brief Get the top "k" municipalities based on total flow.
- * @details Time Complexity: O(m(slog(s)+e) Returns a vector of the top k municipalities based on their total flow (sum of flow values) from all of their stations in a graph.
+ * @details Time Complexity: O(m(slog(sz)+e) Returns a vector of the top k municipalities based on their total flow (sum of flow values) from all of their stations in a graph.
  * @param k
  * @return
  */
