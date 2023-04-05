@@ -3,54 +3,44 @@
 #include <iostream>
 #include <queue>
 #include <algorithm>
-#include <cmath>
 #include <limits>
 #include <climits>
 
 bool Graph::addNode(Station& station) {
-    // add the node to the nodes vector, if it is not already there
-    for (auto & node : nodes){
-        if (node->getStation().getName() == station.getName()){
+    for(auto & node : nodes){
+        if(node->getStation().getName() == station.getName()){
             return false;
         }
     }
     Node* node = new Node(station);
     nodes.push_back(node);
 
-
-
-
     return true;
 }
 
 bool Graph::addEdge(Node* sourceNode, Node* destNode, int capacity, ServiceType service) {
-
-    if (sourceNode== nullptr){
-        cout << "Station does not exist." << endl;
+    if(sourceNode== nullptr){
+        cout << "Station" << sourceNode->getStationName() << "does not exist." << endl;
         return false;
     }
-
-    if (destNode== nullptr){
-        cout << "Station does not exist." << endl;
+    if(destNode== nullptr){
+        cout << "Station" << destNode->getStationName() << "does not exist." << endl;
         return false;
     }
-
     sourceNode->addEdge(destNode, capacity, service);
     return true;
 }
 
 bool Graph::addBidirectionalEdge(Node* sourceNode, Node* destNode, int capacity, ServiceType service) {
-
-    if (sourceNode== nullptr){
-        cout << "Station  does not exist." << endl;
+    if(sourceNode== nullptr){
+        cout << "Station" << sourceNode->getStationName() << "does not exist." << endl;
         return false;
     }
 
-    if (destNode== nullptr){
-        cout << "Station does not exist." << endl;
+    if(destNode== nullptr){
+        cout << "Station"<< destNode->getStationName() << " does not exist." << endl;
         return false;
     }
-
 
     Edge* e1 = sourceNode->addEdge(destNode, capacity, service);
     Edge* e2 = destNode->addEdge(sourceNode, capacity, service);
@@ -121,7 +111,6 @@ int Graph::EdmondsKarp(Node* source, Node* dest){
 
 bool Graph::bfs(Node* source, Node* dest){
     for(Node* node : nodes) {
-
         node->setVisited(false);
         node->setPath(nullptr);
     }
