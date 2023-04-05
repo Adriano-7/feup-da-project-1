@@ -128,6 +128,26 @@ string Menu::getStringFromUser() {
     return input;
 }
 
+Station* Menu::getStationFromUser(){
+    cout << "Please select an option" << endl;
+    cout << "1 - Write the name of the station" << endl;
+    cout << "2 - Select from a list of stations" << endl;
+
+    int option = getIntFromUser();
+
+    switch(option){
+        case 1:
+            cout << "Please enter the name of the station" << endl;
+            return database.getStation(getStringFromUser());
+        case 2:
+            cout << "Please select a station from the list" << endl;
+
+        default:
+            cout << "Invalid option" << endl;
+            return getStationFromUser();
+    }
+}
+
 int Menu::getIntFromUser() {
     int input;
     cin >> input;

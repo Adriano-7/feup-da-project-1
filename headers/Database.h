@@ -20,6 +20,8 @@ class Database {
     private:
         Graph graph;
         unordered_map<string, Station*> nameToStation;
+        map<string, set<string>> municipalityToStations;
+        map<string, set<string>> districtToMunicipalities;
 
         void readStations(set<string> stations, set<string> lines);
         void readNetwork();

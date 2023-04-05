@@ -71,6 +71,8 @@ void Database::readStations(set<string> stations, set<string> lines) {
         Station *station = new Station(name, district, municipality, township, line);
         graph.addNode(*station);
         nameToStation[name] = station;
+        municipalityToStations[municipality].insert(name);
+        districtToMunicipalities[district].insert(municipality);
     }
     file.close();
     return;
