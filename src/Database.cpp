@@ -53,7 +53,7 @@ vector<pair<string, int>> Database::getTopMunicipalities(int k){
         for(string station : municipality.second){
             nodes.insert(graph.getNode(station));
         }
-        graph.maxSomePairsFlow(nodes, &curFlow);
+        graph.sumSomePairsFlow(nodes, &curFlow);
         res.emplace_back(municipality.first, curFlow);
     }
     sort(res.begin(), res.end(), [](pair<string, int> a, pair<string, int> b){
@@ -78,7 +78,7 @@ vector<pair<string, int>> Database::getTopDistricts(int k){
                 nodes.insert(graph.getNode(station));
             }
         }
-        graph.maxSomePairsFlow(nodes, &curFlow);
+        graph.sumSomePairsFlow(nodes, &curFlow);
         res.emplace_back(district.first, curFlow);
     }
     sort(res.begin(), res.end(), [](const pair<string, int> &a, const pair<string, int> &b) {

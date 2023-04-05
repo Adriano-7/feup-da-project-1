@@ -24,7 +24,7 @@ class Graph {
         bool bfs(Node* source, Node* dest);
         vector<Node*> FordFulkersonDijkstra(Node* source, Node* dest, double *flow, double *cost);
         double dijkstra(Node* source, Node* dest);
-        void maxSomePairsFlow(set<Node*> nodes, int *max_flow);
+        void sumSomePairsFlow(set<Node*> nodes, int *max_flow);
         int maxIncomingFlow(Node* node);
 
 

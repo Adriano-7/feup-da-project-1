@@ -316,7 +316,7 @@ void Menu::showTwoStationsInfoMenu() {
             cout << "The minimum cost is: " << cost << endl;
             cout << "The path is: " << endl;
             for(auto node: pathFlow){
-                cout << node->getStationName();
+                cout << node->getStationName() << " -> ";
             }
             cout << endl;
         case 3:
@@ -339,6 +339,7 @@ void Menu::showNetworkInfoMenu() {
 
     vector<pair<Node*, Node*>> pairs;
     vector<pair<string, int>> topK;
+    int k;
 
     switch(option){
         case 1:
@@ -350,7 +351,27 @@ void Menu::showNetworkInfoMenu() {
             }
             break;
         case 2:
-            cout << "This feature isn't yet implemented" << endl;
+            cout << "1 -Districts" << endl;
+            cout << "2 -Municipalities" << endl;
+            option = getIntFromUser();
+
+            cout << "Enter the k number of top districts/municipalities" << endl;
+            k = getIntFromUser();
+
+            if(option == 1){
+                topK = database.getTopDistricts(k);
+            }
+            else if(option == 2){
+                topK = database.getTopMunicipalities(k);
+            }
+            else{
+                cout << "Invalid option" << endl;
+                showNetworkInfoMenu();
+            }
+
+            for(auto pair: topK){
+                cout << pair.first << " -> " << pair.second << endl;
+            }
             break;
         case 3:
             return;

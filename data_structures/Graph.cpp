@@ -261,15 +261,18 @@ double Graph::dijkstra(Node* source, Node* dest){
     return dest->getDistance();
 }
 
-void Graph::maxSomePairsFlow(set<Node*> nodes, int* maxFlow){
-    int max = 0;
-    for(auto it=nodes.begin(); it!=nodes.end(); it++){
-        for(auto it2=it++; it2!=nodes.end(); it2++){
-            int curFlow = EdmondsKarp(*it, *it2);
-            max += curFlow;
+void Graph::sumSomePairsFlow(set<Node*> nodes, int* max_flow) {
+    int sum = 0;
+    for(auto it1 = nodes.begin(); it1 != nodes.end(); it1++){
+        for(auto it2 = it1; it2 != nodes.end(); it2++){
+            if(it1==it2) { continue;}
+            else{
+                int curFlow = EdmondsKarp(*it1, *it2);
+                sum += curFlow;
             }
         }
-    *maxFlow = max;
+    }
+    *max_flow = sum;
 }
 
 
