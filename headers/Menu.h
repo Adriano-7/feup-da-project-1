@@ -22,6 +22,7 @@ class Menu {
     private:
         Database database;
 
+    void showChangeCapacityMenu();
 };
 
 

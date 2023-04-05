@@ -28,6 +28,10 @@ class Graph {
 
     void maxSomePairs(vector<int> vector1, int *pInt);
 
+    bool checkConnection(int station1, int station2, int& curCapacity);
+
+    void changeCapacity(int station1, int station2, int newCapacity);
+
 private:
        vector<Node*> nodes;
 

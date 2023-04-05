@@ -69,8 +69,9 @@ void Menu::showMainMenu(){
         cout << "1 - See information about a single station" << endl;
         cout << "2 - See information about two stations" << endl;
         cout << "3 - See information about the entire network" << endl;
-        cout << "4 - Return to data selection menu" << endl;
-        cout << "5 - exit" << endl;
+        cout << "4 - Make a change to the capacity of a connection" << endl;
+        cout << "5 - Return to data selection menu" << endl;
+        cout << "6 - exit" << endl;
 
         int option = getIntFromUser();
         switch (option) {
@@ -86,11 +87,17 @@ void Menu::showMainMenu(){
                 showNetworkInfoMenu();
                 waitForInput();
                 break;
+
             case 4:
+                showChangeCapacityMenu();
+                waitForInput();
+                break;
+
+            case 5:
                 showDataSelectionMenu();
                 waitForInput();
                 break;
-            case 5:
+            case 6:
                 return;
             default:
                 cout << "Invalid option" << endl;
@@ -230,7 +237,7 @@ void Menu::showTwoStationsInfoMenu() {
     cout<< "3 - Return to main menu" << endl;
 
     int option = getIntFromUser();
-    double flow, cost;
+    double flow, cost, newFlow, newCapacity;
     vector<Node*> pathFlow;
     switch(option){
         case 1:
@@ -252,6 +259,7 @@ void Menu::showTwoStationsInfoMenu() {
                 cout << node->getStationName() << " - ";
             }
             cout << endl;
+            break;
         case 3:
             showMainMenu();
             break;
@@ -311,4 +319,32 @@ void Menu::showNetworkInfoMenu() {
             cout << "Invalid option" << endl;
             showNetworkInfoMenu();
     }
+}
+
+void Menu::showChangeCapacityMenu() {
+cout << "_________________________________________________" << endl;
+    cout << "Please enter the name of the first station:" << endl;
+    Station& station1 = selectStation();
+
+    cout << "Please enter the name of the second station:" << endl;
+    Station& station2 = selectStation();
+    int curCapacity;
+    if(!database.checkConnection(station1.getId(), station2.getId(), curCapacity)){
+        cout << "There is no path between the two stations" << endl;
+        showMainMenu();
+        return;
+    }
+    int newCapacity;
+    while(true){
+        cout << "Please enter the new capacity. It must be less than " << curCapacity << endl;
+
+        newCapacity = getIntFromUser();
+        if(newCapacity > curCapacity){
+            cout << "The new capacity must be less than " << curCapacity << endl;
+        } else { break; }
+    }
+    database.changeCapacity(station1.getId(), station2.getId(), newCapacity);
+    cout << "_________________________________________________" << endl;
+    cout << "The capacity was changed successfully!\n If you wish to undo your changes you must restart the program.\n" << endl;
+    return;
 }

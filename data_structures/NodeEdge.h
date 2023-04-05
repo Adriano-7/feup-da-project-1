@@ -63,6 +63,7 @@ public:
     void removeFlow(double flow);
     void setReverse(Edge* reverse);
     void setSelected(bool selected);
+    void setCapacity(int capacity);
 
     bool operator<(Edge& edge);
 
@@ -78,6 +79,8 @@ private:
     //Used for bidirectional edges
     Edge *reverse = nullptr;
     Node *orig;
+
+
 };
 
 

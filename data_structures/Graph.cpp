@@ -3,6 +3,7 @@
 #include <iostream>
 #include <queue>
 #include <algorithm>
+#include <climits>
 #include <limits>
 
 using namespace std;
@@ -296,4 +297,26 @@ double Graph::dijkstra(Node* source, Node* dest){
         return -1;
     }
     return dest->getDistance();
+}
+
+bool Graph::checkConnection(int station1, int station2, int& curCapacity) {
+    Node* source = nodes[station1];
+    Node* dest = nodes[station2];
+    for (auto edge : source->getAdj()) {
+        if (edge->getDest() == dest) {
+            curCapacity = edge->getCapacity();
+            return true;
+        }
+    }
+    return false;
+}
+
+void Graph::changeCapacity(int station1, int station2, int newCapacity) {
+    Node* source = nodes[station1];
+    Node* dest = nodes[station2];
+    for (auto edge : source->getAdj()) {
+        if (edge->getDest() == dest) {
+            edge->setCapacity(newCapacity);
+        }
+    }
 }

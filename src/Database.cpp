@@ -227,3 +227,13 @@ vector<pair<string, int>> Database::getTopDistricts(int k){
     }
     return topDistricts;
 }
+
+bool Database::checkConnection(int station1, int station2, int& curCapacity) {
+    return graph.checkConnection(station1, station2, curCapacity);
+}
+
+void Database::changeCapacity(int station1, int station2, int newCapacity) {
+    graph.changeCapacity(station1, station2, newCapacity);
+}
+
+

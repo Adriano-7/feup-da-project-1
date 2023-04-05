@@ -143,3 +143,6 @@ bool Edge::operator<(Edge& edge) {
     return this->orig->getStation().getName() < edge.orig->getStation().getName();
 }
 
+void Edge::setCapacity(int capacity) {
+    this->capacity = capacity;
+}

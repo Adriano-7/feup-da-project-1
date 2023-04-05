@@ -14,15 +14,19 @@ class Database {
         vector<string> getMunicipalities(string district);
         vector<int> getStations(string municipality);
         int getNumNodes();
+        bool checkConnection(int station1, int station2, int& curCapacity);
 
 
-        vector<pair<Node *, Node *>> maxFlowAllPairs(int *maxFlow);
+
+    vector<pair<Node *, Node *>> maxFlowAllPairs(int *maxFlow);
         int getMaxFlowBetweenStations(int station1, int station2);
         vector<pair<string, int>> getTopMunicipies(int k);
         vector<pair<string, int>>  getTopDistricts(int k);
         int getMaxTrainsStation(int id);
         vector<Node*> getMinCostFlow(int station1, int station2, double *flow, double *cost);
 
+
+    void changeCapacity(int station1, int station2, int newCapacity);
 
 private:
         Graph graph;
