@@ -69,7 +69,7 @@ void Menu::showMainMenu(){
         cout << "2 - See information about two stations" << endl;
         cout << "3 - See information about the entire network" << endl;
         cout << "4 - Make a change to the capacity of a connection" << endl;
-        cout << "5 - exit" << endl;
+        cout << "5 - Exit" << endl;
 
         int option = getIntFromUser();
         switch (option) {
@@ -162,17 +162,29 @@ Station* Menu::getStationFromUser(){
 
     int option = getIntFromUser();
 
+    Station* station;
     switch(option){
         case 1:
             cout << "Please enter the name of the station" << endl;
-            return database.getStation(getStringFromUser());
+            station = database.getStation(getStringFromUser());
+            while (station== nullptr){
+                cout << "Station not found, please try again" << endl;
+                station = database.getStation(getStringFromUser());
+            }
+            break;
         case 2:
             cout << "Please select a station from the list" << endl;
-            return selectStationFromList();
+            station = selectStationFromList();
+            while (station== nullptr){
+                cout << "Station not found, please try again" << endl;
+                station = selectStationFromList();
+            }
+            break;
         default:
             cout << "Invalid option" << endl;
             return getStationFromUser();
     }
+    return station;
 }
 
 Station* Menu::selectStationFromList(){
