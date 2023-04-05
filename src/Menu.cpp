@@ -62,14 +62,13 @@ void Menu::showSubsetMenu() {
 }
 
 void Menu::showMainMenu(){
-
     while (true){
         cout << "_________________________________________________" << endl;
         cout << "Please select an option:" << endl;
         cout << "1 - See information about a single station" << endl;
         cout << "2 - See information about two stations" << endl;
         cout << "3 - See information about the entire network" << endl;
-        cout << "4 - Return to data selection menu" << endl;
+        cout << "4 - Make a change to the capacity of a connection" << endl;
         cout << "5 - exit" << endl;
 
         int option = getIntFromUser();
@@ -87,7 +86,7 @@ void Menu::showMainMenu(){
                 waitForInput();
                 break;
             case 4:
-                showDataSelectionMenu();
+                showChangeCapacityMenu();
                 waitForInput();
                 break;
             case 5:
@@ -97,6 +96,35 @@ void Menu::showMainMenu(){
         }
     }
 }
+
+void Menu::showChangeCapacityMenu() {
+    cout << "_________________________________________________" << endl;
+    cout << "Please enter the name of the first station:" << endl;
+    Station* station1 = getStationFromUser();
+
+    cout << "Please enter the name of the second station:" << endl;
+    Station* station2 = getStationFromUser();
+    int curCapacity;
+    if(!database.checkConnection(station1, station2, curCapacity)){
+        cout << "There is no path between the two stations" << endl;
+        showMainMenu();
+        return;
+    }
+    int newCapacity;
+    while(true){
+        cout << "Please enter the new capacity. It must be less than " << curCapacity << endl;
+
+        newCapacity = getIntFromUser();
+        if(newCapacity > curCapacity){
+            cout << "The new capacity must be less than " << curCapacity << endl;
+        } else { break; }
+    }
+    database.changeCapacity(station1, station2, newCapacity);
+    cout << "_________________________________________________" << endl;
+    cout << "The capacity was changed successfully!\n If you wish to undo your changes you must restart the program.\n" << endl;
+    return;
+}
+
 
 set<string> Menu::getStringsFromUser() {
     set<string> strings;

@@ -9,6 +9,7 @@ class Database {
         Database() = default;
         void loadWithoutFilters();
         void loadWithFilters(set<string> stations, set<string> lines);
+        void emptyDatabase();
         Station* getStation(string stationName);
         vector<pair<Node *, Node *>> maxFlowAllPairs(int *maxFlow);
         map<string, set<string>> getDistrictToMunicipalities();
@@ -20,6 +21,9 @@ class Database {
         vector<pair<string, int>> getTopMunicipalities(int k);
         vector<pair<string, int>> getTopDistricts(int k);
 
+        bool checkConnection(Station* station1, Station* station2, int& curCapacity);
+        void changeCapacity(Station* station1, Station* station2, int newCapacity);
+
     private:
         Graph graph;
         unordered_map<string, Station*> nameToStation;
@@ -29,6 +33,5 @@ class Database {
         void readStations(set<string> stations, set<string> lines);
         void readNetwork();
 };
-
 
 #endif //PROJECT_DA_DATABASE_H

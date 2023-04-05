@@ -8,7 +8,7 @@ bool Node::operator<(Node &node) {
     return this->distance < node.distance;
 }
 
-Station &Node::getStation() {
+Station& Node::getStation() {
     return station;
 }
 
@@ -143,3 +143,6 @@ bool Edge::operator<(Edge& edge) {
     return this->orig->getStation().getName() < edge.orig->getStation().getName();
 }
 
+void Edge::setCapacity(int capacity) {
+    this->capacity = capacity;
+}

@@ -165,13 +165,13 @@ void Database::readNetwork() {
         int capacity = stoi(fields[2]);
         string serviceType = fields[3];
         ServiceType service;
-            if(serviceType == "STANDARD")
-                service = STANDARD;
-            else if(serviceType == "ALFA PENDULAR")
-                service = ALFA_PENDULAR;
-            else{
-                cout << "Line " << lineCount << " service type is invalid: " << line << endl;
-            }
+        if(serviceType == "STANDARD")
+            service = STANDARD;
+        else if(serviceType == "ALFA PENDULAR")
+            service = ALFA_PENDULAR;
+        else{
+            cout << "Line " << lineCount << " service type is invalid: " << line << endl;
+        }
 
         Station *origStation = nameToStation[orig];
         Station *destStation = nameToStation[dest];
@@ -179,8 +179,16 @@ void Database::readNetwork() {
         if (origStation == nullptr || destStation== nullptr)
             continue;
 
-        graph.addEdge(graph.getNode(orig), graph.getNode(dest), capacity, service);
+        graph.addBidirectionalEdge(graph.getNode(orig), graph.getNode(dest), capacity, service);
     }
     file.close();
     return;
+}
+
+bool Database::checkConnection(Station* station1, Station* station2, int& curCapacity) {
+    return graph.checkConnection(graph.getNode(station1), graph.getNode(station2), curCapacity);
+}
+
+void Database::changeCapacity(Station* station1, Station* station2, int newCapacity) {
+    graph.changeCapacity(graph.getNode(station1), graph.getNode(station2), newCapacity);
 }
