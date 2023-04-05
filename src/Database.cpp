@@ -44,7 +44,7 @@ void Database::readStations(set<string> stations, set<string> lines) {
         cout << "Error opening stations.csv" << endl;
         return;
     }
-    int id = -1;
+    int id = 0;
     string line;
     while (getline(file, line)) {
         vector<string> fields;
@@ -57,7 +57,7 @@ void Database::readStations(set<string> stations, set<string> lines) {
             cout << "The following line is invalid: " << line << endl;
             return;
         }
-        id++;
+
         string name = fields[0];
         string district = fields[1];
         string municipality = fields[2];
@@ -97,7 +97,7 @@ void Database::readStations(set<string> stations, set<string> lines) {
             if(find(stationsByMunicipality[municipality].begin(), stationsByMunicipality[municipality].end(), id) == stationsByMunicipality[municipality].end())
                 stationsByMunicipality[municipality].push_back(id);
         }
-
+        id++;
     }
     file.close();
     return;

@@ -241,15 +241,15 @@ void Menu::showTwoStationsInfoMenu() {
             cout << "The maximum number of trains that can pass between the two stations is: " << flow << endl;
             break;
         case 2:
-            pathFlow = database.getMinCostFlow(stationName1, stationName2, &flow, &cost);
+            pathFlow = database.getMinCostFlow(station1.getId(), station2.getId(), &flow, &cost);
             cout << "_________________________________________________" << endl;
-            cout << "Station 1: " << stationName1 << endl;
-            cout << "Station 2: " << stationName2 << endl;
+            cout << "Station 1: " << station1.getName() << endl;
+            cout << "Station 2: " << station2.getName() << endl;
             cout << "The maximum number of trains that can pass between the two stations is: " << flow << endl;
             cout << "The minimum cost is: " << cost << endl;
             cout << "The path is: " << endl;
             for(auto node: pathFlow){
-                cout << node->getStationName();
+                cout << node->getStationName() << " - ";
             }
             cout << endl;
         case 3:
