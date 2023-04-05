@@ -6,10 +6,10 @@
 class Menu {
     public:
         Menu(Database& database) : database(database) {};
+        void showDataSelectionMenu();
     private:
         Database database;
 
-        void showDataSelectionMenu();
         void showSubsetMenu();
         void showMainMenu();
         void showStationInfoMenu();
@@ -22,6 +22,7 @@ class Menu {
         Station* getStationFromUser();
         Station* selectStationFromList();
         int getIntFromUser();
+        string serviceToString(ServiceType service);
 
         void waitForInput();
 };

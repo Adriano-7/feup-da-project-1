@@ -15,7 +15,7 @@ class Database {
         set<string> getStationsFromMunicipality(string municipality);
 
         int getMaxFlowBetweenStations(Station* station1, Station* station2);
-        vector<Node*> getMinCostFlow(Station* station1, Station* station2, double *flow, double *cost);
+        stack<Edge*> getMinCostFlow(Station* station1, Station* station2, double *flow, double *cost);
         int getMaxTrainsStation(Station* station);
         vector<pair<string, int>> getTopMunicipalities(int k);
         vector<pair<string, int>> getTopDistricts(int k);

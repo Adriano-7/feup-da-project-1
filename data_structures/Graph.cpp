@@ -143,14 +143,11 @@ double Graph::dijkstra(Node* source, Node* dest){
         q.pop();
         v->setVisited(true);
 
-        if(v == dest){
-            break;
-        }
-
+        if(v == dest){ break;}
         for(Edge* e: v->getAdj()){
             Node* w = e->getDest();
             if(!w->isVisited()){
-                double distance = v->getDistance() + serviceCosts[e->getService()];
+                double distance = v->getDistance() + serviceCosts[e->getService()]*e->getCapacity();
                 if(distance < w->getDistance()){
                     w->setDistance(distance);
                     w->setPath(e);
@@ -160,11 +157,7 @@ double Graph::dijkstra(Node* source, Node* dest){
         }
     }
 
-    if(dest->getPath() == nullptr){
-        cout << "No path found" << "for source " << source->getStation().getName() << " and destination " << dest->getStation().getName() << endl;
-        return -1;
-    }
-    return dest->getDistance();
+    return dest->getPath() == nullptr ? -1 : dest->getDistance();
 }
 
 int Graph::EdmondsKarp(Node* source, Node* dest){
@@ -211,19 +204,20 @@ int Graph::EdmondsKarp(Node* source, Node* dest){
     return maxFlow;
 }
 
-vector<Node*> Graph::FordFulkersonDijkstra(Node* source, Node* dest, double* flow, double* cost){
+stack<Edge*> Graph::FordFulkersonDijkstra(Node* source, Node* dest, double* flow, double* cost){
+    stack<Edge*> path;
     if(source == nullptr || dest == nullptr || source == dest){
         cout << "Invalid source or destination" << endl;
-        flow = nullptr;
-        return vector<Node*>{};
+        *flow = -1;
+        return path;
     }
 
     *cost = dijkstra(source, dest);
     if(*cost==-1){
         cout << "No path found" << "for source " << source->getStation().getName() << " and destination " << dest->getStation().getName() << endl;
-        *flow = 0;
+        *flow = -1;
         *cost = -1;
-        return vector<Node*>{};
+        return path;
     }
 
     double pathFlow = numeric_limits<double>::infinity();
@@ -233,7 +227,7 @@ vector<Node*> Graph::FordFulkersonDijkstra(Node* source, Node* dest, double* flo
         if(edge== nullptr){
             cout << "No path found" << "for source " << source->getStation().getName() << " and destination " << dest->getStation().getName() << endl;
             flow = nullptr;
-            return vector<Node*>{};
+            return path;
         }
 
         if (edge->getDest() == v) {
@@ -247,7 +241,6 @@ vector<Node*> Graph::FordFulkersonDijkstra(Node* source, Node* dest, double* flo
         }
     }
 
-    vector<Node*> path = {dest};
     for(Node* v = dest; v != source;) {
         Edge* e = v->getPath();
         if (e->getDest() == v) {
@@ -258,7 +251,7 @@ vector<Node*> Graph::FordFulkersonDijkstra(Node* source, Node* dest, double* flo
             e->setFlow(e->getFlow() - pathFlow);
             v = e->getDest();
         }
-        path.push_back(v);
+        path.push(e);
     }
 
     *flow = pathFlow;
@@ -274,7 +267,6 @@ vector<pair<Node *, Node *>> Graph::maxFlowAllPairs(int *maxFlow) {
             if(it1==it2) { continue;}
             else{
                 int curFlow = EdmondsKarp(it1->second, it2->second);
-                //cout<< "Max flow from " << it1->second->getStation().getName() << " to " << it2->second->getStation().getName() << " is " << curFlow << endl;
                 if(curFlow > *maxFlow){
                     result.erase(result.begin(), result.end());
                     *maxFlow = curFlow;
@@ -295,10 +287,8 @@ void Graph::sumSomePairsFlow(set<Node*> nodes, int* max_flow) {
     for(auto it1 = nodes.begin(); it1 != nodes.end(); it1++){
         for(auto it2 = it1; it2 != nodes.end(); it2++){
             if(it1==it2) { continue;}
-            else{
-                int curFlow = EdmondsKarp(*it1, *it2);
-                sum += curFlow;
-            }
+            int curFlow = EdmondsKarp(*it1, *it2);
+            sum += curFlow;
         }
     }
     *max_flow = sum;
@@ -311,17 +301,14 @@ int Graph::maxIncomingFlow(Node* node){
 
     for(pair<string, Node*> nodePair : nodes) {
         Node* nodeIt = nodePair.second;
-        if (nodeIt != node && nodeIt->getAdj().size() == 1) {
+        if(nodeIt != node && nodeIt->getAdj().size() == 1) {
             this->addEdge(superSource, nodeIt, INT_MAX, ServiceType::NONE);
         }
     }
 
     int max =  EdmondsKarp(superSource, node);
 
-    if(!eraseNode(superSource)){
-        cout << "Error erasing super source" << endl;
-    }
-
+    if(!eraseNode(superSource)){ cout << "Error erasing super source" << endl;}
     return max;
 }
 

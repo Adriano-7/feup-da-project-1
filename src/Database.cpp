@@ -37,7 +37,7 @@ int Database::getMaxFlowBetweenStations(Station* station1, Station* station2) {
     return graph.EdmondsKarp(graph.getNode(station1), graph.getNode(station2));
 }
 
-vector<Node*> Database::getMinCostFlow(Station* station1, Station* station2, double *flow, double *cost){
+stack<Edge*> Database::getMinCostFlow(Station* station1, Station* station2, double *flow, double *cost){
     return graph.FordFulkersonDijkstra(graph.getNode(station1), graph.getNode(station2), flow, cost);
 }
 

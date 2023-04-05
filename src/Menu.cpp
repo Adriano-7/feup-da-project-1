@@ -163,7 +163,7 @@ void Menu::showTwoStationsInfoMenu() {
 
     int option = getIntFromUser();
     double flow, cost;
-    vector<Node*> pathFlow;
+    stack<Edge*> pathFlow;
     switch(option){
         case 1:
             flow = database.getMaxFlowBetweenStations(station1, station2);
@@ -185,8 +185,11 @@ void Menu::showTwoStationsInfoMenu() {
             cout << "The maximum number of trains that can pass between the two stations is: " << flow << endl;
             cout << "The minimum cost is: " << cost << endl;
             cout << "The path is: " << endl;
-            for(auto node: pathFlow){
-                cout << node->getStationName() << " - ";
+
+            while(!pathFlow.empty()){
+                Edge* edge = pathFlow.top();
+                pathFlow.pop();
+                cout << edge->getOrig()->getStationName() << " -> " << edge->getDest()->getStationName() << " | " << serviceToString(edge->getService()) << endl;
             }
             cout << endl;
             break;
@@ -418,6 +421,17 @@ int Menu::getIntFromUser() {
         return getIntFromUser();
     }
     return input;
+}
+
+string Menu::serviceToString(ServiceType service){
+    switch(service){
+        case ServiceType::STANDARD:
+            return "Standard";
+        case ServiceType::ALFA_PENDULAR:
+            return "Alfa Pendular";
+        default:
+            return "Invalid Service";
+    }
 }
 
 void Menu::waitForInput() {
