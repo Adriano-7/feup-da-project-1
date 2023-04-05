@@ -117,8 +117,8 @@ dark-mode-toggle {
     display: none;
     position: absolute;
     left: 0; top: 0;
-    border: 1px solid #CE9490;
-    background-color: #FCF9F9;
+    border: 1px solid #84A4CA;
+    background-color: #F8FAFC;
     z-index: 10001;
     padding-top: 4px;
     padding-bottom: 4px;
@@ -162,7 +162,7 @@ a.SelectItem:active {
 
 a.SelectItem:hover {
     color: white;
-    background-color: #8C423D;
+    background-color: #35567D;
     outline-style: none;
     text-decoration: none;
     cursor: pointer;
@@ -181,7 +181,7 @@ iframe#MSearchResults {
     position: absolute;
     left: 0; top: 0;
     border: 1px solid black;
-    background-color: #F7EEEE;
+    background-color: #ECF0F6;
     z-index:10000;
     width: 300px;
     height: 400px;
@@ -207,7 +207,7 @@ iframe#MSearchResults {
 
 div.SRPage {
     margin: 5px 2px;
-    background-color: #F7EEEE;
+    background-color: #ECF0F6;
 }
 
 .SRChildren {
@@ -220,7 +220,7 @@ div.SRPage {
 
 .SRSymbol {
     font-weight: bold;
-    color: #974742;
+    color: #3A5D89;
     font-family: Arial,Verdana,sans-serif;
     text-decoration: none;
     outline: none;
@@ -228,7 +228,7 @@ div.SRPage {
 
 a.SRScope {
     display: block;
-    color: #974742;
+    color: #3A5D89;
     font-family: Arial,Verdana,sans-serif;
     font-size: 8pt;
     text-decoration: none;
