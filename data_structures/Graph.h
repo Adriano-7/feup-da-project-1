@@ -22,6 +22,8 @@ class Graph {
         int EdmondsKarp(Node* source, Node* dest);
         bool bfs(Node* source, Node* dest);
         int maxTrains (Node* station);
+        vector<Node*> FordFulkersonDijkstra(Node* source, Node* dest, double *flow, double *cost);
+        double dijkstra(Node* source, Node* dest);
 
 
     void maxSomePairs(vector<int> vector1, int *pInt);

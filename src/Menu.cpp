@@ -230,7 +230,8 @@ void Menu::showTwoStationsInfoMenu() {
     cout<< "3 - Return to main menu" << endl;
 
     int option = getIntFromUser();
-    int flow;
+    double flow, cost;
+    vector<Node*> pathFlow;
     switch(option){
         case 1:
             flow = database.getMaxFlowBetweenStations(station1.getId(), station2.getId());
@@ -240,8 +241,17 @@ void Menu::showTwoStationsInfoMenu() {
             cout << "The maximum number of trains that can pass between the two stations is: " << flow << endl;
             break;
         case 2:
-            cout << "This feature isn't yet implemented" << endl;
-            break;
+            pathFlow = database.getMinCostFlow(stationName1, stationName2, &flow, &cost);
+            cout << "_________________________________________________" << endl;
+            cout << "Station 1: " << stationName1 << endl;
+            cout << "Station 2: " << stationName2 << endl;
+            cout << "The maximum number of trains that can pass between the two stations is: " << flow << endl;
+            cout << "The minimum cost is: " << cost << endl;
+            cout << "The path is: " << endl;
+            for(auto node: pathFlow){
+                cout << node->getStationName();
+            }
+            cout << endl;
         case 3:
             showMainMenu();
             break;

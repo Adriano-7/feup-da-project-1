@@ -32,6 +32,10 @@ int Database::getMaxFlowBetweenStations(int station1, int station2) {
     return graph.EdmondsKarp(graph.getNode(station1), graph.getNode(station2));
 }
 
+vector<Node*> Database::getMinCostFlow(int station1, int station2, double *flow, double *cost){
+    return graph.FordFulkersonDijkstra(graph.getNode(station1), graph.getNode(station2), flow, cost);
+}
+
 void Database::readStations(set<string> stations, set<string> lines) {
     ifstream file("../data/stations.csv");
     file.ignore(1000, '\n'); // ignore first line
@@ -53,8 +57,6 @@ void Database::readStations(set<string> stations, set<string> lines) {
             cout << "The following line is invalid: " << line << endl;
             return;
         }
-
-
         id++;
         string name = fields[0];
         string district = fields[1];
@@ -142,7 +144,7 @@ void Database::readNetwork() {
 
         if (origStation == nullptr || destStation== nullptr)
             continue;
-        //I want the nodes that have this station
+
         Node* origNode = graph.getNode(origStation->getId());
         Node* destNode = graph.getNode(destStation->getId());
 
@@ -151,23 +153,6 @@ void Database::readNetwork() {
     sortDistricts();
     sortMunicipalities();
     file.close();
-}
-
-void Database::printNodes() {
-    vector<Node *> nodes = graph.getNodeVector();
-    for (auto node: nodes) {
-        cout << node->getStation().getName() << endl;
-    }
-}
-
-void Database::printEdges(){
-    int count = 0;
-     for(auto node: graph.getNodeVector()){
-         for (auto edge: node->getAdj()) {
-             cout << node->getStation().getName() << " " << edge->getDest()->getStation().getName() << " " << edge->getCapacity() << " " << edge->getService() << endl;
-             count++;}
-     }
-     cout << count << endl;
 }
 
 int Database::getMaxTrainsStation(int id) {
@@ -185,6 +170,10 @@ vector<string> Database::getMunicipalities(string district) {
 vector<int> Database::getStations(string municipality) {
     return stationsByMunicipality[municipality];
 
+}
+
+int Database::getNumNodes() {
+    return graph.getNumNodes();
 }
 
 void Database::sortDistricts() {
