@@ -12,9 +12,11 @@ using namespace std;
 class Graph {
     public:
         bool addNode(Station& station);
-        bool addEdge(Station& source, Station& dest, int capacity, ServiceType service);
+        bool addEdge(Node* source, Node* dest, int capacity, ServiceType service);
+        bool eraseNode(Node* node);
 
         Node* getNode(string stationName);
+        Node* getNode(Station* station);
         map<string, Node*> & getNodeMap();
         vector<pair<Node*, Node*>> maxFlowAllPairs(int *max_flow);
 
@@ -22,6 +24,8 @@ class Graph {
         bool bfs(Node* source, Node* dest);
         vector<Node*> FordFulkersonDijkstra(Node* source, Node* dest, double *flow, double *cost);
         double dijkstra(Node* source, Node* dest);
+        void maxSomePairsFlow(set<Node*> nodes, int *max_flow);
+        int maxIncomingFlow(Node* node);
 
 
     private:

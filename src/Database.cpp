@@ -3,6 +3,7 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -24,12 +25,70 @@ vector<pair<Node *, Node *>> Database::maxFlowAllPairs(int *maxFlow){
     return graph.maxFlowAllPairs(maxFlow);
 }
 
-int Database::getMaxFlowBetweenStations(string station1, string station2) {
+map<string, set<string>> Database::getDistrictToMunicipalities(){
+    return districtToMunicipalities;
+}
+
+set<string> Database::getStationsFromMunicipality(string municipality){
+    return municipalityToStations[municipality];
+}
+
+int Database::getMaxFlowBetweenStations(Station* station1, Station* station2) {
     return graph.EdmondsKarp(graph.getNode(station1), graph.getNode(station2));
 }
 
-vector<Node*> Database::getMinCostFlow(string station1, string station2, double *flow, double *cost){
+vector<Node*> Database::getMinCostFlow(Station* station1, Station* station2, double *flow, double *cost){
     return graph.FordFulkersonDijkstra(graph.getNode(station1), graph.getNode(station2), flow, cost);
+}
+
+int Database::getMaxTrainsStation(Station* station){
+    return graph.maxIncomingFlow(graph.getNode(station));
+}
+
+vector<pair<string, int>> Database::getTopMunicipalities(int k){
+    vector<pair<string, int>> res;
+    for(pair<string, set<string>> municipality : municipalityToStations){
+        int curFlow;
+        set<Node*> nodes;
+        for(string station : municipality.second){
+            nodes.insert(graph.getNode(station));
+        }
+        graph.maxSomePairsFlow(nodes, &curFlow);
+        res.emplace_back(municipality.first, curFlow);
+    }
+    sort(res.begin(), res.end(), [](pair<string, int> a, pair<string, int> b){
+        return a.second > b.second;
+    });
+
+    vector<pair<string, int>> topMunicipalities;
+    for(int i = 0; i < k; i++){
+        topMunicipalities.push_back(res[i]);
+    }
+
+    return topMunicipalities;
+}
+
+vector<pair<string, int>> Database::getTopDistricts(int k){
+    vector<pair<string, int>> res;
+    for (pair<string, set<string>> district: districtToMunicipalities) {
+        int curFlow;
+        set<Node*> nodes;
+        for(auto &municipality: district.second){
+            for(auto &station: municipalityToStations[municipality]){
+                nodes.insert(graph.getNode(station));
+            }
+        }
+        graph.maxSomePairsFlow(nodes, &curFlow);
+        res.emplace_back(district.first, curFlow);
+    }
+    sort(res.begin(), res.end(), [](const pair<string, int> &a, const pair<string, int> &b) {
+        return a.second > b.second;
+    });
+    vector<pair<string, int>> topDistricts;
+    for (int i = 0; i < k; i++) {
+        topDistricts.push_back(res[i]);
+    }
+    return topDistricts;
 }
 
 void Database::readStations(set<string> stations, set<string> lines) {
@@ -120,26 +179,8 @@ void Database::readNetwork() {
         if (origStation == nullptr || destStation== nullptr)
             continue;
 
-        graph.addEdge(*origStation, *destStation, capacity, service);
+        graph.addEdge(graph.getNode(orig), graph.getNode(dest), capacity, service);
     }
     file.close();
     return;
-}
-
-void Database::printNodes() {
-    map<string, Node*> nodes = graph.getNodeMap();
-    for (auto it = nodes.begin(); it != nodes.end(); it++) {
-        cout << it->first << endl ;
-    }
-}
-
-void Database::printEdges(){
-    int count = 0;
-     for(auto node: graph.getNodeMap()) {
-         for (auto edge: node.second->getAdj()) {
-             count++;
-             cout << node.first << " -> " << edge->getDest()->getStationName() << " | Capacity: " << edge->getCapacity() << endl;
-         }
-     }
-        cout << count << endl;
 }

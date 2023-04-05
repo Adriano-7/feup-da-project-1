@@ -16,6 +16,7 @@ class Menu {
         set<string> getStringsFromUser();
         string getStringFromUser();
         Station* getStationFromUser();
+        Station* selectStationFromList();
         int getIntFromUser();
         void waitForInput();
 

@@ -17,17 +17,15 @@ bool Graph::addNode(Station& station) {
     return true;
 }
 
-bool Graph::addEdge(Station& source, Station& dest, int capacity, ServiceType service) {
-    Node* sourceNode = nodes[source.getName()];
-    Node* destNode = nodes[dest.getName()];
+bool Graph::addEdge(Node* sourceNode, Node* destNode, int capacity, ServiceType service) {
 
     if (sourceNode== nullptr){
-        cout << "Station " << source.getName() << " does not exist." << endl;
+        cout << "Station " << sourceNode->getStation().getName() << " does not exist." << endl;
         return false;
     }
 
     if (destNode== nullptr){
-        cout << "Station " << dest.getName() << " does not exist." << endl;
+        cout << "Station " << destNode->getStation().getName() << " does not exist." << endl;
         return false;
     }
 
@@ -46,6 +44,10 @@ Node* Graph::getNode(string stationName) {
         return nodes[stationName];
     else
         return nullptr;
+}
+
+Node* Graph::getNode(Station* station) {
+    return getNode(station->getName());
 }
 
 map<string, Node*> & Graph::getNodeMap() {
@@ -257,4 +259,54 @@ double Graph::dijkstra(Node* source, Node* dest){
         return -1;
     }
     return dest->getDistance();
+}
+
+void Graph::maxSomePairsFlow(set<Node*> nodes, int* maxFlow){
+    int max = 0;
+    for(auto it=nodes.begin(); it!=nodes.end(); it++){
+        for(auto it2=it++; it2!=nodes.end(); it2++){
+            int curFlow = EdmondsKarp(*it, *it2);
+            max += curFlow;
+            }
+        }
+    *maxFlow = max;
+}
+
+
+int Graph::maxIncomingFlow(Node* node){
+    Station* superSourceStation = new Station("SuperSource", "", "", "", "");
+    Node* superSource = new Node(*superSourceStation);
+
+    for(pair<string, Node*> nodePair : nodes) {
+        Node* nodeIt = nodePair.second;
+        if (nodeIt != node && nodeIt->getAdj().size() == 1) {
+            this->addEdge(superSource, nodeIt, INT_MAX, ServiceType::NONE);
+        }
+    }
+
+    int max =  EdmondsKarp(superSource, node);
+
+    if(!eraseNode(superSource)){
+        cout << "Error erasing super source" << endl;
+    }
+
+    return max;
+}
+
+bool Graph::eraseNode(Node* node){
+    for(Edge* e: node->getAdj()){
+        Node* w = e->getDest();
+        if(!node->removeEdgeTo(w)){
+            return false;
+        }
+    }
+    for(Edge* e: node->getIncoming()){
+        Node* w = e->getOrig();
+
+        if(!w->removeEdgeTo(node)){
+            return false;
+        }
+    }
+    nodes.erase(node->getStation().getName());
+    return true;
 }

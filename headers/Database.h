@@ -7,15 +7,18 @@
 class Database {
     public:
         Database() = default;
-        void printNodes();
-        void printEdges();
         void loadWithoutFilters();
         void loadWithFilters(set<string> stations, set<string> lines);
         Station* getStation(string stationName);
         vector<pair<Node *, Node *>> maxFlowAllPairs(int *maxFlow);
+        map<string, set<string>> getDistrictToMunicipalities();
+        set<string> getStationsFromMunicipality(string municipality);
 
-        int getMaxFlowBetweenStations(string station1, string station2);
-        vector<Node*> getMinCostFlow(string station1, string station2, double *flow, double *cost);
+        int getMaxFlowBetweenStations(Station* station1, Station* station2);
+        vector<Node*> getMinCostFlow(Station* station1, Station* station2, double *flow, double *cost);
+        int getMaxTrainsStation(Station* station);
+        vector<pair<string, int>> getTopMunicipalities(int k);
+        vector<pair<string, int>> getTopDistricts(int k);
 
     private:
         Graph graph;
