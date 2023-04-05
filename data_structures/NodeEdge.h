@@ -57,6 +57,7 @@ public:
     Node* getOrig();
     Edge* getReverse();
     double getFlow();
+    double getCostService();
 
     void setFlow(double flow);
     void addFlow(double flow);

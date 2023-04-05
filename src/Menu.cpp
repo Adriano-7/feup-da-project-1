@@ -183,7 +183,7 @@ void Menu::showTwoStationsInfoMenu() {
             cout << "Station 1: " << station1->getName() << endl;
             cout << "Station 2: " << station2->getName() << endl;
             cout << "The maximum number of trains that can pass between the two stations is: " << flow << endl;
-            cout << "The minimum cost is: " << cost << endl;
+            cout << "The cost of service is: " << cost << endl;
             cout << "The path is: " << endl;
 
             while(!pathFlow.empty()){

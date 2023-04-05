@@ -1,3 +1,4 @@
+#include <map>
 #include "NodeEdge.h"
 
 /************************* Node  **************************/
@@ -117,6 +118,11 @@ Edge* Edge::getReverse() {
 
 double Edge::getFlow() {
     return this->flow;
+}
+
+double Edge::getCostService(){
+    map<ServiceType, double> serviceCosts = {{ServiceType::STANDARD,2}, {ServiceType::ALFA_PENDULAR, 4}};
+    return serviceCosts[this->getService()];
 }
 
 void Edge::setFlow(double flow) {
