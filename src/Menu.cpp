@@ -358,10 +358,10 @@ Station* Menu::selectStationFromList(){
         i++;
     }
 
-    int option = getIntFromUser();
-    if(option < 1 || option > districtMunicipalities.size()){
-        cout << "Invalid option" << endl;
-        return selectStationFromList();
+    int option = -1;
+    while(option < 1 || option > districtMunicipalities.size()){
+        cout << "Please select an option" << endl;
+        option = getIntFromUser();
     }
 
     it = districtMunicipalities.begin();
@@ -379,10 +379,10 @@ Station* Menu::selectStationFromList(){
         i++;
     }
 
-    option = getIntFromUser();
-    if(option < 1 || option > municipalities.size()){
-        cout << "Invalid option" << endl;
-        return selectStationFromList();
+    option = -1;
+    while(option < 1 || option > municipalities.size()){
+        cout << "Please select an option" << endl;
+        option = getIntFromUser();
     }
 
     it2 = municipalities.begin();
@@ -399,10 +399,10 @@ Station* Menu::selectStationFromList(){
         i++;
     }
 
-    option = getIntFromUser();
-    if(option < 1 || option > stations.size()){
-        cout << "Invalid option" << endl;
-        return selectStationFromList();
+    option = -1;
+    while(option < 1 || option > stations.size()){
+        cout << "Please select an option" << endl;
+        option = getIntFromUser();
     }
 
     it3 = stations.begin();

@@ -213,7 +213,6 @@ stack<Edge*> Graph::FordFulkersonDijkstra(Node* source, Node* dest, double* flow
 
     *costService = dijkstra(source, dest);
     if(*costService==-1){
-        cout << "No path found" << "for source " << source->getStation().getName() << " and destination " << dest->getStation().getName() << endl;
         *flow = -1;
         *costService = -1;
         return path;
@@ -224,8 +223,7 @@ stack<Edge*> Graph::FordFulkersonDijkstra(Node* source, Node* dest, double* flow
         Edge* edge = v->getPath();
 
         if(edge== nullptr){
-            cout << "No path found" << "for source " << source->getStation().getName() << " and destination " << dest->getStation().getName() << endl;
-            flow = nullptr;
+            *flow = -1;
             return path;
         }
 
@@ -280,6 +278,7 @@ vector<pair<Node *, Node *>> Graph::maxFlowAllPairs(int *maxFlow) {
         }
     }
 
+    if(*maxFlow == INT_MIN) { *maxFlow = 0;}
     return result;
 }
 
