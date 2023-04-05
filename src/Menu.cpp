@@ -94,7 +94,6 @@ void Menu::showMainMenu(){
                 return;
             default:
                 cout << "Invalid option" << endl;
-                showMainMenu();
         }
     }
 }
@@ -265,8 +264,7 @@ void Menu::showStationInfoMenu() {
             cout << "_________________________________________________" << endl;
             break;
         case 3:
-            showMainMenu();
-            break;
+            return;
         default:
             cout << "Invalid option" << endl;
             showStationInfoMenu();
@@ -322,8 +320,7 @@ void Menu::showTwoStationsInfoMenu() {
             }
             cout << endl;
         case 3:
-            showMainMenu();
-            break;
+            return;
         default:
             cout << "Invalid option" << endl;
             showTwoStationsInfoMenu();
@@ -356,8 +353,7 @@ void Menu::showNetworkInfoMenu() {
             cout << "This feature isn't yet implemented" << endl;
             break;
         case 3:
-            showMainMenu();
-            break;
+            return;
         default:
             cout << "Invalid option" << endl;
             showNetworkInfoMenu();
