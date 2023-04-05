@@ -2,7 +2,9 @@
 #define PROJECT_DA_MENU_H
 
 #include "Database.h"
-
+/**
+ * @brief Class that contains all the menus used in the program.
+ */
 class Menu {
     public:
         Menu(Database& database) : database(database) {};

@@ -7,7 +7,9 @@
 #include "ServiceType.h"
 
 class Edge;
-
+/**
+ * @brief Class that processes everything that uses nodes.
+ */
 class Node{
     public:
         Node(Station& station);
@@ -45,7 +47,9 @@ class Node{
         vector<Edge *> incoming;
         int queueIndex = 0; // required by MutablePriorityQueue
 };
-
+/**
+ * @brief Class that processes everything that uses edges.
+ */
 class Edge {
 public:
     Edge(Node *orig, Node *dest, int capacity, ServiceType service);

@@ -3,7 +3,9 @@
 
 #include "Graph.h"
 #include <unordered_map>
-
+/**
+ * @brief Class that contains all the data management and usefull data structures.
+ */
 class Database {
     public:
         Database() = default;

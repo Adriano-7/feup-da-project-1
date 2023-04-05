@@ -8,7 +8,9 @@
 #include "NodeEdge.h"
 #include "ServiceType.h"
 using namespace std;
-
+/**
+ * @brief Class that processes everything that uses graphs.
+ */
 class Graph {
     public:
         bool addNode(Station& station);
