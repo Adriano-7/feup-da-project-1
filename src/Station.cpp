@@ -1,7 +1,6 @@
 #include "../headers/Station.h"
 
-Station::Station(int id, string name, string district, string municipality, string township, string line) {
-    this->id = id;
+Station::Station(string name, string district, string municipality, string township, string line) {
     this->name = name;
     this->district = district;
     this->municipality = municipality;
@@ -27,8 +26,4 @@ string Station::getTownship() const{
 
 string Station::getLine() const{
     return line;
-}
-
-int Station::getId() const {
-    return id;
 }
