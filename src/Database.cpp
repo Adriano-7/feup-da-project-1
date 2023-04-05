@@ -148,9 +148,9 @@ void Database::readNetwork() {
 
         graph.addBidirectionalEdge(origNode, destNode, capacity, service);
     }
+    sortDistricts();
+    sortMunicipalities();
     file.close();
-
-    return;
 }
 
 void Database::printNodes() {
@@ -185,4 +185,56 @@ vector<string> Database::getMunicipalities(string district) {
 vector<int> Database::getStations(string municipality) {
     return stationsByMunicipality[municipality];
 
+}
+
+void Database::sortDistricts() {
+    sort(districts.begin(), districts.end());
+}
+
+void Database::sortMunicipalities() {
+    for(auto &municipalities: municipalitiesByDistrict){
+        sort(municipalities.second.begin(), municipalities.second.end());
+    }
+
+}
+
+vector<pair<string, int>> Database::getTopMunicipies(int k) { //Soma todos os fluxos de cada municipio e ordena
+    vector<pair<string, int>> res;
+    for (auto &municipality: stationsByMunicipality) {
+        int curFlow;
+        graph.maxSomePairs(municipality.second, &curFlow);
+        res.emplace_back(municipality.first, curFlow);
+    }
+    sort(res.begin(), res.end(), [](const pair<string, int> &a, const pair<string, int> &b) {
+        return a.second > b.second;
+    });
+    vector<pair<string, int>> topMunicipalities;
+    for (int i = 0; i < k; i++) {
+        topMunicipalities.push_back(res[i]);
+    }
+    return topMunicipalities;
+
+    }
+
+vector<pair<string, int>> Database::getTopDistricts(int k){
+    vector<pair<string, int>> res;
+    for (auto &district: municipalitiesByDistrict) {
+        int curFlow;
+        vector<int> stations;
+        for(auto &municipality: district.second){
+            for(auto &station: stationsByMunicipality[municipality]){
+                stations.push_back(station);
+            }
+        }
+        graph.maxSomePairs(stations, &curFlow);
+        res.emplace_back(district.first, curFlow);
+    }
+    sort(res.begin(), res.end(), [](const pair<string, int> &a, const pair<string, int> &b) {
+        return a.second > b.second;
+    });
+    vector<pair<string, int>> topDistricts;
+    for (int i = 0; i < k; i++) {
+        topDistricts.push_back(res[i]);
+    }
+    return topDistricts;
 }

@@ -255,13 +255,16 @@ void Menu::showNetworkInfoMenu() {
     cout << "_________________________________________________" << endl;
     cout<< "Please select an option:" << endl;
     cout<< "1 - Pairs of stations with the maximum number of trains that can travel between them" << endl;
-    cout<< "2 - Top-k municipalities and districts" << endl;
+    cout<< "2 - Top-k districts and municipalities where management should assign larger budgets for the purchasing and maintenance of trains." << endl;
     cout<< "3 - Return to main menu" << endl;
 
     int option = getIntFromUser();
     int maxFlow;
 
     vector<pair<Node*, Node*>> pairs;
+    vector<pair<string, int>> topMunicipalities;
+    int option2;
+    int k;
     switch(option){
         case 1:
             pairs = database.maxFlowAllPairs(&maxFlow);
@@ -272,8 +275,25 @@ void Menu::showNetworkInfoMenu() {
             }
             break;
         case 2:
-            cout << "This feature isn't yet implemented" << endl;
+            cout << "1 - Districts\n2 - Municipalities\n";
+            option2 = getIntFromUser();
+            cout << "Enter the k number of top districts/municipalities:\n";
+            k = getIntFromUser();
+
+            if(option2 == 1){
+                topMunicipalities = database.getTopDistricts(k);
+            } else if(option2 == 2){
+                topMunicipalities = database.getTopMunicipies(k);
+            } else {
+                cout << "Invalid option" << endl;
+                showNetworkInfoMenu();
+            }
+
+            for(auto pair: topMunicipalities){
+                cout << pair.first << " -> " << pair.second << endl;
+            }
             break;
+
         case 3:
             showMainMenu();
             break;

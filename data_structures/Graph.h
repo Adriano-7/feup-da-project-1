@@ -24,7 +24,9 @@ class Graph {
         int maxTrains (Node* station);
 
 
-    private:
+    void maxSomePairs(vector<int> vector1, int *pInt);
+
+private:
        vector<Node*> nodes;
 
 };

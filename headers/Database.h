@@ -20,6 +20,8 @@ class Database {
         vector<pair<Node *, Node *>> maxFlowAllPairs(int *maxFlow);
 
         int getMaxFlowBetweenStations(int station1, int station2);
+        vector<pair<string, int>> getTopMunicipies(int k);
+        vector<pair<string, int>>  getTopDistricts(int k);
         int getMaxTrainsStation(int id);
 
 

@@ -180,6 +180,9 @@ vector<pair<Node *, Node *>> Graph::maxFlowAllPairs(int *maxFlow) {
     return result;
 }
 
+
+
+
 int Graph::maxTrains(Node *station) {
     Station *superSourceStation = new Station(999, "SuperSource", "", "", "", "");
     Node* superSource = new Node(*superSourceStation);
@@ -194,4 +197,16 @@ int Graph::maxTrains(Node *station) {
     delete superSource;
     return max;
     }
+
+void Graph::maxSomePairs(vector<int> stations, int *pInt) {
+    int max = 0;
+    for(int i = 0; i < stations.size(); i++){
+        for(int j = i+1; j < stations.size(); j++){
+            int curFlow = EdmondsKarp(nodes[stations[i]], nodes[stations[j]]);
+            max += curFlow;
+            }
+        }
+
+    *pInt = max;
+}
 
