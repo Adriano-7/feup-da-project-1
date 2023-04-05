@@ -251,7 +251,7 @@ vector<Node*> Graph::FordFulkersonDijkstra(Node* source, Node* dest, double* flo
         }
     }
 
-    vector<Node*> path;
+    vector<Node*> path = {dest};
     for(Node* v = dest; v != source;) {
         Edge* e = v->getPath();
         if (e->getDest() == v) {

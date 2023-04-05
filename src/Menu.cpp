@@ -337,6 +337,11 @@ void Menu::showTwoStationsInfoMenu() {
             break;
         case 2:
             pathFlow = database.getMinCostFlow(station1, station2, &flow, &cost);
+            if(pathFlow.empty()){
+                cout << "There is no path between " << station1->getName() << " and " << station2->getName() << endl;
+                return;
+            }
+
             cout << "_________________________________________________" << endl;
             cout << "Station 1: " << station1->getName() << endl;
             cout << "Station 2: " << station2->getName() << endl;
@@ -344,9 +349,10 @@ void Menu::showTwoStationsInfoMenu() {
             cout << "The minimum cost is: " << cost << endl;
             cout << "The path is: " << endl;
             for(auto node: pathFlow){
-                cout << node->getStationName() << " -> ";
+                cout << node->getStationName() << " - ";
             }
             cout << endl;
+            break;
         case 3:
             return;
         default:
