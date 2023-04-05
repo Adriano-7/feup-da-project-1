@@ -2,7 +2,9 @@
 #include <iostream>
 #include <limits>
 #include <unistd.h>
-
+/**
+ * @brief Creates Data Selection Menu.
+ */
 void Menu::showDataSelectionMenu() {
     cout << "_________________________________________________" << endl;
     cout << "Welcome to the railway network management system!" << endl;
@@ -33,7 +35,9 @@ void Menu::showDataSelectionMenu() {
         }
     }
 }
-
+/**
+ * @brief Creates Subset Menu.
+ */
 void Menu::showSubsetMenu() {
     set<string> stations;
     set<string> lines;
@@ -60,7 +64,9 @@ void Menu::showSubsetMenu() {
     database.loadWithFilters(stations, lines);
     showMainMenu();
 }
-
+/**
+ * @brief Creates Main Menu.
+ */
 void Menu::showMainMenu(){
     while (true){
         cout << "_________________________________________________" << endl;
@@ -96,7 +102,9 @@ void Menu::showMainMenu(){
         }
     }
 }
-
+/**
+ * @brief Creates Change Capacity Menu.
+ */
 void Menu::showChangeCapacityMenu() {
     cout << "_________________________________________________" << endl;
     cout << "Please enter the name of the first station:" << endl;
@@ -125,7 +133,10 @@ void Menu::showChangeCapacityMenu() {
     return;
 }
 
-
+/**
+ * @brief Gets the input from the User.
+ * @return
+ */
 set<string> Menu::getStringsFromUser() {
     set<string> strings;
     string input;
@@ -145,7 +156,10 @@ set<string> Menu::getStringsFromUser() {
         firstTime = false;
     }
 }
-
+/**
+ * @brief Gets input from the User.
+ * @return
+ */
 string Menu::getStringFromUser() {
     string input = "";
     while (input.empty()) {
@@ -154,7 +168,10 @@ string Menu::getStringFromUser() {
 
     return input;
 }
-
+/**
+ * @brief Gets input from the User.
+ * @return
+ */
 Station* Menu::getStationFromUser(){
     cout << "Please select an option" << endl;
     cout << "1 - Write the name of the station" << endl;
@@ -174,7 +191,10 @@ Station* Menu::getStationFromUser(){
             return getStationFromUser();
     }
 }
-
+/**
+ * @brief Gets input from the User.
+ * @return
+ */
 Station* Menu::selectStationFromList(){
     cout<< "_________________________________________________" << endl;
     cout<< "Select the District:" << endl;
@@ -239,7 +259,10 @@ Station* Menu::selectStationFromList(){
 
     return database.getStation(*it3);
 }
-
+/**
+ * @brief Gets input from the User.
+ * @return
+ */
 int Menu::getIntFromUser() {
     int input;
     cin >> input;
@@ -251,7 +274,9 @@ int Menu::getIntFromUser() {
     }
     return input;
 }
-
+/**
+ * @brief Waits for input from the User.
+ */
 void Menu::waitForInput() {
     usleep(800000);
     string q;
@@ -259,7 +284,9 @@ void Menu::waitForInput() {
     cin >> q;
     cout << endl;
 }
-
+/**
+ * @brief Creates Station Info Menu.
+ */
 void Menu::showStationInfoMenu() {
     Station* station = getStationFromUser();
     if (station == nullptr) {
@@ -298,7 +325,9 @@ void Menu::showStationInfoMenu() {
             showStationInfoMenu();
     }
 }
-
+/**
+ * @brief Creates Two Stations Info Menu.
+ */
 void Menu::showTwoStationsInfoMenu() {
     cout << "_________________________________________________" << endl;
     cout << "First station:" << endl;
@@ -360,7 +389,9 @@ void Menu::showTwoStationsInfoMenu() {
             showTwoStationsInfoMenu();
     }
 }
-
+/**
+ * @brief Creates Network Info Menu.
+ */
 void Menu::showNetworkInfoMenu() {
     cout << "_________________________________________________" << endl;
     cout<< "Please select an option:" << endl;

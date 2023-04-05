@@ -7,6 +7,5 @@ var searchData=
   ['getstringfromuser_4',['getStringFromUser',['../class_menu.html#ad7c9835984cb74163f2c7d008535e8d1',1,'Menu']]],
   ['getstringsfromuser_5',['getStringsFromUser',['../class_menu.html#a4842606b4d9e107c7bf41a7669776d0a',1,'Menu']]],
   ['gettopdistricts_6',['getTopDistricts',['../class_database.html#a3bfdf09c2fd68938bb776d10f7fc9b07',1,'Database']]],
-  ['gettopmunicipalities_7',['getTopMunicipalities',['../class_database.html#a1e206e04383f3ed0c4301edc323ba8c8',1,'Database']]],
-  ['graph_8',['Graph',['../class_graph.html',1,'']]]
+  ['gettopmunicipalities_7',['getTopMunicipalities',['../class_database.html#a1e206e04383f3ed0c4301edc323ba8c8',1,'Database']]]
 ];

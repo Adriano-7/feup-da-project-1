@@ -106,8 +106,8 @@ $(function() {
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        <span class="keywordtype">void</span> setIndegree(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> indegree);</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        <span class="keywordtype">void</span> setDistance(<span class="keywordtype">double</span> distance);</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        <span class="keywordtype">void</span> setPath(<a class="code hl_class" href="class_edge.html">Edge</a> *path);</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <a class="code hl_class" href="class_edge.html">Edge</a> *addEdge(<a class="code hl_class" href="class_node.html">Node</a> *dest, <span class="keywordtype">int</span> capacity, ServiceType service);</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        <span class="keywordtype">bool</span> removeEdgeTo(<a class="code hl_class" href="class_node.html">Node</a> *dest);</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <a class="code hl_class" href="class_edge.html">Edge</a> *<a class="code hl_function" href="class_node.html#a66a349df4e20955779317f503cc89b83">addEdge</a>(<a class="code hl_class" href="class_node.html">Node</a> *dest, <span class="keywordtype">int</span> capacity, ServiceType service);</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="class_node.html#a031d3a393947dfd1abc68774904bb349">removeEdgeTo</a>(<a class="code hl_class" href="class_node.html">Node</a> *dest);</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keyword">private</span>:</div>
@@ -166,6 +166,8 @@ $(function() {
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="preprocessor">#endif </span><span class="comment">//PROJECT_DA_NODEEDGE_H</span></div>
 <div class="ttc" id="aclass_edge_html"><div class="ttname"><a href="class_edge.html">Edge</a></div><div class="ttdef"><b>Definition:</b> NodeEdge.h:49</div></div>
 <div class="ttc" id="aclass_node_html"><div class="ttname"><a href="class_node.html">Node</a></div><div class="ttdef"><b>Definition:</b> NodeEdge.h:11</div></div>
+<div class="ttc" id="aclass_node_html_a031d3a393947dfd1abc68774904bb349"><div class="ttname"><a href="class_node.html#a031d3a393947dfd1abc68774904bb349">Node::removeEdgeTo</a></div><div class="ttdeci">bool removeEdgeTo(Node *dest)</div><div class="ttdoc">Removes an edge.</div><div class="ttdef"><b>Definition:</b> NodeEdge.cpp:88</div></div>
+<div class="ttc" id="aclass_node_html_a66a349df4e20955779317f503cc89b83"><div class="ttname"><a href="class_node.html#a66a349df4e20955779317f503cc89b83">Node::addEdge</a></div><div class="ttdeci">Edge * addEdge(Node *dest, int capacity, ServiceType service)</div><div class="ttdoc">Creates a directed edge.</div><div class="ttdef"><b>Definition:</b> NodeEdge.cpp:74</div></div>
 <div class="ttc" id="aclass_station_html"><div class="ttname"><a href="class_station.html">Station</a></div><div class="ttdef"><b>Definition:</b> Station.h:8</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

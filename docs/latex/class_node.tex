@@ -51,12 +51,55 @@ void {\bfseries set\+Distance} (double distance)
 \mbox{\Hypertarget{class_node_acf6663d813e9acfc2bbc09001f1cb29e}\label{class_node_acf6663d813e9acfc2bbc09001f1cb29e}} 
 void {\bfseries set\+Path} (\mbox{\hyperlink{class_edge}{Edge}} $\ast$path)
 \item 
+\mbox{\hyperlink{class_edge}{Edge}} $\ast$ \mbox{\hyperlink{class_node_a66a349df4e20955779317f503cc89b83}{add\+Edge}} (\mbox{\hyperlink{class_node}{Node}} $\ast$dest, int capacity, Service\+Type service)
+\begin{DoxyCompactList}\small\item\em Creates a directed edge. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_node_a031d3a393947dfd1abc68774904bb349}{remove\+Edge\+To}} (\mbox{\hyperlink{class_node}{Node}} $\ast$dest)
+\begin{DoxyCompactList}\small\item\em Removes an edge. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{class_node_a66a349df4e20955779317f503cc89b83}\label{class_node_a66a349df4e20955779317f503cc89b83}} 
-\mbox{\hyperlink{class_edge}{Edge}} $\ast$ {\bfseries add\+Edge} (\mbox{\hyperlink{class_node}{Node}} $\ast$dest, int capacity, Service\+Type service)
-\item 
+\index{Node@{Node}!addEdge@{addEdge}}
+\index{addEdge@{addEdge}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{addEdge()}{addEdge()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_edge}{Edge}} $\ast$ Node\+::add\+Edge (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} $\ast$}]{dest,  }\item[{int}]{capacity,  }\item[{Service\+Type}]{service }\end{DoxyParamCaption})}
+
+
+
+Creates a directed edge. 
+
+Time Complexity\+: O(1) Creates a directed edge from the current node (this) to a destination node (dest). The function takes in three arguments\+: a pointer to the destination node, the capacity of the edge, and a service type. 
+\begin{DoxyParams}{Parameters}
+{\em dest} & \\
+\hline
+{\em capacity} & \\
+\hline
+{\em service} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_node_a031d3a393947dfd1abc68774904bb349}\label{class_node_a031d3a393947dfd1abc68774904bb349}} 
-bool {\bfseries remove\+Edge\+To} (\mbox{\hyperlink{class_node}{Node}} $\ast$dest)
-\end{DoxyCompactItemize}
+\index{Node@{Node}!removeEdgeTo@{removeEdgeTo}}
+\index{removeEdgeTo@{removeEdgeTo}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{removeEdgeTo()}{removeEdgeTo()}}
+{\footnotesize\ttfamily bool Node\+::remove\+Edge\+To (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} $\ast$}]{dest }\end{DoxyParamCaption})}
+
+
+
+Removes an edge. 
+
+Time Complexity\+: O($\vert$\+V$\vert$) Removes an edge that leads to another node (dest) from the adjacency list of the current node.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dest} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

@@ -33,18 +33,94 @@ vector$<$ \mbox{\hyperlink{class_node}{Node}} $\ast$ $>$ {\bfseries get\+Min\+Co
 \mbox{\Hypertarget{class_database_ad221311a8f1ab9a850903233db345f2a}\label{class_database_ad221311a8f1ab9a850903233db345f2a}} 
 int {\bfseries get\+Max\+Trains\+Station} (\mbox{\hyperlink{class_station}{Station}} $\ast$station)
 \item 
-\mbox{\Hypertarget{class_database_a1e206e04383f3ed0c4301edc323ba8c8}\label{class_database_a1e206e04383f3ed0c4301edc323ba8c8}} 
-vector$<$ pair$<$ string, int $>$ $>$ {\bfseries get\+Top\+Municipalities} (int k)
-\item 
-\mbox{\Hypertarget{class_database_a3bfdf09c2fd68938bb776d10f7fc9b07}\label{class_database_a3bfdf09c2fd68938bb776d10f7fc9b07}} 
-vector$<$ pair$<$ string, int $>$ $>$ {\bfseries get\+Top\+Districts} (int k)
-\item 
-\mbox{\Hypertarget{class_database_a1b4c02e3b1b47bf40138c3857521b011}\label{class_database_a1b4c02e3b1b47bf40138c3857521b011}} 
-bool {\bfseries check\+Connection} (\mbox{\hyperlink{class_station}{Station}} $\ast$station1, \mbox{\hyperlink{class_station}{Station}} $\ast$station2, int \&cur\+Capacity)
-\item 
+vector$<$ pair$<$ string, int $>$ $>$ \mbox{\hyperlink{class_database_a1e206e04383f3ed0c4301edc323ba8c8}{get\+Top\+Municipalities}} (int k)
+\begin{DoxyCompactList}\small\item\em Get the top \char`\"{}k\char`\"{} municipalities based on total flow. \end{DoxyCompactList}\item 
+vector$<$ pair$<$ string, int $>$ $>$ \mbox{\hyperlink{class_database_a3bfdf09c2fd68938bb776d10f7fc9b07}{get\+Top\+Districts}} (int k)
+\begin{DoxyCompactList}\small\item\em Get the top \char`\"{}k\char`\"{} districts based on total flow. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_database_a1b4c02e3b1b47bf40138c3857521b011}{check\+Connection}} (\mbox{\hyperlink{class_station}{Station}} $\ast$station1, \mbox{\hyperlink{class_station}{Station}} $\ast$station2, int \&cur\+Capacity)
+\begin{DoxyCompactList}\small\item\em Checks the connection between stations. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_database_a3789066cabc515c0c7fa346eb9045288}{change\+Capacity}} (\mbox{\hyperlink{class_station}{Station}} $\ast$station1, \mbox{\hyperlink{class_station}{Station}} $\ast$station2, int new\+Capacity)
+\begin{DoxyCompactList}\small\item\em Changes capacity from an edge. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{class_database_a3789066cabc515c0c7fa346eb9045288}\label{class_database_a3789066cabc515c0c7fa346eb9045288}} 
-void {\bfseries change\+Capacity} (\mbox{\hyperlink{class_station}{Station}} $\ast$station1, \mbox{\hyperlink{class_station}{Station}} $\ast$station2, int new\+Capacity)
-\end{DoxyCompactItemize}
+\index{Database@{Database}!changeCapacity@{changeCapacity}}
+\index{changeCapacity@{changeCapacity}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{changeCapacity()}{changeCapacity()}}
+{\footnotesize\ttfamily void Database\+::change\+Capacity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_station}{Station}} $\ast$}]{station1,  }\item[{\mbox{\hyperlink{class_station}{Station}} $\ast$}]{station2,  }\item[{int}]{new\+Capacity }\end{DoxyParamCaption})}
+
+
+
+Changes capacity from an edge. 
+
+Time Complexity\+: O() Passes on the arguments to the corresponding change\+Capacity function of the graph object, and returns its boolean result. 
+\begin{DoxyParams}{Parameters}
+{\em station1} & \\
+\hline
+{\em station2} & \\
+\hline
+{\em new\+Capacity} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_database_a1b4c02e3b1b47bf40138c3857521b011}\label{class_database_a1b4c02e3b1b47bf40138c3857521b011}} 
+\index{Database@{Database}!checkConnection@{checkConnection}}
+\index{checkConnection@{checkConnection}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{checkConnection()}{checkConnection()}}
+{\footnotesize\ttfamily bool Database\+::check\+Connection (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_station}{Station}} $\ast$}]{station1,  }\item[{\mbox{\hyperlink{class_station}{Station}} $\ast$}]{station2,  }\item[{int \&}]{cur\+Capacity }\end{DoxyParamCaption})}
+
+
+
+Checks the connection between stations. 
+
+Time Complexity\+: O() Passes on the arguments to the corresponding check\+Connection function of the graph object, and returns its boolean result. 
+\begin{DoxyParams}{Parameters}
+{\em station1} & \\
+\hline
+{\em station2} & \\
+\hline
+{\em cur\+Capacity} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_database_a3bfdf09c2fd68938bb776d10f7fc9b07}\label{class_database_a3bfdf09c2fd68938bb776d10f7fc9b07}} 
+\index{Database@{Database}!getTopDistricts@{getTopDistricts}}
+\index{getTopDistricts@{getTopDistricts}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{getTopDistricts()}{getTopDistricts()}}
+{\footnotesize\ttfamily vector$<$ pair$<$ string, int $>$ $>$ Database\+::get\+Top\+Districts (\begin{DoxyParamCaption}\item[{int}]{k }\end{DoxyParamCaption})}
+
+
+
+Get the top \char`\"{}k\char`\"{} districts based on total flow. 
+
+Time Complexity\+: O(\+N$\ast$\+M) Calculates the maximum flow through sets of stations in each district, and returns a vector of the top k districts based on this flow metric. 
+\begin{DoxyParams}{Parameters}
+{\em k} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_database_a1e206e04383f3ed0c4301edc323ba8c8}\label{class_database_a1e206e04383f3ed0c4301edc323ba8c8}} 
+\index{Database@{Database}!getTopMunicipalities@{getTopMunicipalities}}
+\index{getTopMunicipalities@{getTopMunicipalities}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{getTopMunicipalities()}{getTopMunicipalities()}}
+{\footnotesize\ttfamily vector$<$ pair$<$ string, int $>$ $>$ Database\+::get\+Top\+Municipalities (\begin{DoxyParamCaption}\item[{int}]{k }\end{DoxyParamCaption})}
+
+
+
+Get the top \char`\"{}k\char`\"{} municipalities based on total flow. 
+
+Time Complexity\+: O(m(slog(s)+e) Returns a vector of the top k municipalities based on their total flow (sum of flow values) from all of their stations in a graph. 
+\begin{DoxyParams}{Parameters}
+{\em k} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

@@ -126,13 +126,87 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setDistance</b> (doub
 <tr class="memitem:acf6663d813e9acfc2bbc09001f1cb29e"><td class="memItemLeft" align="right" valign="top"><a id="acf6663d813e9acfc2bbc09001f1cb29e" name="acf6663d813e9acfc2bbc09001f1cb29e"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setPath</b> (<a class="el" href="class_edge.html">Edge</a> *path)</td></tr>
 <tr class="separator:acf6663d813e9acfc2bbc09001f1cb29e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66a349df4e20955779317f503cc89b83"><td class="memItemLeft" align="right" valign="top"><a id="a66a349df4e20955779317f503cc89b83" name="a66a349df4e20955779317f503cc89b83"></a>
-<a class="el" href="class_edge.html">Edge</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>addEdge</b> (<a class="el" href="class_node.html">Node</a> *dest, int capacity, ServiceType service)</td></tr>
+<tr class="memitem:a66a349df4e20955779317f503cc89b83"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_edge.html">Edge</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a66a349df4e20955779317f503cc89b83">addEdge</a> (<a class="el" href="class_node.html">Node</a> *dest, int capacity, ServiceType service)</td></tr>
+<tr class="memdesc:a66a349df4e20955779317f503cc89b83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a directed edge.  <br /></td></tr>
 <tr class="separator:a66a349df4e20955779317f503cc89b83"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a031d3a393947dfd1abc68774904bb349"><td class="memItemLeft" align="right" valign="top"><a id="a031d3a393947dfd1abc68774904bb349" name="a031d3a393947dfd1abc68774904bb349"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>removeEdgeTo</b> (<a class="el" href="class_node.html">Node</a> *dest)</td></tr>
+<tr class="memitem:a031d3a393947dfd1abc68774904bb349"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a031d3a393947dfd1abc68774904bb349">removeEdgeTo</a> (<a class="el" href="class_node.html">Node</a> *dest)</td></tr>
+<tr class="memdesc:a031d3a393947dfd1abc68774904bb349"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes an edge.  <br /></td></tr>
 <tr class="separator:a031d3a393947dfd1abc68774904bb349"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a66a349df4e20955779317f503cc89b83" name="a66a349df4e20955779317f503cc89b83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66a349df4e20955779317f503cc89b83">&#9670;&#160;</a></span>addEdge()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_edge.html">Edge</a> * Node::addEdge </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_node.html">Node</a> *&#160;</td>
+          <td class="paramname"><em>dest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>capacity</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ServiceType&#160;</td>
+          <td class="paramname"><em>service</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates a directed edge. </p>
+<p>Time Complexity: O(1) Creates a directed edge from the current node (this) to a destination node (dest). The function takes in three arguments: a pointer to the destination node, the capacity of the edge, and a service type. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dest</td><td></td></tr>
+    <tr><td class="paramname">capacity</td><td></td></tr>
+    <tr><td class="paramname">service</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a031d3a393947dfd1abc68774904bb349" name="a031d3a393947dfd1abc68774904bb349"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a031d3a393947dfd1abc68774904bb349">&#9670;&#160;</a></span>removeEdgeTo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Node::removeEdgeTo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_node.html">Node</a> *&#160;</td>
+          <td class="paramname"><em>dest</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Removes an edge. </p>
+<p>Time Complexity: O(|V|) Removes an edge that leads to another node (dest) from the adjacency list of the current node.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dest</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>data_structures/<a class="el" href="_node_edge_8h_source.html">NodeEdge.h</a></li>
 <li>data_structures/NodeEdge.cpp</li>

@@ -44,7 +44,12 @@ vector<Node*> Database::getMinCostFlow(Station* station1, Station* station2, dou
 int Database::getMaxTrainsStation(Station* station){
     return graph.maxIncomingFlow(graph.getNode(station));
 }
-
+/**
+ * @brief Get the top "k" municipalities based on total flow.
+ * @details Time Complexity: O(m(slog(s)+e) Returns a vector of the top k municipalities based on their total flow (sum of flow values) from all of their stations in a graph.
+ * @param k
+ * @return
+ */
 vector<pair<string, int>> Database::getTopMunicipalities(int k){
     vector<pair<string, int>> res;
     for(pair<string, set<string>> municipality : municipalityToStations){
@@ -67,7 +72,12 @@ vector<pair<string, int>> Database::getTopMunicipalities(int k){
 
     return topMunicipalities;
 }
-
+/**
+ * @brief Get the top "k" districts based on total flow.
+ * @details Time Complexity: O(N*M) Calculates the maximum flow through sets of stations in each district, and returns a vector of the top k districts based on this flow metric.
+ * @param k
+ * @return
+ */
 vector<pair<string, int>> Database::getTopDistricts(int k){
     vector<pair<string, int>> res;
     for (pair<string, set<string>> district: districtToMunicipalities) {
@@ -90,7 +100,12 @@ vector<pair<string, int>> Database::getTopDistricts(int k){
     }
     return topDistricts;
 }
-
+/**
+ * @brief Reads data from the csv files.
+ * @details Time Complexity: O(N*(n+m)) Reads data from a file named stations.csv and creates Station objects based on the data. The Station objects are added to a graph, which is likely a data structure used to represent a network of stations.
+ * @param stations
+ * @param lines
+ */
 void Database::readStations(set<string> stations, set<string> lines) {
     ifstream file("../data/stations.csv");
     file.ignore(1000, '\n'); // ignore first line
@@ -136,7 +151,10 @@ void Database::readStations(set<string> stations, set<string> lines) {
     file.close();
     return;
 }
-
+/**
+ * @brief Reads data from the csv files.
+ * @details Time Complexity: O(n) Reads network data from a CSV file located at "../data/network.csv" and stores it in a graph data structure.
+ */
 void Database::readNetwork() {
     ifstream file("../data/network.csv");
     file.ignore(1000, '\n'); // ignore first line
@@ -184,11 +202,24 @@ void Database::readNetwork() {
     file.close();
     return;
 }
-
+/**
+ * @brief Checks the connection between stations.
+ * @details Time Complexity: O() Passes on the arguments to the corresponding checkConnection function of the graph object, and returns its boolean result.
+ * @param station1
+ * @param station2
+ * @param curCapacity
+ * @return
+ */
 bool Database::checkConnection(Station* station1, Station* station2, int& curCapacity) {
     return graph.checkConnection(graph.getNode(station1), graph.getNode(station2), curCapacity);
 }
-
+/**
+ * @brief Changes capacity from an edge.
+ * @details Time Complexity: O() Passes on the arguments to the corresponding changeCapacity function of the graph object, and returns its boolean result.
+ * @param station1
+ * @param station2
+ * @param newCapacity
+ */
 void Database::changeCapacity(Station* station1, Station* station2, int newCapacity) {
-    graph.changeCapacity(graph.getNode(station1), graph.getNode(station2), newCapacity);
+    return graph.changeCapacity(graph.getNode(station1), graph.getNode(station2), newCapacity);
 }

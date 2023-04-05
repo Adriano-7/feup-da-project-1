@@ -63,14 +63,28 @@ void Node::setDistance(double distance) {
 void Node::setPath(Edge *path) {
     this->path = path;
 }
-
+/**
+ * @brief Creates a directed edge.
+ * @details Time Complexity: O(1) Creates a directed edge from the current node (this) to a destination node (dest). The function takes in three arguments: a pointer to the destination node, the capacity of the edge, and a service type.
+ * @param dest
+ * @param capacity
+ * @param service
+ * @return
+ */
 Edge * Node::addEdge(Node *dest, int capacity, ServiceType service) {
     Edge *edge = new Edge(this, dest, capacity, service);
     adj.push_back(edge);
     dest->incoming.push_back(edge);
     return edge;
 }
+/**
+ * @brief Removes an edge.
+ * @details Time Complexity: O(|V|) Removes an edge that leads to another node (dest) from the adjacency list of the current node.
 
+
+ * @param dest
+ * @return
+ */
 bool Node::removeEdgeTo(Node *dest) {
     bool removedEdge = false;
     auto it = adj.begin();
