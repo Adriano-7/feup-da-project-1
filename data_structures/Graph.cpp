@@ -83,10 +83,6 @@ Node* Graph::getNode(Station* station) {
     return getNode(station->getName());
 }
 
-int Graph::getNumNodes() {
-    return nodes.size();
-}
-
 bool Graph::bfs(Node* source, Node* dest){
     for(pair<string, Node*> nodePair : nodes) {
         Node* node = nodePair.second;

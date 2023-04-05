@@ -97,181 +97,6 @@ void Menu::showMainMenu(){
     }
 }
 
-void Menu::showChangeCapacityMenu() {
-    cout << "_________________________________________________" << endl;
-    cout << "Please enter the name of the first station:" << endl;
-    Station* station1 = getStationFromUser();
-
-    cout << "Please enter the name of the second station:" << endl;
-    Station* station2 = getStationFromUser();
-    int curCapacity;
-    if(!database.checkConnection(station1, station2, curCapacity)){
-        cout << "There is no path between the two stations" << endl;
-        showMainMenu();
-        return;
-    }
-    int newCapacity;
-    while(true){
-        cout << "Please enter the new capacity. It must be less than " << curCapacity << endl;
-
-        newCapacity = getIntFromUser();
-        if(newCapacity > curCapacity){
-            cout << "The new capacity must be less than " << curCapacity << endl;
-        } else { break; }
-    }
-    database.changeCapacity(station1, station2, newCapacity);
-    cout << "_________________________________________________" << endl;
-    cout << "The capacity was changed successfully!\n If you wish to undo your changes you must restart the program.\n" << endl;
-    return;
-}
-
-
-set<string> Menu::getStringsFromUser() {
-    set<string> strings;
-    string input;
-    bool firstTime = true;
-    cout << "Please enter the strings, one per line. Enter 0 to finish." << endl;
-
-    while (true) {
-        getline(cin, input);
-        if (input == "0")
-            return strings;
-        else if (input.empty() && !firstTime) {
-            cout << "Invalid input" << endl;
-        }
-        else {
-            strings.insert(input);
-        }
-        firstTime = false;
-    }
-}
-
-string Menu::getStringFromUser() {
-    string input = "";
-    while (input.empty()) {
-        getline(cin, input);
-    }
-
-    return input;
-}
-
-Station* Menu::getStationFromUser(){
-    cout << "Please select an option" << endl;
-    cout << "1 - Write the name of the station" << endl;
-    cout << "2 - Select from a list of stations" << endl;
-
-    int option = getIntFromUser();
-
-    Station* station;
-    switch(option){
-        case 1:
-            cout << "Please enter the name of the station" << endl;
-            station = database.getStation(getStringFromUser());
-            while (station== nullptr){
-                cout << "Station not found, please try again" << endl;
-                station = database.getStation(getStringFromUser());
-            }
-            break;
-        case 2:
-            cout << "Please select a station from the list" << endl;
-            station = selectStationFromList();
-            while (station== nullptr){
-                cout << "Station not found, please try again" << endl;
-                station = selectStationFromList();
-            }
-            break;
-        default:
-            cout << "Invalid option" << endl;
-            return getStationFromUser();
-    }
-    return station;
-}
-
-Station* Menu::selectStationFromList(){
-    cout<< "_________________________________________________" << endl;
-    cout<< "Select the District:" << endl;
-
-    map<string, set<string>> districtMunicipalities = database.getDistrictToMunicipalities();
-    map<string, set<string>>::iterator it = districtMunicipalities.begin();
-    int i = 1;
-    for(; it != districtMunicipalities.end(); it++){
-        cout << i << " - " << it->first << endl;
-        i++;
-    }
-
-    int option = getIntFromUser();
-    if(option < 1 || option > districtMunicipalities.size()){
-        cout << "Invalid option" << endl;
-        return selectStationFromList();
-    }
-
-    it = districtMunicipalities.begin();
-    advance(it, option-1);
-    string district = it->first;
-
-    cout<< "_________________________________________________" << endl;
-    cout<< "Select the Municipality:" << endl;
-    set<string> municipalities = it->second;
-
-    set<string>::iterator it2 = municipalities.begin();
-    i = 1;
-    for(; it2 != municipalities.end(); it2++){
-        cout << i << " - " << *it2 << endl;
-        i++;
-    }
-
-    option = getIntFromUser();
-    if(option < 1 || option > municipalities.size()){
-        cout << "Invalid option" << endl;
-        return selectStationFromList();
-    }
-
-    it2 = municipalities.begin();
-    advance(it2, option-1);
-
-    cout<< "_________________________________________________" << endl;
-    cout<< "Select the Station:" << endl;
-    set<string> stations = database.getStationsFromMunicipality(*it2);
-
-    set<string>::iterator it3 = stations.begin();
-    i = 1;
-    for(; it3 != stations.end(); it3++){
-        cout << i << " - " << *it3 << endl;
-        i++;
-    }
-
-    option = getIntFromUser();
-    if(option < 1 || option > stations.size()){
-        cout << "Invalid option" << endl;
-        return selectStationFromList();
-    }
-
-    it3 = stations.begin();
-    advance(it3, option-1);
-
-    return database.getStation(*it3);
-}
-
-int Menu::getIntFromUser() {
-    int input;
-    cin >> input;
-    if (cin.fail()) {
-        cout << "Invalid input" << endl;
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        return getIntFromUser();
-    }
-    return input;
-}
-
-void Menu::waitForInput() {
-    usleep(800000);
-    string q;
-    cout << endl << "Insert any key to continue: ";
-    cin >> q;
-    cout << endl;
-}
-
 void Menu::showStationInfoMenu() {
     Station* station = getStationFromUser();
     if (station == nullptr) {
@@ -425,4 +250,180 @@ void Menu::showNetworkInfoMenu() {
             cout << "Invalid option" << endl;
             showNetworkInfoMenu();
     }
+}
+
+void Menu::showChangeCapacityMenu() {
+    cout << "_________________________________________________" << endl;
+    cout << "Please enter the name of the first station:" << endl;
+    Station* station1 = getStationFromUser();
+
+    cout << "Please enter the name of the second station:" << endl;
+    Station* station2 = getStationFromUser();
+    int curCapacity;
+    if(!database.checkConnection(station1, station2, curCapacity)){
+        cout << "There is no path between the two stations" << endl;
+        showMainMenu();
+        return;
+    }
+    int newCapacity;
+    while(true){
+        cout << "Please enter the new capacity. It must be less than " << curCapacity << endl;
+
+        newCapacity = getIntFromUser();
+        if(newCapacity > curCapacity){
+            cout << "The new capacity must be less than " << curCapacity << endl;
+        } else { break; }
+    }
+    database.changeCapacity(station1, station2, newCapacity);
+    cout << "_________________________________________________" << endl;
+    cout << "The capacity was changed successfully!" << endl;
+    cout << "If you wish to undo your changes you must restart the program." << endl;
+    return;
+}
+
+
+set<string> Menu::getStringsFromUser() {
+    set<string> strings;
+    string input;
+    bool firstTime = true;
+    cout << "Please enter the strings, one per line. Enter 0 to finish." << endl;
+
+    while (true) {
+        getline(cin, input);
+        if (input == "0")
+            return strings;
+        else if (input.empty() && !firstTime) {
+            cout << "Invalid input" << endl;
+        }
+        else {
+            strings.insert(input);
+        }
+        firstTime = false;
+    }
+}
+
+string Menu::getStringFromUser() {
+    string input;
+    while (input.empty()) {
+        getline(cin, input);
+    }
+
+    return input;
+}
+
+Station* Menu::getStationFromUser(){
+    cout << "Please select an option" << endl;
+    cout << "1 - Write the name of the station" << endl;
+    cout << "2 - Select from a list of stations" << endl;
+
+    int option = getIntFromUser();
+
+    Station* station;
+    switch(option){
+        case 1:
+            cout << "Please enter the name of the station" << endl;
+            station = database.getStation(getStringFromUser());
+            while (station== nullptr){
+                cout << "Station not found, please try again" << endl;
+                station = database.getStation(getStringFromUser());
+            }
+            break;
+        case 2:
+            cout << "Please select a station from the list" << endl;
+            station = selectStationFromList();
+            while (station== nullptr){
+                cout << "Station not found, please try again" << endl;
+                station = selectStationFromList();
+            }
+            break;
+        default:
+            cout << "Invalid option" << endl;
+            return getStationFromUser();
+    }
+    return station;
+}
+
+Station* Menu::selectStationFromList(){
+    cout<< "_________________________________________________" << endl;
+    cout<< "Select the District:" << endl;
+
+    map<string, set<string>> districtMunicipalities = database.getDistrictToMunicipalities();
+    auto it = districtMunicipalities.begin();
+    int i = 1;
+    for(; it != districtMunicipalities.end(); it++){
+        cout << i << " - " << it->first << endl;
+        i++;
+    }
+
+    int option = getIntFromUser();
+    if(option < 1 || option > districtMunicipalities.size()){
+        cout << "Invalid option" << endl;
+        return selectStationFromList();
+    }
+
+    it = districtMunicipalities.begin();
+    advance(it, option-1);
+    string district = it->first;
+
+    cout<< "_________________________________________________" << endl;
+    cout<< "Select the Municipality:" << endl;
+    set<string> municipalities = it->second;
+
+    auto it2 = municipalities.begin();
+    i = 1;
+    for(; it2 != municipalities.end(); it2++){
+        cout << i << " - " << *it2 << endl;
+        i++;
+    }
+
+    option = getIntFromUser();
+    if(option < 1 || option > municipalities.size()){
+        cout << "Invalid option" << endl;
+        return selectStationFromList();
+    }
+
+    it2 = municipalities.begin();
+    advance(it2, option-1);
+
+    cout<< "_________________________________________________" << endl;
+    cout<< "Select the Station:" << endl;
+    set<string> stations = database.getStationsFromMunicipality(*it2);
+
+    auto it3 = stations.begin();
+    i = 1;
+    for(; it3 != stations.end(); it3++){
+        cout << i << " - " << *it3 << endl;
+        i++;
+    }
+
+    option = getIntFromUser();
+    if(option < 1 || option > stations.size()){
+        cout << "Invalid option" << endl;
+        return selectStationFromList();
+    }
+
+    it3 = stations.begin();
+    advance(it3, option-1);
+
+    return database.getStation(*it3);
+}
+
+int Menu::getIntFromUser() {
+    int input;
+    cin >> input;
+    if (cin.fail()) {
+        cout << "Invalid input" << endl;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        return getIntFromUser();
+    }
+    return input;
+}
+
+void Menu::waitForInput() {
+    usleep(800000);
+    string q;
+    cout << endl << "Insert any key to continue: ";
+    cin >> q;
+    cout << endl;
 }

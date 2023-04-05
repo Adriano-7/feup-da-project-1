@@ -18,7 +18,6 @@ class Graph {
 
         Node* getNode(string stationName);
         Node* getNode(Station* station);
-        int getNumNodes();
 
         bool bfs(Node* source, Node* dest);
         double dijkstra(Node* source, Node* dest);

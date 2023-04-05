@@ -79,8 +79,6 @@ private:
     //Used for bidirectional edges
     Edge *reverse = nullptr;
     Node *orig;
-
-
 };
 
 

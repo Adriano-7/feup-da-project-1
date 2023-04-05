@@ -9,7 +9,6 @@ class Database {
         Database() = default;
         void loadWithoutFilters();
         void loadWithFilters(set<string> stations, set<string> lines);
-        void emptyDatabase();
         Station* getStation(string stationName);
         vector<pair<Node *, Node *>> maxFlowAllPairs(int *maxFlow);
         map<string, set<string>> getDistrictToMunicipalities();
