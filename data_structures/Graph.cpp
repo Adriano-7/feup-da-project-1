@@ -269,7 +269,7 @@ int Graph::EdmondsKarp(Node* source, Node* dest){
  * @param costService - Pointer to that will be filled with the cost of the service
  * @return Stack with the edges of the path.
  */
-stack<Edge*> Graph::FordFulkersonDijkstra(Node* source, Node* dest, double* flow, double* costService){
+stack<Edge*> Graph::BottleneckDijkstra(Node* source, Node* dest, double* flow, double* costService){
     stack<Edge*> path;
     if(source == nullptr || dest == nullptr || source == dest){
         cout << "Invalid source or destination" << endl;

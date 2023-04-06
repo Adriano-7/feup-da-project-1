@@ -110,7 +110,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9af6a3a2293f47efb5b9d02adb16014a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a9af6a3a2293f47efb5b9d02adb16014a">EdmondsKarp</a> (<a class="el" href="class_node.html">Node</a> *source, <a class="el" href="class_node.html">Node</a> *dest)</td></tr>
 <tr class="memdesc:a9af6a3a2293f47efb5b9d02adb16014a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Edmonds Karp - Finds the maximum flow in the network flow graph.  <br /></td></tr>
 <tr class="separator:a9af6a3a2293f47efb5b9d02adb16014a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a04b8b31697c897eeb98c5cee706601c7"><td class="memItemLeft" align="right" valign="top">stack&lt; <a class="el" href="class_edge.html">Edge</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a04b8b31697c897eeb98c5cee706601c7">FordFulkersonDijkstra</a> (<a class="el" href="class_node.html">Node</a> *source, <a class="el" href="class_node.html">Node</a> *dest, double *flow, double *cost)</td></tr>
+<tr class="memitem:a04b8b31697c897eeb98c5cee706601c7"><td class="memItemLeft" align="right" valign="top">stack&lt; <a class="el" href="class_edge.html">Edge</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a04b8b31697c897eeb98c5cee706601c7">BottleneckDijkstra</a> (<a class="el" href="class_node.html">Node</a> *source, <a class="el" href="class_node.html">Node</a> *dest, double *flow, double *cost)</td></tr>
 <tr class="memdesc:a04b8b31697c897eeb98c5cee706601c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uses the Dijkstra algorithm to find the shortest path (cost of service) and then calculates the bottleneck flow.  <br /></td></tr>
 <tr class="separator:a04b8b31697c897eeb98c5cee706601c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1aa6a52e1f06afe31061695fb294d005"><td class="memItemLeft" align="right" valign="top">vector&lt; pair&lt; <a class="el" href="class_node.html">Node</a> *, <a class="el" href="class_node.html">Node</a> * &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a1aa6a52e1f06afe31061695fb294d005">maxFlowAllPairs</a> (int *max_flow)</td></tr>
@@ -494,13 +494,13 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <a id="a04b8b31697c897eeb98c5cee706601c7" name="a04b8b31697c897eeb98c5cee706601c7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a04b8b31697c897eeb98c5cee706601c7">&#9670;&#160;</a></span>FordFulkersonDijkstra()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a04b8b31697c897eeb98c5cee706601c7">&#9670;&#160;</a></span>BottleneckDijkstra()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">stack&lt; <a class="el" href="class_edge.html">Edge</a> * &gt; Graph::FordFulkersonDijkstra </td>
+          <td class="memname">stack&lt; <a class="el" href="class_edge.html">Edge</a> * &gt; Graph::BottleneckDijkstra </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_node.html">Node</a> *&#160;</td>
           <td class="paramname"><em>source</em>, </td>

@@ -83,7 +83,7 @@ int Database::getMaxFlowBetweenStations(Station* station1, Station* station2) {
  * @return stack of edges of the path with the minimum cost
 */
 stack<Edge*> Database::getMinCostFlow(Station* station1, Station* station2, double *flow, double *costService){
-    return graph.FordFulkersonDijkstra(graph.getNode(station1), graph.getNode(station2), flow, costService);
+    return graph.BottleneckDijkstra(graph.getNode(station1), graph.getNode(station2), flow, costService);
 }
 
 /**
