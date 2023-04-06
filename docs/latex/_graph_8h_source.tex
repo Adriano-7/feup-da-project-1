@@ -1,0 +1,44 @@
+\hypertarget{_graph_8h_source}{}\doxysection{Graph.\+h}
+\label{_graph_8h_source}\index{data\_structures/Graph.h@{data\_structures/Graph.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ PROJECT\_DA\_GRAPH\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ PROJECT\_DA\_GRAPH\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <set>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Station.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}NodeEdge.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}ServiceType.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <stack>}}
+\DoxyCodeLine{00011\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_graph}{Graph}}\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_graph_a0da59714ff8914a1762adf160c72aa0e}{addNode}}(\mbox{\hyperlink{class_station}{Station}}\&\ station);}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_graph_a5bc74e5bbc17e50c26b3698061c715c9}{addEdge}}(\mbox{\hyperlink{class_node}{Node}}*\ source,\ \mbox{\hyperlink{class_node}{Node}}*\ dest,\ \textcolor{keywordtype}{int}\ capacity,\ ServiceType\ service);}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_graph_a3cc85821bda80afe8517d4699f2cacd0}{addBidirectionalEdge}}(\mbox{\hyperlink{class_node}{Node}}*\ sourceNode,\ \mbox{\hyperlink{class_node}{Node}}*\ destNode,\ \textcolor{keywordtype}{int}\ capacity,\ ServiceType\ service);}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_graph_ac4f411aaa3c247488d42550d8dfd7553}{eraseNode}}(\mbox{\hyperlink{class_node}{Node}}*\ node);}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_node}{Node}}*\ \mbox{\hyperlink{class_graph_afb4909a9f294f6f1af573d21f85fb1ab}{getNode}}(\textcolor{keywordtype}{string}\ stationName);}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_node}{Node}}*\ \mbox{\hyperlink{class_graph_afb4909a9f294f6f1af573d21f85fb1ab}{getNode}}(\mbox{\hyperlink{class_station}{Station}}*\ station);}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_graph_aa93f64130d4c6ee4656a4f77457ca3fa}{bfs}}(\mbox{\hyperlink{class_node}{Node}}*\ source,\ \mbox{\hyperlink{class_node}{Node}}*\ dest);}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_graph_ac7e5157dcba34abbe92a3c06b905eefb}{dijkstra}}(\mbox{\hyperlink{class_node}{Node}}*\ source,\ \mbox{\hyperlink{class_node}{Node}}*\ dest);}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_graph_a9af6a3a2293f47efb5b9d02adb16014a}{EdmondsKarp}}(\mbox{\hyperlink{class_node}{Node}}*\ source,\ \mbox{\hyperlink{class_node}{Node}}*\ dest);}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ stack<Edge*>\ \mbox{\hyperlink{class_graph_a43eca8ca3513afdbcfe5f0e73629678b}{BottleneckDijkstra}}(\mbox{\hyperlink{class_node}{Node}}*\ source,\ \mbox{\hyperlink{class_node}{Node}}*\ dest,\ \textcolor{keywordtype}{double}\ *flow,\ \textcolor{keywordtype}{double}\ *costService);}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ vector<pair<Node*,\ Node*>>\ \mbox{\hyperlink{class_graph_a1aa6a52e1f06afe31061695fb294d005}{maxFlowAllPairs}}(\textcolor{keywordtype}{int}\ *max\_flow);}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_graph_ab0280d09e3878357672dcfac7a3f9835}{sumSomePairsFlow}}(set<Node*>\ nodes,\ \textcolor{keywordtype}{int}\ *sumFlow);}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_graph_a1284d28d6a656e876188f5f8f4cf2263}{maxIncomingFlow}}(\mbox{\hyperlink{class_node}{Node}}*\ node);}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_graph_a4762ccdb8e3f00e183e8eacb6f9c47cf}{checkConnection}}(\mbox{\hyperlink{class_node}{Node}}*\ source,\ \mbox{\hyperlink{class_node}{Node}}*\ dest,\ \textcolor{keywordtype}{int}\&\ edgeCapacity);}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_graph_a1f04f528f54777e5559221cb22dbe62b}{changeCapacity}}(\mbox{\hyperlink{class_node}{Node}}*\ source,\ \mbox{\hyperlink{class_node}{Node}}*\ dest,\ \textcolor{keywordtype}{int}\ newCapacity);}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ map<string,\ Node*>\ nodes;}
+\DoxyCodeLine{00039\ \};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//PROJECT\_DA\_GRAPH\_H}}
+
+\end{DoxyCode}

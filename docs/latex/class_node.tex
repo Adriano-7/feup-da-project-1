@@ -1,0 +1,263 @@
+\hypertarget{class_node}{}\doxysection{Node Class Reference}
+\label{class_node}\index{Node@{Node}}
+
+
+Represents a node in the graph. Contains a station and a vector of adjacent edges.  
+
+
+
+
+{\ttfamily \#include $<$Node\+Edge.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_node_a8bfa4cd2807a1f703232b0b42feae3bf}{Node}} (\mbox{\hyperlink{class_station}{Station}} \&station)
+\begin{DoxyCompactList}\small\item\em Constructor of the \mbox{\hyperlink{class_node}{Node}} class. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_node_a2e320808f7af50c800f0662cddc5f408}{operator$<$}} (\mbox{\hyperlink{class_node}{Node}} \&node)
+\begin{DoxyCompactList}\small\item\em Overloads the \texorpdfstring{$<$}{<} operator. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_station}{Station}} \& \mbox{\hyperlink{class_node_a9e32b5cbd77b7e5894f2674549d33879}{get\+Station}} ()
+\begin{DoxyCompactList}\small\item\em Returns the station of the node. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{class_edge}{Edge}} $\ast$ $>$ \& \mbox{\hyperlink{class_node_ac12ed42bf2dd7d59bf39e9cd72d398e5}{get\+Adj}} ()
+\begin{DoxyCompactList}\small\item\em Returns the adjacency vector of the node. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_node_a91d335587ff4158d88771feccf361b74}{is\+Visited}} ()
+\begin{DoxyCompactList}\small\item\em Returns the visited status of the node. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_node_a0473b02ce3f33c78e3bd907c161d6860}{get\+Distance}} ()
+\begin{DoxyCompactList}\small\item\em Returns the distance of the node. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_edge}{Edge}} $\ast$ \mbox{\hyperlink{class_node_a166e14fd12e0bc60e5f185517746343c}{get\+Path}} ()
+\begin{DoxyCompactList}\small\item\em Returns the edge that leads to the parent of the node. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{class_edge}{Edge}} $\ast$ $>$ \& \mbox{\hyperlink{class_node_a822c23b5fc24a5ca6b73936827efd051}{get\+Incoming}} ()
+\begin{DoxyCompactList}\small\item\em Returns the incoming edges of the node. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_node_aad16fd2726c6972501763ef754124349}{get\+Station\+Name}} ()
+\begin{DoxyCompactList}\small\item\em Returns the name of the station of the node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_node_a6fe3ebcd0eaf9fece72dfbc0ffc257bb}{set\+Visited}} (bool visited)
+\begin{DoxyCompactList}\small\item\em Sets the visited status of the node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_node_a734e6d1a1ae8c695c9c535049c91af77}{set\+Distance}} (double distance)
+\begin{DoxyCompactList}\small\item\em Sets the distance of the node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_node_acf6663d813e9acfc2bbc09001f1cb29e}{set\+Path}} (\mbox{\hyperlink{class_edge}{Edge}} $\ast$path)
+\begin{DoxyCompactList}\small\item\em Sets the edge that leads to the parent of the node. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_edge}{Edge}} $\ast$ \mbox{\hyperlink{class_node_a66a349df4e20955779317f503cc89b83}{add\+Edge}} (\mbox{\hyperlink{class_node}{Node}} $\ast$dest, int capacity, Service\+Type service)
+\begin{DoxyCompactList}\small\item\em Creates a edge from the current node to a destination node with a given capacity and service type. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_node_a031d3a393947dfd1abc68774904bb349}{remove\+Edge\+To}} (\mbox{\hyperlink{class_node}{Node}} $\ast$dest)
+\begin{DoxyCompactList}\small\item\em Removes an edge from the adjacency vector of the current node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a node in the graph. Contains a station and a vector of adjacent edges. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_node_a8bfa4cd2807a1f703232b0b42feae3bf}\label{class_node_a8bfa4cd2807a1f703232b0b42feae3bf}} 
+\index{Node@{Node}!Node@{Node}}
+\index{Node@{Node}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{Node()}{Node()}}
+{\footnotesize\ttfamily Node\+::\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_station}{Station}} \&}]{station }\end{DoxyParamCaption})}
+
+
+
+Constructor of the \mbox{\hyperlink{class_node}{Node}} class. 
+
+Time Complexity\+: O(1) Creates a node with a given station. 
+\begin{DoxyParams}{Parameters}
+{\em station} & -\/ \mbox{\hyperlink{class_station}{Station}} to be added to the node. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_node_a66a349df4e20955779317f503cc89b83}\label{class_node_a66a349df4e20955779317f503cc89b83}} 
+\index{Node@{Node}!addEdge@{addEdge}}
+\index{addEdge@{addEdge}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{addEdge()}{addEdge()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_edge}{Edge}} $\ast$ Node\+::add\+Edge (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} $\ast$}]{dest,  }\item[{int}]{capacity,  }\item[{Service\+Type}]{service }\end{DoxyParamCaption})}
+
+
+
+Creates a edge from the current node to a destination node with a given capacity and service type. 
+
+Time Complexity\+: O(1) 
+\begin{DoxyParams}{Parameters}
+{\em dest} & -\/ Destination node. \\
+\hline
+{\em capacity} & -\/ Capacity of the edge. \\
+\hline
+{\em service} & -\/ Service type of the edge. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the edge created. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_node_ac12ed42bf2dd7d59bf39e9cd72d398e5}\label{class_node_ac12ed42bf2dd7d59bf39e9cd72d398e5}} 
+\index{Node@{Node}!getAdj@{getAdj}}
+\index{getAdj@{getAdj}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{getAdj()}{getAdj()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{class_edge}{Edge}} $\ast$ $>$ \& Node\+::get\+Adj (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the adjacency vector of the node. 
+
+Time Complexity\+: O(1) \begin{DoxyReturn}{Returns}
+Vector of edges that are adjacent to the node. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_node_a0473b02ce3f33c78e3bd907c161d6860}\label{class_node_a0473b02ce3f33c78e3bd907c161d6860}} 
+\index{Node@{Node}!getDistance@{getDistance}}
+\index{getDistance@{getDistance}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{getDistance()}{getDistance()}}
+{\footnotesize\ttfamily double Node\+::get\+Distance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the distance of the node. 
+
+Time Complexity\+: O(1) \begin{DoxyReturn}{Returns}
+Distance of the node. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_node_a822c23b5fc24a5ca6b73936827efd051}\label{class_node_a822c23b5fc24a5ca6b73936827efd051}} 
+\index{Node@{Node}!getIncoming@{getIncoming}}
+\index{getIncoming@{getIncoming}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{getIncoming()}{getIncoming()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{class_edge}{Edge}} $\ast$ $>$ \& Node\+::get\+Incoming (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the incoming edges of the node. 
+
+Time Complexity\+: O(1) \begin{DoxyReturn}{Returns}
+Vector of pointers to the edges that lead to the node. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_node_a166e14fd12e0bc60e5f185517746343c}\label{class_node_a166e14fd12e0bc60e5f185517746343c}} 
+\index{Node@{Node}!getPath@{getPath}}
+\index{getPath@{getPath}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{getPath()}{getPath()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_edge}{Edge}} $\ast$ Node\+::get\+Path (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the edge that leads to the parent of the node. 
+
+Time Complexity\+: O(1) \begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{class_edge}{Edge}} that leads to the parent of the node. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_node_a9e32b5cbd77b7e5894f2674549d33879}\label{class_node_a9e32b5cbd77b7e5894f2674549d33879}} 
+\index{Node@{Node}!getStation@{getStation}}
+\index{getStation@{getStation}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{getStation()}{getStation()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_station}{Station}} \& Node\+::get\+Station (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the station of the node. 
+
+Time Complexity\+: O(1) \begin{DoxyReturn}{Returns}
+Reference to the station of the node. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_node_aad16fd2726c6972501763ef754124349}\label{class_node_aad16fd2726c6972501763ef754124349}} 
+\index{Node@{Node}!getStationName@{getStationName}}
+\index{getStationName@{getStationName}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{getStationName()}{getStationName()}}
+{\footnotesize\ttfamily string Node\+::get\+Station\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the name of the station of the node. 
+
+Time Complexity\+: O(1) \begin{DoxyReturn}{Returns}
+Name of the station of the node. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_node_a91d335587ff4158d88771feccf361b74}\label{class_node_a91d335587ff4158d88771feccf361b74}} 
+\index{Node@{Node}!isVisited@{isVisited}}
+\index{isVisited@{isVisited}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{isVisited()}{isVisited()}}
+{\footnotesize\ttfamily bool Node\+::is\+Visited (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the visited status of the node. 
+
+Time Complexity\+: O(1) \begin{DoxyReturn}{Returns}
+True if the node has been visited, false otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_node_a2e320808f7af50c800f0662cddc5f408}\label{class_node_a2e320808f7af50c800f0662cddc5f408}} 
+\index{Node@{Node}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{operator$<$()}{operator<()}}
+{\footnotesize\ttfamily bool Node\+::operator$<$ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} \&}]{node }\end{DoxyParamCaption})}
+
+
+
+Overloads the \texorpdfstring{$<$}{<} operator. 
+
+Time Complexity\+: O(1) Compares the distance of two nodes. 
+\begin{DoxyParams}{Parameters}
+{\em node} & -\/ \mbox{\hyperlink{class_node}{Node}} to be compared. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_node_a031d3a393947dfd1abc68774904bb349}\label{class_node_a031d3a393947dfd1abc68774904bb349}} 
+\index{Node@{Node}!removeEdgeTo@{removeEdgeTo}}
+\index{removeEdgeTo@{removeEdgeTo}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{removeEdgeTo()}{removeEdgeTo()}}
+{\footnotesize\ttfamily bool Node\+::remove\+Edge\+To (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} $\ast$}]{dest }\end{DoxyParamCaption})}
+
+
+
+Removes an edge from the adjacency vector of the current node. 
+
+Time Complexity\+: O(\+E), where E is the number of adjacent edges. 
+\begin{DoxyParams}{Parameters}
+{\em dest} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_node_a734e6d1a1ae8c695c9c535049c91af77}\label{class_node_a734e6d1a1ae8c695c9c535049c91af77}} 
+\index{Node@{Node}!setDistance@{setDistance}}
+\index{setDistance@{setDistance}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{setDistance()}{setDistance()}}
+{\footnotesize\ttfamily void Node\+::set\+Distance (\begin{DoxyParamCaption}\item[{double}]{distance }\end{DoxyParamCaption})}
+
+
+
+Sets the distance of the node. 
+
+Time Complexity\+: O(1) 
+\begin{DoxyParams}{Parameters}
+{\em distance} & -\/ Distance to be set. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_node_acf6663d813e9acfc2bbc09001f1cb29e}\label{class_node_acf6663d813e9acfc2bbc09001f1cb29e}} 
+\index{Node@{Node}!setPath@{setPath}}
+\index{setPath@{setPath}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{setPath()}{setPath()}}
+{\footnotesize\ttfamily void Node\+::set\+Path (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_edge}{Edge}} $\ast$}]{path }\end{DoxyParamCaption})}
+
+
+
+Sets the edge that leads to the parent of the node. 
+
+Time Complexity\+: O(1) 
+\begin{DoxyParams}{Parameters}
+{\em path} & -\/ \mbox{\hyperlink{class_edge}{Edge}} that leads to the parent of the node. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_node_a6fe3ebcd0eaf9fece72dfbc0ffc257bb}\label{class_node_a6fe3ebcd0eaf9fece72dfbc0ffc257bb}} 
+\index{Node@{Node}!setVisited@{setVisited}}
+\index{setVisited@{setVisited}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{setVisited()}{setVisited()}}
+{\footnotesize\ttfamily void Node\+::set\+Visited (\begin{DoxyParamCaption}\item[{bool}]{visited }\end{DoxyParamCaption})}
+
+
+
+Sets the visited status of the node. 
+
+Time Complexity\+: O(1) 
+\begin{DoxyParams}{Parameters}
+{\em visited} & -\/ True to set the node as visited, false otherwise. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+data\+\_\+structures/Node\+Edge.\+h\item 
+data\+\_\+structures/Node\+Edge.\+cpp\end{DoxyCompactItemize}
