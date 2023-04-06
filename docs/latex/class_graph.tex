@@ -1,41 +1,51 @@
 \hypertarget{class_graph}{}\doxysection{Graph Class Reference}
 \label{class_graph}\index{Graph@{Graph}}
+
+
+Class that represents a graph. Contains a map of nodes, where the key is the station name. Each node has a set of edges.  
+
+
+
+
+{\ttfamily \#include $<$Graph.\+h$>$}
+
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 bool \mbox{\hyperlink{class_graph_a0da59714ff8914a1762adf160c72aa0e}{add\+Node}} (\mbox{\hyperlink{class_station}{Station}} \&station)
 \begin{DoxyCompactList}\small\item\em Adds a node to the graph. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{class_graph_a5bc74e5bbc17e50c26b3698061c715c9}{add\+Edge}} (\mbox{\hyperlink{class_node}{Node}} $\ast$source, \mbox{\hyperlink{class_node}{Node}} $\ast$dest, int capacity, Service\+Type service)
-\begin{DoxyCompactList}\small\item\em Adds an edge to the graph. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Adds a unidirectional edge to the graph. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{class_graph_a3cc85821bda80afe8517d4699f2cacd0}{add\+Bidirectional\+Edge}} (\mbox{\hyperlink{class_node}{Node}} $\ast$source\+Node, \mbox{\hyperlink{class_node}{Node}} $\ast$dest\+Node, int capacity, Service\+Type service)
 \begin{DoxyCompactList}\small\item\em Adds a Bidirectional \mbox{\hyperlink{class_edge}{Edge}} to the graph. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{class_graph_ac4f411aaa3c247488d42550d8dfd7553}{erase\+Node}} (\mbox{\hyperlink{class_node}{Node}} $\ast$node)
-\begin{DoxyCompactList}\small\item\em Removes a node. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Removes a node from the graph. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_node}{Node}} $\ast$ \mbox{\hyperlink{class_graph_afb4909a9f294f6f1af573d21f85fb1ab}{get\+Node}} (string station\+Name)
-\begin{DoxyCompactList}\small\item\em Gets a node. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Given the name of a station, returns the node associated with it. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_node}{Node}} $\ast$ \mbox{\hyperlink{class_graph_a23825eeba3e8fbb811d4e1b67042e97f}{get\+Node}} (\mbox{\hyperlink{class_station}{Station}} $\ast$station)
-\begin{DoxyCompactList}\small\item\em Gets a node. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{class_graph_a6d35a32674f4cd52bf313596fa1ede80}{get\+Num\+Nodes}} ()
-\begin{DoxyCompactList}\small\item\em Gets the number of nodes. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Given a station, returns the node associated with it. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{class_graph_aa93f64130d4c6ee4656a4f77457ca3fa}{bfs}} (\mbox{\hyperlink{class_node}{Node}} $\ast$source, \mbox{\hyperlink{class_node}{Node}} $\ast$dest)
-\begin{DoxyCompactList}\small\item\em BFS. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Finds paths between the source and the destination. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{class_graph_ac7e5157dcba34abbe92a3c06b905eefb}{dijkstra}} (\mbox{\hyperlink{class_node}{Node}} $\ast$source, \mbox{\hyperlink{class_node}{Node}} $\ast$dest)
-\begin{DoxyCompactList}\small\item\em Dijkstra. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Finds the shortest path between the source and the destination using the cost of the service (and the capacity). \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{class_graph_a9af6a3a2293f47efb5b9d02adb16014a}{Edmonds\+Karp}} (\mbox{\hyperlink{class_node}{Node}} $\ast$source, \mbox{\hyperlink{class_node}{Node}} $\ast$dest)
-\begin{DoxyCompactList}\small\item\em Edmonds Karp. \end{DoxyCompactList}\item 
-vector$<$ \mbox{\hyperlink{class_node}{Node}} $\ast$ $>$ \mbox{\hyperlink{class_graph_a884cb113553eaeb2de930913e434f006}{Ford\+Fulkerson\+Dijkstra}} (\mbox{\hyperlink{class_node}{Node}} $\ast$source, \mbox{\hyperlink{class_node}{Node}} $\ast$dest, double $\ast$flow, double $\ast$cost)
-\begin{DoxyCompactList}\small\item\em Ford Fulkerson. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Edmonds Karp -\/ Finds the maximum flow in the network flow graph. \end{DoxyCompactList}\item 
+stack$<$ \mbox{\hyperlink{class_edge}{Edge}} $\ast$ $>$ \mbox{\hyperlink{class_graph_a43eca8ca3513afdbcfe5f0e73629678b}{Bottleneck\+Dijkstra}} (\mbox{\hyperlink{class_node}{Node}} $\ast$source, \mbox{\hyperlink{class_node}{Node}} $\ast$dest, double $\ast$flow, double $\ast$cost\+Service)
+\begin{DoxyCompactList}\small\item\em Uses the Dijkstra algorithm to find the shortest path (cost of service) and then calculates the bottleneck flow. \end{DoxyCompactList}\item 
 vector$<$ pair$<$ \mbox{\hyperlink{class_node}{Node}} $\ast$, \mbox{\hyperlink{class_node}{Node}} $\ast$ $>$ $>$ \mbox{\hyperlink{class_graph_a1aa6a52e1f06afe31061695fb294d005}{max\+Flow\+All\+Pairs}} (int $\ast$max\+\_\+flow)
-\begin{DoxyCompactList}\small\item\em Maximum Flow. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{class_graph_ad0441ca6aa58014b2922f57da01fba03}{sum\+Some\+Pairs\+Flow}} (set$<$ \mbox{\hyperlink{class_node}{Node}} $\ast$ $>$ nodes, int $\ast$max\+\_\+flow)
-\begin{DoxyCompactList}\small\item\em Sum of the Maximum Flow. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Iterates through all pairs of nodes in the network and uses the Edmonds Karp algorithm to find the maximum flow between them. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_graph_ab0280d09e3878357672dcfac7a3f9835}{sum\+Some\+Pairs\+Flow}} (set$<$ \mbox{\hyperlink{class_node}{Node}} $\ast$ $>$ nodes, int $\ast$sum\+Flow)
+\begin{DoxyCompactList}\small\item\em Calculates the sum of the maximum flows between all pairs of nodes in the input set. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{class_graph_a1284d28d6a656e876188f5f8f4cf2263}{max\+Incoming\+Flow}} (\mbox{\hyperlink{class_node}{Node}} $\ast$node)
-\begin{DoxyCompactList}\small\item\em Find the maximum incoming flow. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{class_graph_ab3ba5bda7040cb42001d35fb0684a02e}{check\+Connection}} (\mbox{\hyperlink{class_node}{Node}} $\ast$source, \mbox{\hyperlink{class_node}{Node}} $\ast$dest, int \&cur\+Capacity)
-\begin{DoxyCompactList}\small\item\em Check if there is a connection between two nodes. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Calculates the maximum incoming flow to the input node. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_graph_a4762ccdb8e3f00e183e8eacb6f9c47cf}{check\+Connection}} (\mbox{\hyperlink{class_node}{Node}} $\ast$source, \mbox{\hyperlink{class_node}{Node}} $\ast$dest, int \&edge\+Capacity)
+\begin{DoxyCompactList}\small\item\em Check if two nodes are adjacent. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_graph_a1f04f528f54777e5559221cb22dbe62b}{change\+Capacity}} (\mbox{\hyperlink{class_node}{Node}} $\ast$source, \mbox{\hyperlink{class_node}{Node}} $\ast$dest, int new\+Capacity)
 \begin{DoxyCompactList}\small\item\em Changes the capacity of an edge. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+Class that represents a graph. Contains a map of nodes, where the key is the station name. Each node has a set of edges. 
 
 \doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{class_graph_a3cc85821bda80afe8517d4699f2cacd0}\label{class_graph_a3cc85821bda80afe8517d4699f2cacd0}} 
@@ -48,15 +58,15 @@ void \mbox{\hyperlink{class_graph_a1f04f528f54777e5559221cb22dbe62b}{change\+Cap
 
 Adds a Bidirectional \mbox{\hyperlink{class_edge}{Edge}} to the graph. 
 
-Time Complexity\+: O(1) Adds a new bidirectional edge between two nodes to the graph. 
+Time Complexity\+: O(1) 
 \begin{DoxyParams}{Parameters}
-{\em source\+Node} & \\
+{\em source\+Node} & -\/ The source node. \\
 \hline
-{\em dest\+Node} & \\
+{\em dest\+Node} & -\/ The destination node. \\
 \hline
-{\em capacity} & \\
+{\em capacity} & -\/ Number of trains that can pass through the edge.\+r \\
 \hline
-{\em service} & \\
+{\em service} & -\/ Which can be either Standard or Alfa\+Pendular \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -70,21 +80,21 @@ Time Complexity\+: O(1) Adds a new bidirectional edge between two nodes to the g
 
 
 
-Adds an edge to the graph. 
+Adds a unidirectional edge to the graph. 
 
-Time Complexity\+: O(1) Adds a new edge between two nodes to the graph. 
+Time Complexity\+: O(1) 
 \begin{DoxyParams}{Parameters}
-{\em source\+Node} & \\
+{\em source\+Node} & -\/ The source node. \\
 \hline
-{\em dest\+Node} & \\
+{\em dest\+Node} & -\/ The destination node. \\
 \hline
-{\em capacity} & \\
+{\em capacity} & -\/ Number of trains that can pass through the edge.\+r \\
 \hline
-{\em service} & \\
+{\em service} & -\/ Which can be either Standard or Alfa\+Pendular \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-
+True if the edge was added successfully, false otherwise. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_graph_a0da59714ff8914a1762adf160c72aa0e}\label{class_graph_a0da59714ff8914a1762adf160c72aa0e}} 
 \index{Graph@{Graph}!addNode@{addNode}}
@@ -96,13 +106,13 @@ Time Complexity\+: O(1) Adds a new edge between two nodes to the graph.
 
 Adds a node to the graph. 
 
-Time Complexity\+: O(n) Adds a new node to the graph representing station. 
+Time Complexity\+: O(log n), where n is the number of nodes in the graph. 
 \begin{DoxyParams}{Parameters}
-{\em station} & \\
+{\em station} & -\/ The station of the node to be added. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-
+True if the node was added successfully, false otherwise. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_graph_aa93f64130d4c6ee4656a4f77457ca3fa}\label{class_graph_aa93f64130d4c6ee4656a4f77457ca3fa}} 
 \index{Graph@{Graph}!bfs@{bfs}}
@@ -112,17 +122,41 @@ Time Complexity\+: O(n) Adds a new node to the graph representing station.
 
 
 
-BFS. 
+Finds paths between the source and the destination. 
 
-Time Complexity\+: O(E+V) Performs a breath first search on the graph starting from a source to a destination. 
+Time Complexity\+: O(E+V), where E is the number of edges and V is the number of nodes. 
 \begin{DoxyParams}{Parameters}
-{\em source} & \\
+{\em source} & -\/ The source node. \\
 \hline
-{\em dest} & \\
+{\em dest} & -\/ The destination node. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
+True if there is a path between the source and the destination, false otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a43eca8ca3513afdbcfe5f0e73629678b}\label{class_graph_a43eca8ca3513afdbcfe5f0e73629678b}} 
+\index{Graph@{Graph}!BottleneckDijkstra@{BottleneckDijkstra}}
+\index{BottleneckDijkstra@{BottleneckDijkstra}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{BottleneckDijkstra()}{BottleneckDijkstra()}}
+{\footnotesize\ttfamily stack$<$ \mbox{\hyperlink{class_edge}{Edge}} $\ast$ $>$ Graph\+::\+Bottleneck\+Dijkstra (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} $\ast$}]{source,  }\item[{\mbox{\hyperlink{class_node}{Node}} $\ast$}]{dest,  }\item[{double $\ast$}]{flow,  }\item[{double $\ast$}]{cost\+Service }\end{DoxyParamCaption})}
 
+
+
+Uses the Dijkstra algorithm to find the shortest path (cost of service) and then calculates the bottleneck flow. 
+
+Time Complexity\+: O((V+E log V), where E is the number of edges and V is the number of nodes. 
+\begin{DoxyParams}{Parameters}
+{\em source} & -\/ Source node \\
+\hline
+{\em dest} & -\/ Destination node \\
+\hline
+{\em flow} & -\/ Pointer to that will be filled with the bottleneck flow \\
+\hline
+{\em cost\+Service} & -\/ Pointer to that will be filled with the cost of the service \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Stack with the edges of the path. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_graph_a1f04f528f54777e5559221cb22dbe62b}\label{class_graph_a1f04f528f54777e5559221cb22dbe62b}} 
 \index{Graph@{Graph}!changeCapacity@{changeCapacity}}
@@ -134,36 +168,36 @@ Time Complexity\+: O(E+V) Performs a breath first search on the graph starting f
 
 Changes the capacity of an edge. 
 
-Time Complexity\+: O(\+E) Changes the capacity of an existing edge in a graph, given the source and destination nodes of the edge and the new capacity value. 
+Time Complexity\+: O(\+E), where E is the number of adjacent edges. Changes the capacity of the edges between two nodes with the new capacity. 
 \begin{DoxyParams}{Parameters}
-{\em source} & \\
+{\em source} & -\/ Source node of the edge. \\
 \hline
-{\em dest} & \\
+{\em dest} & -\/ Destination node of the edge. \\
 \hline
-{\em new\+Capacity} & \\
+{\em new\+Capacity} & -\/ New capacity of the edge. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{class_graph_ab3ba5bda7040cb42001d35fb0684a02e}\label{class_graph_ab3ba5bda7040cb42001d35fb0684a02e}} 
+\mbox{\Hypertarget{class_graph_a4762ccdb8e3f00e183e8eacb6f9c47cf}\label{class_graph_a4762ccdb8e3f00e183e8eacb6f9c47cf}} 
 \index{Graph@{Graph}!checkConnection@{checkConnection}}
 \index{checkConnection@{checkConnection}!Graph@{Graph}}
 \doxysubsubsection{\texorpdfstring{checkConnection()}{checkConnection()}}
-{\footnotesize\ttfamily bool Graph\+::check\+Connection (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} $\ast$}]{source,  }\item[{\mbox{\hyperlink{class_node}{Node}} $\ast$}]{dest,  }\item[{int \&}]{cur\+Capacity }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool Graph\+::check\+Connection (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} $\ast$}]{source,  }\item[{\mbox{\hyperlink{class_node}{Node}} $\ast$}]{dest,  }\item[{int \&}]{edge\+Capacity }\end{DoxyParamCaption})}
 
 
 
-Check if there is a connection between two nodes. 
+Check if two nodes are adjacent. 
 
-Time Complexity\+: O(\+E) Checks if there is a connection (edge) between two nodes in a graph and updates the current capacity of the edge (if it exists) by reference. 
+Time Complexity\+: O(\+E), where E is the number of adjacent edges. Checks if two nodes are adjacent, given the source and destination nodes of the edge. And updates the var edge\+Capacity with the capacity of the edge. 
 \begin{DoxyParams}{Parameters}
-{\em source} & \\
+{\em source} & -\/ Source node of the edge. \\
 \hline
-{\em dest} & \\
+{\em dest} & -\/ Destination node of the edge. \\
 \hline
-{\em cur\+Capacity} & \\
+{\em edge\+Capacity} & -\/ Pointer to the variable that will store the capacity of the edge. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-
+True if the nodes are adjacent, false otherwise. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_graph_ac7e5157dcba34abbe92a3c06b905eefb}\label{class_graph_ac7e5157dcba34abbe92a3c06b905eefb}} 
 \index{Graph@{Graph}!dijkstra@{dijkstra}}
@@ -173,17 +207,17 @@ Time Complexity\+: O(\+E) Checks if there is a connection (edge) between two nod
 
 
 
-Dijkstra. 
+Finds the shortest path between the source and the destination using the cost of the service (and the capacity). 
 
-Time Complexity\+: O(\+E$\ast$log(\+N)) Performs the Dijkstra\textquotesingle{}s algorithm to find the shortest path between the source and the destination. 
+Time Complexity\+: O((V+E log V), where E is the number of edges and V is the number of nodes. Taking into account the cost of Service and the number of trains that can pass through the edge finds the shortest path between the source and the destination. 
 \begin{DoxyParams}{Parameters}
-{\em source} & \\
+{\em source} & -\/ The source node. \\
 \hline
-{\em dest} & \\
+{\em dest} & -\/ The destination node. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-
+The cost of the path. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_graph_a9af6a3a2293f47efb5b9d02adb16014a}\label{class_graph_a9af6a3a2293f47efb5b9d02adb16014a}} 
 \index{Graph@{Graph}!EdmondsKarp@{EdmondsKarp}}
@@ -193,17 +227,17 @@ Time Complexity\+: O(\+E$\ast$log(\+N)) Performs the Dijkstra\textquotesingle{}s
 
 
 
-Edmonds Karp. 
+Edmonds Karp -\/ Finds the maximum flow in the network flow graph. 
 
-Time Complexity\+: O(\+VE$^\wedge$2) Performs the Edmonds Karp algorithm for finding the maximum flow in the network flow graph. 
+Time Complexity\+: O(\+VE$^\wedge$2), where E is the number of edges and V is the number of nodes. Using BFS finds the maximum flow in the network flow graph between the source and the destination. 
 \begin{DoxyParams}{Parameters}
-{\em source} & \\
+{\em source} & -\/ Source node \\
 \hline
-{\em dest} & \\
+{\em dest} & -\/ Destination node \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-
+The maximum flow. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_graph_ac4f411aaa3c247488d42550d8dfd7553}\label{class_graph_ac4f411aaa3c247488d42550d8dfd7553}} 
 \index{Graph@{Graph}!eraseNode@{eraseNode}}
@@ -213,39 +247,15 @@ Time Complexity\+: O(\+VE$^\wedge$2) Performs the Edmonds Karp algorithm for fin
 
 
 
-Removes a node. 
+Removes a node from the graph. 
 
-Time Complexity\+: O((number of edges connected)$\ast$log(n)) Removes a node from the graph. 
+Time Complexity\+: O(E+I), where E is the number of outgoing edges and I is the number of incoming edges. 
 \begin{DoxyParams}{Parameters}
-{\em node} & \\
+{\em node} & -\/ The node to be removed. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-
-\end{DoxyReturn}
-\mbox{\Hypertarget{class_graph_a884cb113553eaeb2de930913e434f006}\label{class_graph_a884cb113553eaeb2de930913e434f006}} 
-\index{Graph@{Graph}!FordFulkersonDijkstra@{FordFulkersonDijkstra}}
-\index{FordFulkersonDijkstra@{FordFulkersonDijkstra}!Graph@{Graph}}
-\doxysubsubsection{\texorpdfstring{FordFulkersonDijkstra()}{FordFulkersonDijkstra()}}
-{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{class_node}{Node}} $\ast$ $>$ Graph\+::\+Ford\+Fulkerson\+Dijkstra (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} $\ast$}]{source,  }\item[{\mbox{\hyperlink{class_node}{Node}} $\ast$}]{dest,  }\item[{double $\ast$}]{flow,  }\item[{double $\ast$}]{cost }\end{DoxyParamCaption})}
-
-
-
-Ford Fulkerson. 
-
-Time Complexity\+: O(f(E+V)log(\+V)) Performs the Ford Fulkerson algorithm using Dijkstra\textquotesingle{}s to find the shortest augmenting path in each iteration. 
-\begin{DoxyParams}{Parameters}
-{\em source} & \\
-\hline
-{\em dest} & \\
-\hline
-{\em flow} & \\
-\hline
-{\em cost} & \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-
+True if the node was removed successfully, false otherwise. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_graph_a23825eeba3e8fbb811d4e1b67042e97f}\label{class_graph_a23825eeba3e8fbb811d4e1b67042e97f}} 
 \index{Graph@{Graph}!getNode@{getNode}}
@@ -255,15 +265,15 @@ Time Complexity\+: O(f(E+V)log(\+V)) Performs the Ford Fulkerson algorithm using
 
 
 
-Gets a node. 
+Given a station, returns the node associated with it. 
 
-Time Complexity\+: O(1) Gets a node. 
+Time Complexity\+: O(log n), where n is the number of nodes in the graph. 
 \begin{DoxyParams}{Parameters}
-{\em station} & \\
+{\em station} & -\/ A pointer to the station. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-
+A pointer to the node associated with the station, nullptr if the station does not exist. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_graph_afb4909a9f294f6f1af573d21f85fb1ab}\label{class_graph_afb4909a9f294f6f1af573d21f85fb1ab}} 
 \index{Graph@{Graph}!getNode@{getNode}}
@@ -273,28 +283,15 @@ Time Complexity\+: O(1) Gets a node.
 
 
 
-Gets a node. 
+Given the name of a station, returns the node associated with it. 
 
-Time Complexity\+: O(1) Gets a node. 
+Time Complexity\+: O(log n), where n is the number of nodes in the graph. 
 \begin{DoxyParams}{Parameters}
-{\em station\+Name} & \\
+{\em station\+Name} & -\/ The name of the station. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-
-\end{DoxyReturn}
-\mbox{\Hypertarget{class_graph_a6d35a32674f4cd52bf313596fa1ede80}\label{class_graph_a6d35a32674f4cd52bf313596fa1ede80}} 
-\index{Graph@{Graph}!getNumNodes@{getNumNodes}}
-\index{getNumNodes@{getNumNodes}!Graph@{Graph}}
-\doxysubsubsection{\texorpdfstring{getNumNodes()}{getNumNodes()}}
-{\footnotesize\ttfamily int Graph\+::get\+Num\+Nodes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-
-
-Gets the number of nodes. 
-
-Time Complexity\+: O(1) Gets the number of nodes from the graph. \begin{DoxyReturn}{Returns}
-
+A pointer to the node associated with the station, nullptr if the station does not exist. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_graph_a1aa6a52e1f06afe31061695fb294d005}\label{class_graph_a1aa6a52e1f06afe31061695fb294d005}} 
 \index{Graph@{Graph}!maxFlowAllPairs@{maxFlowAllPairs}}
@@ -304,15 +301,15 @@ Time Complexity\+: O(1) Gets the number of nodes from the graph. \begin{DoxyRetu
 
 
 
-Maximum Flow. 
+Iterates through all pairs of nodes in the network and uses the Edmonds Karp algorithm to find the maximum flow between them. 
 
-Time Complexity\+: O(n$^\wedge$3$\ast$f) Finds the maximum flow that can be achieved between all pairs of nodes in the graph using Edmonds Karp algorithm. 
+Time Complexity\+: O(\+V$^\wedge$3\+E$^\wedge$2), where E is the number of edges and V is the number of nodes. 
 \begin{DoxyParams}{Parameters}
-{\em max\+Flow} & \\
+{\em max\+Flow} & -\/ Pointer to the variable that will store the maximum flow. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-
+A vector with the pairs of nodes that have the maximum flow. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_graph_a1284d28d6a656e876188f5f8f4cf2263}\label{class_graph_a1284d28d6a656e876188f5f8f4cf2263}} 
 \index{Graph@{Graph}!maxIncomingFlow@{maxIncomingFlow}}
@@ -322,31 +319,31 @@ Time Complexity\+: O(n$^\wedge$3$\ast$f) Finds the maximum flow that can be achi
 
 
 
-Find the maximum incoming flow. 
+Calculates the maximum incoming flow to the input node. 
 
-Time Complexity\+: O(\+N$^\wedge$2) Find the maximum incoming flow to the input node from its adjacent nodes in the graph. 
+Time Complexity\+: O(\+V E$^\wedge$2), where E is the number of edges and V is the number of nodes. Creates a super source node and connects it to all nodes that have only one outgoing edge. Then uses the Edmonds Karp algorithm to find the maximum flow between the super source and the input node. 
 \begin{DoxyParams}{Parameters}
-{\em node} & \\
+{\em node} & -\/ \mbox{\hyperlink{class_node}{Node}} to calculate the maximum incoming flow. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-
+The maximum incoming flow to the input node. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_graph_ad0441ca6aa58014b2922f57da01fba03}\label{class_graph_ad0441ca6aa58014b2922f57da01fba03}} 
+\mbox{\Hypertarget{class_graph_ab0280d09e3878357672dcfac7a3f9835}\label{class_graph_ab0280d09e3878357672dcfac7a3f9835}} 
 \index{Graph@{Graph}!sumSomePairsFlow@{sumSomePairsFlow}}
 \index{sumSomePairsFlow@{sumSomePairsFlow}!Graph@{Graph}}
 \doxysubsubsection{\texorpdfstring{sumSomePairsFlow()}{sumSomePairsFlow()}}
-{\footnotesize\ttfamily void Graph\+::sum\+Some\+Pairs\+Flow (\begin{DoxyParamCaption}\item[{set$<$ \mbox{\hyperlink{class_node}{Node}} $\ast$ $>$}]{nodes,  }\item[{int $\ast$}]{max\+\_\+flow }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Graph\+::sum\+Some\+Pairs\+Flow (\begin{DoxyParamCaption}\item[{set$<$ \mbox{\hyperlink{class_node}{Node}} $\ast$ $>$}]{nodes,  }\item[{int $\ast$}]{sum\+Flow }\end{DoxyParamCaption})}
 
 
 
-Sum of the Maximum Flow. 
+Calculates the sum of the maximum flows between all pairs of nodes in the input set. 
 
-Time Complexity\+: O(n$^\wedge$2$\ast$\+E$^\wedge$2$\ast$\+V) Calculates the sum of the maximum flow between all possible pairs of nodes in the input set and stores the result in a variable pointed to by an input integer pointer. 
+Time Complexity\+: O(\+V E$^\wedge$2 $\ast$ P$^\wedge$2), where E is the number of edges, V is the number of nodes in the graph and P is the number of nodes in the input set. 
 \begin{DoxyParams}{Parameters}
-{\em nodes} & \\
+{\em nodes} & -\/ Set of nodes to calculate the sum of the maximum flows between them. \\
 \hline
-{\em max\+\_\+flow} & \\
+{\em sum\+Flow} & -\/ Pointer to the variable that will store the sum of the maximum flows. \\
 \hline
 \end{DoxyParams}
 

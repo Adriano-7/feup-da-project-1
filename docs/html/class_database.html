@@ -75,53 +75,54 @@ $(function() {
   <div class="headertitle"><div class="title">Database Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Class that reads the files and contains the dataStructures created.  
+ <a href="class_database.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_database_8h_source.html">Database.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad1e9fcc279dd0e45f1e6cca447360219"><td class="memItemLeft" align="right" valign="top"><a id="ad1e9fcc279dd0e45f1e6cca447360219" name="ad1e9fcc279dd0e45f1e6cca447360219"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>loadData</b> ()</td></tr>
-<tr class="separator:ad1e9fcc279dd0e45f1e6cca447360219"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e571cb4010ec9b6d585b3ab1bc6079a"><td class="memItemLeft" align="right" valign="top"><a id="a7e571cb4010ec9b6d585b3ab1bc6079a" name="a7e571cb4010ec9b6d585b3ab1bc6079a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>loadData</b> (set&lt; string &gt; stations, set&lt; string &gt; lines)</td></tr>
-<tr class="separator:a7e571cb4010ec9b6d585b3ab1bc6079a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3769df8d6001a8ef90e3ea32809eaec5"><td class="memItemLeft" align="right" valign="top"><a id="a3769df8d6001a8ef90e3ea32809eaec5" name="a3769df8d6001a8ef90e3ea32809eaec5"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>emptyDatabase</b> ()</td></tr>
-<tr class="separator:a3769df8d6001a8ef90e3ea32809eaec5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeae848e8964400b346e9c0d76e7ae984"><td class="memItemLeft" align="right" valign="top"><a id="aeae848e8964400b346e9c0d76e7ae984" name="aeae848e8964400b346e9c0d76e7ae984"></a>
-<a class="el" href="class_station.html">Station</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getStation</b> (string stationName)</td></tr>
+<tr class="memitem:ad27eb07b934c6938d95713d87045d16f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_database.html#ad27eb07b934c6938d95713d87045d16f">loadData</a> (set&lt; string &gt; stations, set&lt; string &gt; lines)</td></tr>
+<tr class="memdesc:ad27eb07b934c6938d95713d87045d16f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads csv files and populates the data structures (The arguments are filters, if empty, all stations are read)  <br /></td></tr>
+<tr class="separator:ad27eb07b934c6938d95713d87045d16f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeae848e8964400b346e9c0d76e7ae984"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_station.html">Station</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_database.html#aeae848e8964400b346e9c0d76e7ae984">getStation</a> (string stationName)</td></tr>
+<tr class="memdesc:aeae848e8964400b346e9c0d76e7ae984"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given a station name, returns a pointer to the station.  <br /></td></tr>
 <tr class="separator:aeae848e8964400b346e9c0d76e7ae984"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39c0710754f020a3a661e3c77b866e12"><td class="memItemLeft" align="right" valign="top"><a id="a39c0710754f020a3a661e3c77b866e12" name="a39c0710754f020a3a661e3c77b866e12"></a>
-vector&lt; pair&lt; <a class="el" href="class_node.html">Node</a> *, <a class="el" href="class_node.html">Node</a> * &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>maxFlowAllPairs</b> (int *maxFlow)</td></tr>
+<tr class="memitem:a39c0710754f020a3a661e3c77b866e12"><td class="memItemLeft" align="right" valign="top">vector&lt; pair&lt; <a class="el" href="class_node.html">Node</a> *, <a class="el" href="class_node.html">Node</a> * &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_database.html#a39c0710754f020a3a661e3c77b866e12">maxFlowAllPairs</a> (int *maxFlow)</td></tr>
+<tr class="memdesc:a39c0710754f020a3a661e3c77b866e12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the pairs of nodes with the maximum flow between them and the value of the maximum flow(by reference).  <br /></td></tr>
 <tr class="separator:a39c0710754f020a3a661e3c77b866e12"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae98d6da6d7228e9bbee3a4ecba89c15f"><td class="memItemLeft" align="right" valign="top"><a id="ae98d6da6d7228e9bbee3a4ecba89c15f" name="ae98d6da6d7228e9bbee3a4ecba89c15f"></a>
-map&lt; string, set&lt; string &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getDistrictToMunicipalities</b> ()</td></tr>
-<tr class="separator:ae98d6da6d7228e9bbee3a4ecba89c15f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd8da1ab30207e9f5133661cf9613b5e"><td class="memItemLeft" align="right" valign="top"><a id="acd8da1ab30207e9f5133661cf9613b5e" name="acd8da1ab30207e9f5133661cf9613b5e"></a>
-set&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getStationsFromMunicipality</b> (string municipality)</td></tr>
+<tr class="memitem:a808540621870bcc3b14247cecb8e4147"><td class="memItemLeft" align="right" valign="top">map&lt; string, set&lt; string &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_database.html#a808540621870bcc3b14247cecb8e4147">getDistrictToMunicipalities</a> ()</td></tr>
+<tr class="memdesc:a808540621870bcc3b14247cecb8e4147"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the map that associates each district to the set of municipalities in that district.  <br /></td></tr>
+<tr class="separator:a808540621870bcc3b14247cecb8e4147"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd8da1ab30207e9f5133661cf9613b5e"><td class="memItemLeft" align="right" valign="top">set&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_database.html#acd8da1ab30207e9f5133661cf9613b5e">getStationsFromMunicipality</a> (string municipality)</td></tr>
+<tr class="memdesc:acd8da1ab30207e9f5133661cf9613b5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the set of stations in a given municipality.  <br /></td></tr>
 <tr class="separator:acd8da1ab30207e9f5133661cf9613b5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a54d0a0cdcf00c74a271c60cc4b59e027"><td class="memItemLeft" align="right" valign="top"><a id="a54d0a0cdcf00c74a271c60cc4b59e027" name="a54d0a0cdcf00c74a271c60cc4b59e027"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getMaxFlowBetweenStations</b> (<a class="el" href="class_station.html">Station</a> *station1, <a class="el" href="class_station.html">Station</a> *station2)</td></tr>
+<tr class="memitem:a54d0a0cdcf00c74a271c60cc4b59e027"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_database.html#a54d0a0cdcf00c74a271c60cc4b59e027">getMaxFlowBetweenStations</a> (<a class="el" href="class_station.html">Station</a> *station1, <a class="el" href="class_station.html">Station</a> *station2)</td></tr>
+<tr class="memdesc:a54d0a0cdcf00c74a271c60cc4b59e027"><td class="mdescLeft">&#160;</td><td class="mdescRight">Using Edmonds-Karp algorithm, calculates the maximum flow between two stations.  <br /></td></tr>
 <tr class="separator:a54d0a0cdcf00c74a271c60cc4b59e027"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a379afcc53a09766264774929d5022962"><td class="memItemLeft" align="right" valign="top"><a id="a379afcc53a09766264774929d5022962" name="a379afcc53a09766264774929d5022962"></a>
-vector&lt; <a class="el" href="class_node.html">Node</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getMinCostFlow</b> (<a class="el" href="class_station.html">Station</a> *station1, <a class="el" href="class_station.html">Station</a> *station2, double *flow, double *cost)</td></tr>
-<tr class="separator:a379afcc53a09766264774929d5022962"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad221311a8f1ab9a850903233db345f2a"><td class="memItemLeft" align="right" valign="top"><a id="ad221311a8f1ab9a850903233db345f2a" name="ad221311a8f1ab9a850903233db345f2a"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getMaxTrainsStation</b> (<a class="el" href="class_station.html">Station</a> *station)</td></tr>
+<tr class="memitem:a374a84434ff46abe88dc45e42aa4e309"><td class="memItemLeft" align="right" valign="top">stack&lt; <a class="el" href="class_edge.html">Edge</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_database.html#a374a84434ff46abe88dc45e42aa4e309">getMinCostFlow</a> (<a class="el" href="class_station.html">Station</a> *station1, <a class="el" href="class_station.html">Station</a> *station2, double *flow, double *cost)</td></tr>
+<tr class="memdesc:a374a84434ff46abe88dc45e42aa4e309"><td class="mdescLeft">&#160;</td><td class="mdescRight">Using dijkstra algorithm, calculates the minimum cost(cost of service * capacity) flow between two stations.  <br /></td></tr>
+<tr class="separator:a374a84434ff46abe88dc45e42aa4e309"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad221311a8f1ab9a850903233db345f2a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_database.html#ad221311a8f1ab9a850903233db345f2a">getMaxTrainsStation</a> (<a class="el" href="class_station.html">Station</a> *station)</td></tr>
+<tr class="memdesc:ad221311a8f1ab9a850903233db345f2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the maximum number of trains that can be in a station at the same time.  <br /></td></tr>
 <tr class="separator:ad221311a8f1ab9a850903233db345f2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1e206e04383f3ed0c4301edc323ba8c8"><td class="memItemLeft" align="right" valign="top">vector&lt; pair&lt; string, int &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_database.html#a1e206e04383f3ed0c4301edc323ba8c8">getTopMunicipalities</a> (int k)</td></tr>
-<tr class="memdesc:a1e206e04383f3ed0c4301edc323ba8c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the top "k" municipalities based on total flow.  <br /></td></tr>
+<tr class="memdesc:a1e206e04383f3ed0c4301edc323ba8c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the top "k" municipalities based on the sum of the flow values of all of their stations.  <br /></td></tr>
 <tr class="separator:a1e206e04383f3ed0c4301edc323ba8c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3bfdf09c2fd68938bb776d10f7fc9b07"><td class="memItemLeft" align="right" valign="top">vector&lt; pair&lt; string, int &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_database.html#a3bfdf09c2fd68938bb776d10f7fc9b07">getTopDistricts</a> (int k)</td></tr>
-<tr class="memdesc:a3bfdf09c2fd68938bb776d10f7fc9b07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the top "k" districts based on total flow.  <br /></td></tr>
+<tr class="memdesc:a3bfdf09c2fd68938bb776d10f7fc9b07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the top "k" districts based on the sum of the flow values of all of their stations.  <br /></td></tr>
 <tr class="separator:a3bfdf09c2fd68938bb776d10f7fc9b07"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b4c02e3b1b47bf40138c3857521b011"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_database.html#a1b4c02e3b1b47bf40138c3857521b011">checkConnection</a> (<a class="el" href="class_station.html">Station</a> *station1, <a class="el" href="class_station.html">Station</a> *station2, int &amp;curCapacity)</td></tr>
-<tr class="memdesc:a1b4c02e3b1b47bf40138c3857521b011"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks the connection between stations.  <br /></td></tr>
-<tr class="separator:a1b4c02e3b1b47bf40138c3857521b011"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a204246e03cb54859cf9374557bb18a45"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_database.html#a204246e03cb54859cf9374557bb18a45">checkConnection</a> (<a class="el" href="class_station.html">Station</a> *station1, <a class="el" href="class_station.html">Station</a> *station2, int &amp;edgeCapacity)</td></tr>
+<tr class="memdesc:a204246e03cb54859cf9374557bb18a45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boolean function that checks if there is a direct connection between two stations.  <br /></td></tr>
+<tr class="separator:a204246e03cb54859cf9374557bb18a45"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3789066cabc515c0c7fa346eb9045288"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_database.html#a3789066cabc515c0c7fa346eb9045288">changeCapacity</a> (<a class="el" href="class_station.html">Station</a> *station1, <a class="el" href="class_station.html">Station</a> *station2, int newCapacity)</td></tr>
-<tr class="memdesc:a3789066cabc515c0c7fa346eb9045288"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes capacity from an edge.  <br /></td></tr>
+<tr class="memdesc:a3789066cabc515c0c7fa346eb9045288"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the capacity of an edge between two stations.  <br /></td></tr>
 <tr class="separator:a3789066cabc515c0c7fa346eb9045288"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Class that reads the files and contains the dataStructures created. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a3789066cabc515c0c7fa346eb9045288" name="a3789066cabc515c0c7fa346eb9045288"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3789066cabc515c0c7fa346eb9045288">&#9670;&#160;</a></span>changeCapacity()</h2>
 
@@ -154,20 +155,20 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>getMaxTrainsStation</b
       </table>
 </div><div class="memdoc">
 
-<p>Changes capacity from an edge. </p>
-<p>Time Complexity: O() Passes on the arguments to the corresponding changeCapacity function of the graph object, and returns its boolean result. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Changes the capacity of an edge between two stations. </p>
+<p>Time Complexity: O(E), where E is the number of adjacent edges. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">station1</td><td></td></tr>
-    <tr><td class="paramname">station2</td><td></td></tr>
-    <tr><td class="paramname">newCapacity</td><td></td></tr>
+    <tr><td class="paramname">station1</td><td>- pointer to the first station </td></tr>
+    <tr><td class="paramname">station2</td><td>- pointer to the second station </td></tr>
+    <tr><td class="paramname">newCapacity</td><td>- new capacity of the edge </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="a1b4c02e3b1b47bf40138c3857521b011" name="a1b4c02e3b1b47bf40138c3857521b011"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1b4c02e3b1b47bf40138c3857521b011">&#9670;&#160;</a></span>checkConnection()</h2>
+<a id="a204246e03cb54859cf9374557bb18a45" name="a204246e03cb54859cf9374557bb18a45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a204246e03cb54859cf9374557bb18a45">&#9670;&#160;</a></span>checkConnection()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -188,7 +189,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>getMaxTrainsStation</b
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int &amp;&#160;</td>
-          <td class="paramname"><em>curCapacity</em>&#160;</td>
+          <td class="paramname"><em>edgeCapacity</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -198,16 +199,207 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>getMaxTrainsStation</b
       </table>
 </div><div class="memdoc">
 
-<p>Checks the connection between stations. </p>
-<p>Time Complexity: O() Passes on the arguments to the corresponding checkConnection function of the graph object, and returns its boolean result. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Boolean function that checks if there is a direct connection between two stations. </p>
+<p>Time Complexity: O(E), where E is the number of adjacent edges. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">station1</td><td></td></tr>
-    <tr><td class="paramname">station2</td><td></td></tr>
-    <tr><td class="paramname">curCapacity</td><td></td></tr>
+    <tr><td class="paramname">station1</td><td>- pointer to the first station </td></tr>
+    <tr><td class="paramname">station2</td><td>- pointer to the second station </td></tr>
+    <tr><td class="paramname">edgeCapacity</td><td>- reference to an integer that will be filled with the capacity of the edge </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true if there is a direct connection, false otherwise </dd></dl>
+
+</div>
+</div>
+<a id="a808540621870bcc3b14247cecb8e4147" name="a808540621870bcc3b14247cecb8e4147"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a808540621870bcc3b14247cecb8e4147">&#9670;&#160;</a></span>getDistrictToMunicipalities()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">map&lt; string, set&lt; string &gt; &gt; &amp; Database::getDistrictToMunicipalities </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the map that associates each district to the set of municipalities in that district. </p>
+<p>Time complexity: O(1) </p><dl class="section return"><dt>Returns</dt><dd>Map that associates each district to the set of municipalities in that district. </dd></dl>
+
+</div>
+</div>
+<a id="a54d0a0cdcf00c74a271c60cc4b59e027" name="a54d0a0cdcf00c74a271c60cc4b59e027"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54d0a0cdcf00c74a271c60cc4b59e027">&#9670;&#160;</a></span>getMaxFlowBetweenStations()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Database::getMaxFlowBetweenStations </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_station.html">Station</a> *&#160;</td>
+          <td class="paramname"><em>station1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_station.html">Station</a> *&#160;</td>
+          <td class="paramname"><em>station2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Using Edmonds-Karp algorithm, calculates the maximum flow between two stations. </p>
+<p>Time Complexity: O(VE^2), where E is the number of edges and V is the number of nodes. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">station1</td><td>- source station </td></tr>
+    <tr><td class="paramname">station2</td><td>- destination station </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>maximum flow between the two stations </dd></dl>
+
+</div>
+</div>
+<a id="ad221311a8f1ab9a850903233db345f2a" name="ad221311a8f1ab9a850903233db345f2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad221311a8f1ab9a850903233db345f2a">&#9670;&#160;</a></span>getMaxTrainsStation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Database::getMaxTrainsStation </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_station.html">Station</a> *&#160;</td>
+          <td class="paramname"><em>station</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the maximum number of trains that can be in a station at the same time. </p>
+<p>Time Complexity: O(V E^2), where E is the number of edges and V is the number of nodes. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">station</td><td>- station to check </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>maximum number of trains that can be in the station at the same time </dd></dl>
+
+</div>
+</div>
+<a id="a374a84434ff46abe88dc45e42aa4e309" name="a374a84434ff46abe88dc45e42aa4e309"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a374a84434ff46abe88dc45e42aa4e309">&#9670;&#160;</a></span>getMinCostFlow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">stack&lt; <a class="el" href="class_edge.html">Edge</a> * &gt; Database::getMinCostFlow </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_station.html">Station</a> *&#160;</td>
+          <td class="paramname"><em>station1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_station.html">Station</a> *&#160;</td>
+          <td class="paramname"><em>station2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>flow</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>costService</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Using dijkstra algorithm, calculates the minimum cost(cost of service * capacity) flow between two stations. </p>
+<p>Time Complexity: O((V+E log V), where E is the number of edges and V is the number of nodes. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">station1</td><td>- source station </td></tr>
+    <tr><td class="paramname">station2</td><td>- destination station </td></tr>
+    <tr><td class="paramname">flow</td><td>- pointer to the variable that will store the value of the flow </td></tr>
+    <tr><td class="paramname">costService</td><td>- pointer to the variable that will store the value of the cost of service </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>stack of edges of the path with the minimum cost </dd></dl>
+
+</div>
+</div>
+<a id="aeae848e8964400b346e9c0d76e7ae984" name="aeae848e8964400b346e9c0d76e7ae984"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeae848e8964400b346e9c0d76e7ae984">&#9670;&#160;</a></span>getStation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_station.html">Station</a> * Database::getStation </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>stationName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Given a station name, returns a pointer to the station. </p>
+<p>Time complexity: O(1) </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">stationName</td><td>- Name of the station to be returned. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the station. </dd></dl>
+
+</div>
+</div>
+<a id="acd8da1ab30207e9f5133661cf9613b5e" name="acd8da1ab30207e9f5133661cf9613b5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd8da1ab30207e9f5133661cf9613b5e">&#9670;&#160;</a></span>getStationsFromMunicipality()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">set&lt; string &gt; Database::getStationsFromMunicipality </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>municipality</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the set of stations in a given municipality. </p>
+<p>Time complexity: O(1) </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">municipality</td><td>- municipality to check </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Set of stations in the given municipality. </dd></dl>
 
 </div>
 </div>
@@ -227,14 +419,14 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>getMaxTrainsStation</b
       </table>
 </div><div class="memdoc">
 
-<p>Get the top "k" districts based on total flow. </p>
-<p>Time Complexity: O(N*M) Calculates the maximum flow through sets of stations in each district, and returns a vector of the top k districts based on this flow metric. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Get the top "k" districts based on the sum of the flow values of all of their stations. </p>
+<p>Time Complexity: O(VE^2P^2*D), where E is the number of edges, V is the number of nodes in the graph, P is the number of nodes in the input set and D is the number of districts. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">k</td><td></td></tr>
+    <tr><td class="paramname">k</td><td>- number of districts to return </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>vector of pairs of district name and total flow </dd></dl>
 
 </div>
 </div>
@@ -254,14 +446,79 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>getMaxTrainsStation</b
       </table>
 </div><div class="memdoc">
 
-<p>Get the top "k" municipalities based on total flow. </p>
-<p>Time Complexity: O(m(slog(s)+e) Returns a vector of the top k municipalities based on their total flow (sum of flow values) from all of their stations in a graph. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Get the top "k" municipalities based on the sum of the flow values of all of their stations. </p>
+<p>Time Complexity: O(VE^2P^2*M), where E is the number of edges, V is the number of nodes in the graph, P is the number of nodes in the input set and M is the number of municipalities. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">k</td><td></td></tr>
+    <tr><td class="paramname">k</td><td>- number of municipalities to return </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>vector of pairs of municipality name and total flow </dd></dl>
+
+</div>
+</div>
+<a id="ad27eb07b934c6938d95713d87045d16f" name="ad27eb07b934c6938d95713d87045d16f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad27eb07b934c6938d95713d87045d16f">&#9670;&#160;</a></span>loadData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Database::loadData </td>
+          <td>(</td>
+          <td class="paramtype">set&lt; string &gt;&#160;</td>
+          <td class="paramname"><em>stations</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">set&lt; string &gt;&#160;</td>
+          <td class="paramname"><em>lines</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reads csv files and populates the data structures (The arguments are filters, if empty, all stations are read) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">stations</td><td>- set of stations to read (if empty, all stations are read) </td></tr>
+    <tr><td class="paramname">lines</td><td>- set of railway lines to read (if empty, all lines are read)</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Time complexity: O(A) + O(B), where A is the number of lines in stations.csv and B is the number of lines in network.csv </p>
+
+</div>
+</div>
+<a id="a39c0710754f020a3a661e3c77b866e12" name="a39c0710754f020a3a661e3c77b866e12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39c0710754f020a3a661e3c77b866e12">&#9670;&#160;</a></span>maxFlowAllPairs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; pair&lt; <a class="el" href="class_node.html">Node</a> *, <a class="el" href="class_node.html">Node</a> * &gt; &gt; Database::maxFlowAllPairs </td>
+          <td>(</td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>maxFlow</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the pairs of nodes with the maximum flow between them and the value of the maximum flow(by reference). </p>
+<p>Time Complexity: O(V^3E^2), where E is the number of edges and V is the number of nodes. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">maxFlow</td><td>- Pointer to the variable that will store the value of the maximum flow. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Vector of pairs of nodes with the maximum flow between them. </dd></dl>
 
 </div>
 </div>

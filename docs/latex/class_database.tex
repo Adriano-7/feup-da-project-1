@@ -1,47 +1,45 @@
 \hypertarget{class_database}{}\doxysection{Database Class Reference}
 \label{class_database}\index{Database@{Database}}
+
+
+Class that reads the files and contains the data\+Structures created.  
+
+
+
+
+{\ttfamily \#include $<$Database.\+h$>$}
+
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_database_ad1e9fcc279dd0e45f1e6cca447360219}\label{class_database_ad1e9fcc279dd0e45f1e6cca447360219}} 
-void {\bfseries load\+Without\+Filters} ()
-\item 
-\mbox{\Hypertarget{class_database_a7e571cb4010ec9b6d585b3ab1bc6079a}\label{class_database_a7e571cb4010ec9b6d585b3ab1bc6079a}} 
-void {\bfseries load\+With\+Filters} (set$<$ string $>$ stations, set$<$ string $>$ lines)
-\item 
-\mbox{\Hypertarget{class_database_a3769df8d6001a8ef90e3ea32809eaec5}\label{class_database_a3769df8d6001a8ef90e3ea32809eaec5}} 
-void {\bfseries empty\+Database} ()
-\item 
-\mbox{\Hypertarget{class_database_aeae848e8964400b346e9c0d76e7ae984}\label{class_database_aeae848e8964400b346e9c0d76e7ae984}} 
-\mbox{\hyperlink{class_station}{Station}} $\ast$ {\bfseries get\+Station} (string station\+Name)
-\item 
-\mbox{\Hypertarget{class_database_a39c0710754f020a3a661e3c77b866e12}\label{class_database_a39c0710754f020a3a661e3c77b866e12}} 
-vector$<$ pair$<$ \mbox{\hyperlink{class_node}{Node}} $\ast$, \mbox{\hyperlink{class_node}{Node}} $\ast$ $>$ $>$ {\bfseries max\+Flow\+All\+Pairs} (int $\ast$max\+Flow)
-\item 
-\mbox{\Hypertarget{class_database_ae98d6da6d7228e9bbee3a4ecba89c15f}\label{class_database_ae98d6da6d7228e9bbee3a4ecba89c15f}} 
-map$<$ string, set$<$ string $>$ $>$ {\bfseries get\+District\+To\+Municipalities} ()
-\item 
-\mbox{\Hypertarget{class_database_acd8da1ab30207e9f5133661cf9613b5e}\label{class_database_acd8da1ab30207e9f5133661cf9613b5e}} 
-set$<$ string $>$ {\bfseries get\+Stations\+From\+Municipality} (string municipality)
-\item 
-\mbox{\Hypertarget{class_database_a54d0a0cdcf00c74a271c60cc4b59e027}\label{class_database_a54d0a0cdcf00c74a271c60cc4b59e027}} 
-int {\bfseries get\+Max\+Flow\+Between\+Stations} (\mbox{\hyperlink{class_station}{Station}} $\ast$station1, \mbox{\hyperlink{class_station}{Station}} $\ast$station2)
-\item 
-\mbox{\Hypertarget{class_database_a379afcc53a09766264774929d5022962}\label{class_database_a379afcc53a09766264774929d5022962}} 
-vector$<$ \mbox{\hyperlink{class_node}{Node}} $\ast$ $>$ {\bfseries get\+Min\+Cost\+Flow} (\mbox{\hyperlink{class_station}{Station}} $\ast$station1, \mbox{\hyperlink{class_station}{Station}} $\ast$station2, double $\ast$flow, double $\ast$cost)
-\item 
-\mbox{\Hypertarget{class_database_ad221311a8f1ab9a850903233db345f2a}\label{class_database_ad221311a8f1ab9a850903233db345f2a}} 
-int {\bfseries get\+Max\+Trains\+Station} (\mbox{\hyperlink{class_station}{Station}} $\ast$station)
-\item 
+void \mbox{\hyperlink{class_database_ad27eb07b934c6938d95713d87045d16f}{load\+Data}} (set$<$ string $>$ stations, set$<$ string $>$ lines)
+\begin{DoxyCompactList}\small\item\em Reads csv files and populates the data structures (The arguments are filters, if empty, all stations are read) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_station}{Station}} $\ast$ \mbox{\hyperlink{class_database_aeae848e8964400b346e9c0d76e7ae984}{get\+Station}} (string station\+Name)
+\begin{DoxyCompactList}\small\item\em Given a station name, returns a pointer to the station. \end{DoxyCompactList}\item 
+vector$<$ pair$<$ \mbox{\hyperlink{class_node}{Node}} $\ast$, \mbox{\hyperlink{class_node}{Node}} $\ast$ $>$ $>$ \mbox{\hyperlink{class_database_a39c0710754f020a3a661e3c77b866e12}{max\+Flow\+All\+Pairs}} (int $\ast$max\+Flow)
+\begin{DoxyCompactList}\small\item\em Returns the pairs of nodes with the maximum flow between them and the value of the maximum flow(by reference). \end{DoxyCompactList}\item 
+map$<$ string, set$<$ string $>$ $>$ \& \mbox{\hyperlink{class_database_a808540621870bcc3b14247cecb8e4147}{get\+District\+To\+Municipalities}} ()
+\begin{DoxyCompactList}\small\item\em Returns the map that associates each district to the set of municipalities in that district. \end{DoxyCompactList}\item 
+set$<$ string $>$ \mbox{\hyperlink{class_database_acd8da1ab30207e9f5133661cf9613b5e}{get\+Stations\+From\+Municipality}} (string municipality)
+\begin{DoxyCompactList}\small\item\em Returns the set of stations in a given municipality. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_database_a54d0a0cdcf00c74a271c60cc4b59e027}{get\+Max\+Flow\+Between\+Stations}} (\mbox{\hyperlink{class_station}{Station}} $\ast$station1, \mbox{\hyperlink{class_station}{Station}} $\ast$station2)
+\begin{DoxyCompactList}\small\item\em Using Edmonds-\/\+Karp algorithm, calculates the maximum flow between two stations. \end{DoxyCompactList}\item 
+stack$<$ \mbox{\hyperlink{class_edge}{Edge}} $\ast$ $>$ \mbox{\hyperlink{class_database_a374a84434ff46abe88dc45e42aa4e309}{get\+Min\+Cost\+Flow}} (\mbox{\hyperlink{class_station}{Station}} $\ast$station1, \mbox{\hyperlink{class_station}{Station}} $\ast$station2, double $\ast$flow, double $\ast$cost)
+\begin{DoxyCompactList}\small\item\em Using dijkstra algorithm, calculates the minimum cost(cost of service $\ast$ capacity) flow between two stations. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_database_ad221311a8f1ab9a850903233db345f2a}{get\+Max\+Trains\+Station}} (\mbox{\hyperlink{class_station}{Station}} $\ast$station)
+\begin{DoxyCompactList}\small\item\em Returns the maximum number of trains that can be in a station at the same time. \end{DoxyCompactList}\item 
 vector$<$ pair$<$ string, int $>$ $>$ \mbox{\hyperlink{class_database_a1e206e04383f3ed0c4301edc323ba8c8}{get\+Top\+Municipalities}} (int k)
-\begin{DoxyCompactList}\small\item\em Get the top \char`\"{}k\char`\"{} municipalities based on total flow. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Get the top \char`\"{}k\char`\"{} municipalities based on the sum of the flow values of all of their stations. \end{DoxyCompactList}\item 
 vector$<$ pair$<$ string, int $>$ $>$ \mbox{\hyperlink{class_database_a3bfdf09c2fd68938bb776d10f7fc9b07}{get\+Top\+Districts}} (int k)
-\begin{DoxyCompactList}\small\item\em Get the top \char`\"{}k\char`\"{} districts based on total flow. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{class_database_a1b4c02e3b1b47bf40138c3857521b011}{check\+Connection}} (\mbox{\hyperlink{class_station}{Station}} $\ast$station1, \mbox{\hyperlink{class_station}{Station}} $\ast$station2, int \&cur\+Capacity)
-\begin{DoxyCompactList}\small\item\em Checks the connection between stations. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Get the top \char`\"{}k\char`\"{} districts based on the sum of the flow values of all of their stations. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_database_a204246e03cb54859cf9374557bb18a45}{check\+Connection}} (\mbox{\hyperlink{class_station}{Station}} $\ast$station1, \mbox{\hyperlink{class_station}{Station}} $\ast$station2, int \&edge\+Capacity)
+\begin{DoxyCompactList}\small\item\em Boolean function that checks if there is a direct connection between two stations. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_database_a3789066cabc515c0c7fa346eb9045288}{change\+Capacity}} (\mbox{\hyperlink{class_station}{Station}} $\ast$station1, \mbox{\hyperlink{class_station}{Station}} $\ast$station2, int new\+Capacity)
-\begin{DoxyCompactList}\small\item\em Changes capacity from an edge. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Changes the capacity of an edge between two stations. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+Class that reads the files and contains the data\+Structures created. 
 
 \doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{class_database_a3789066cabc515c0c7fa346eb9045288}\label{class_database_a3789066cabc515c0c7fa346eb9045288}} 
@@ -52,38 +50,149 @@ void \mbox{\hyperlink{class_database_a3789066cabc515c0c7fa346eb9045288}{change\+
 
 
 
-Changes capacity from an edge. 
+Changes the capacity of an edge between two stations. 
 
-Time Complexity\+: O() Passes on the arguments to the corresponding change\+Capacity function of the graph object, and returns its boolean result. 
+Time Complexity\+: O(\+E), where E is the number of adjacent edges. 
 \begin{DoxyParams}{Parameters}
-{\em station1} & \\
+{\em station1} & -\/ pointer to the first station \\
 \hline
-{\em station2} & \\
+{\em station2} & -\/ pointer to the second station \\
 \hline
-{\em new\+Capacity} & \\
+{\em new\+Capacity} & -\/ new capacity of the edge \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{class_database_a1b4c02e3b1b47bf40138c3857521b011}\label{class_database_a1b4c02e3b1b47bf40138c3857521b011}} 
+\mbox{\Hypertarget{class_database_a204246e03cb54859cf9374557bb18a45}\label{class_database_a204246e03cb54859cf9374557bb18a45}} 
 \index{Database@{Database}!checkConnection@{checkConnection}}
 \index{checkConnection@{checkConnection}!Database@{Database}}
 \doxysubsubsection{\texorpdfstring{checkConnection()}{checkConnection()}}
-{\footnotesize\ttfamily bool Database\+::check\+Connection (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_station}{Station}} $\ast$}]{station1,  }\item[{\mbox{\hyperlink{class_station}{Station}} $\ast$}]{station2,  }\item[{int \&}]{cur\+Capacity }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool Database\+::check\+Connection (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_station}{Station}} $\ast$}]{station1,  }\item[{\mbox{\hyperlink{class_station}{Station}} $\ast$}]{station2,  }\item[{int \&}]{edge\+Capacity }\end{DoxyParamCaption})}
 
 
 
-Checks the connection between stations. 
+Boolean function that checks if there is a direct connection between two stations. 
 
-Time Complexity\+: O() Passes on the arguments to the corresponding check\+Connection function of the graph object, and returns its boolean result. 
+Time Complexity\+: O(\+E), where E is the number of adjacent edges. 
 \begin{DoxyParams}{Parameters}
-{\em station1} & \\
+{\em station1} & -\/ pointer to the first station \\
 \hline
-{\em station2} & \\
+{\em station2} & -\/ pointer to the second station \\
 \hline
-{\em cur\+Capacity} & \\
+{\em edge\+Capacity} & -\/ reference to an integer that will be filled with the capacity of the edge \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
+true if there is a direct connection, false otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_database_a808540621870bcc3b14247cecb8e4147}\label{class_database_a808540621870bcc3b14247cecb8e4147}} 
+\index{Database@{Database}!getDistrictToMunicipalities@{getDistrictToMunicipalities}}
+\index{getDistrictToMunicipalities@{getDistrictToMunicipalities}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{getDistrictToMunicipalities()}{getDistrictToMunicipalities()}}
+{\footnotesize\ttfamily map$<$ string, set$<$ string $>$ $>$ \& Database\+::get\+District\+To\+Municipalities (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+
+
+Returns the map that associates each district to the set of municipalities in that district. 
+
+Time complexity\+: O(1) \begin{DoxyReturn}{Returns}
+Map that associates each district to the set of municipalities in that district. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_database_a54d0a0cdcf00c74a271c60cc4b59e027}\label{class_database_a54d0a0cdcf00c74a271c60cc4b59e027}} 
+\index{Database@{Database}!getMaxFlowBetweenStations@{getMaxFlowBetweenStations}}
+\index{getMaxFlowBetweenStations@{getMaxFlowBetweenStations}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{getMaxFlowBetweenStations()}{getMaxFlowBetweenStations()}}
+{\footnotesize\ttfamily int Database\+::get\+Max\+Flow\+Between\+Stations (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_station}{Station}} $\ast$}]{station1,  }\item[{\mbox{\hyperlink{class_station}{Station}} $\ast$}]{station2 }\end{DoxyParamCaption})}
+
+
+
+Using Edmonds-\/\+Karp algorithm, calculates the maximum flow between two stations. 
+
+Time Complexity\+: O(\+VE$^\wedge$2), where E is the number of edges and V is the number of nodes. 
+\begin{DoxyParams}{Parameters}
+{\em station1} & -\/ source station \\
+\hline
+{\em station2} & -\/ destination station \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+maximum flow between the two stations 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_database_ad221311a8f1ab9a850903233db345f2a}\label{class_database_ad221311a8f1ab9a850903233db345f2a}} 
+\index{Database@{Database}!getMaxTrainsStation@{getMaxTrainsStation}}
+\index{getMaxTrainsStation@{getMaxTrainsStation}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{getMaxTrainsStation()}{getMaxTrainsStation()}}
+{\footnotesize\ttfamily int Database\+::get\+Max\+Trains\+Station (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_station}{Station}} $\ast$}]{station }\end{DoxyParamCaption})}
+
+
+
+Returns the maximum number of trains that can be in a station at the same time. 
+
+Time Complexity\+: O(\+V E$^\wedge$2), where E is the number of edges and V is the number of nodes. 
+\begin{DoxyParams}{Parameters}
+{\em station} & -\/ station to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+maximum number of trains that can be in the station at the same time 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_database_a374a84434ff46abe88dc45e42aa4e309}\label{class_database_a374a84434ff46abe88dc45e42aa4e309}} 
+\index{Database@{Database}!getMinCostFlow@{getMinCostFlow}}
+\index{getMinCostFlow@{getMinCostFlow}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{getMinCostFlow()}{getMinCostFlow()}}
+{\footnotesize\ttfamily stack$<$ \mbox{\hyperlink{class_edge}{Edge}} $\ast$ $>$ Database\+::get\+Min\+Cost\+Flow (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_station}{Station}} $\ast$}]{station1,  }\item[{\mbox{\hyperlink{class_station}{Station}} $\ast$}]{station2,  }\item[{double $\ast$}]{flow,  }\item[{double $\ast$}]{cost\+Service }\end{DoxyParamCaption})}
+
+
+
+Using dijkstra algorithm, calculates the minimum cost(cost of service $\ast$ capacity) flow between two stations. 
+
+Time Complexity\+: O((V+E log V), where E is the number of edges and V is the number of nodes. 
+\begin{DoxyParams}{Parameters}
+{\em station1} & -\/ source station \\
+\hline
+{\em station2} & -\/ destination station \\
+\hline
+{\em flow} & -\/ pointer to the variable that will store the value of the flow \\
+\hline
+{\em cost\+Service} & -\/ pointer to the variable that will store the value of the cost of service \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+stack of edges of the path with the minimum cost 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_database_aeae848e8964400b346e9c0d76e7ae984}\label{class_database_aeae848e8964400b346e9c0d76e7ae984}} 
+\index{Database@{Database}!getStation@{getStation}}
+\index{getStation@{getStation}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{getStation()}{getStation()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_station}{Station}} $\ast$ Database\+::get\+Station (\begin{DoxyParamCaption}\item[{string}]{station\+Name }\end{DoxyParamCaption})}
+
+
+
+Given a station name, returns a pointer to the station. 
+
+Time complexity\+: O(1) 
+\begin{DoxyParams}{Parameters}
+{\em station\+Name} & -\/ Name of the station to be returned. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the station. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_database_acd8da1ab30207e9f5133661cf9613b5e}\label{class_database_acd8da1ab30207e9f5133661cf9613b5e}} 
+\index{Database@{Database}!getStationsFromMunicipality@{getStationsFromMunicipality}}
+\index{getStationsFromMunicipality@{getStationsFromMunicipality}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{getStationsFromMunicipality()}{getStationsFromMunicipality()}}
+{\footnotesize\ttfamily set$<$ string $>$ Database\+::get\+Stations\+From\+Municipality (\begin{DoxyParamCaption}\item[{string}]{municipality }\end{DoxyParamCaption})}
+
+
+
+Returns the set of stations in a given municipality. 
+
+Time complexity\+: O(1) 
+\begin{DoxyParams}{Parameters}
+{\em municipality} & -\/ municipality to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Set of stations in the given municipality. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_database_a3bfdf09c2fd68938bb776d10f7fc9b07}\label{class_database_a3bfdf09c2fd68938bb776d10f7fc9b07}} 
 \index{Database@{Database}!getTopDistricts@{getTopDistricts}}
@@ -93,15 +202,15 @@ Time Complexity\+: O() Passes on the arguments to the corresponding check\+Conne
 
 
 
-Get the top \char`\"{}k\char`\"{} districts based on total flow. 
+Get the top \char`\"{}k\char`\"{} districts based on the sum of the flow values of all of their stations. 
 
-Time Complexity\+: O(\+N$\ast$\+M) Calculates the maximum flow through sets of stations in each district, and returns a vector of the top k districts based on this flow metric. 
+Time Complexity\+: O(\+VE$^\wedge$2\+P$^\wedge$2$\ast$\+D), where E is the number of edges, V is the number of nodes in the graph, P is the number of nodes in the input set and D is the number of districts. 
 \begin{DoxyParams}{Parameters}
-{\em k} & \\
+{\em k} & -\/ number of districts to return \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-
+vector of pairs of district name and total flow 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_database_a1e206e04383f3ed0c4301edc323ba8c8}\label{class_database_a1e206e04383f3ed0c4301edc323ba8c8}} 
 \index{Database@{Database}!getTopMunicipalities@{getTopMunicipalities}}
@@ -111,15 +220,50 @@ Time Complexity\+: O(\+N$\ast$\+M) Calculates the maximum flow through sets of s
 
 
 
-Get the top \char`\"{}k\char`\"{} municipalities based on total flow. 
+Get the top \char`\"{}k\char`\"{} municipalities based on the sum of the flow values of all of their stations. 
 
-Time Complexity\+: O(m(slog(s)+e) Returns a vector of the top k municipalities based on their total flow (sum of flow values) from all of their stations in a graph. 
+Time Complexity\+: O(\+VE$^\wedge$2\+P$^\wedge$2$\ast$\+M), where E is the number of edges, V is the number of nodes in the graph, P is the number of nodes in the input set and M is the number of municipalities. 
 \begin{DoxyParams}{Parameters}
-{\em k} & \\
+{\em k} & -\/ number of municipalities to return \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
+vector of pairs of municipality name and total flow 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_database_ad27eb07b934c6938d95713d87045d16f}\label{class_database_ad27eb07b934c6938d95713d87045d16f}} 
+\index{Database@{Database}!loadData@{loadData}}
+\index{loadData@{loadData}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{loadData()}{loadData()}}
+{\footnotesize\ttfamily void Database\+::load\+Data (\begin{DoxyParamCaption}\item[{set$<$ string $>$}]{stations,  }\item[{set$<$ string $>$}]{lines }\end{DoxyParamCaption})}
 
+
+
+Reads csv files and populates the data structures (The arguments are filters, if empty, all stations are read) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stations} & -\/ set of stations to read (if empty, all stations are read) \\
+\hline
+{\em lines} & -\/ set of railway lines to read (if empty, all lines are read)\\
+\hline
+\end{DoxyParams}
+Time complexity\+: O(\+A) + O(\+B), where A is the number of lines in stations.\+csv and B is the number of lines in network.\+csv \mbox{\Hypertarget{class_database_a39c0710754f020a3a661e3c77b866e12}\label{class_database_a39c0710754f020a3a661e3c77b866e12}} 
+\index{Database@{Database}!maxFlowAllPairs@{maxFlowAllPairs}}
+\index{maxFlowAllPairs@{maxFlowAllPairs}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{maxFlowAllPairs()}{maxFlowAllPairs()}}
+{\footnotesize\ttfamily vector$<$ pair$<$ \mbox{\hyperlink{class_node}{Node}} $\ast$, \mbox{\hyperlink{class_node}{Node}} $\ast$ $>$ $>$ Database\+::max\+Flow\+All\+Pairs (\begin{DoxyParamCaption}\item[{int $\ast$}]{max\+Flow }\end{DoxyParamCaption})}
+
+
+
+Returns the pairs of nodes with the maximum flow between them and the value of the maximum flow(by reference). 
+
+Time Complexity\+: O(\+V$^\wedge$3\+E$^\wedge$2), where E is the number of edges and V is the number of nodes. 
+\begin{DoxyParams}{Parameters}
+{\em max\+Flow} & -\/ Pointer to the variable that will store the value of the maximum flow. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vector of pairs of nodes with the maximum flow between them. 
 \end{DoxyReturn}
 
 

@@ -8,6 +8,11 @@
  */
 class Menu {
     public:
+        /**
+         * @brief Class constructor of Menu that sets the database
+         * @details Time complexity: O(1)
+         * @param database - Database to be used
+         */
         Menu(Database& database) : database(database) {};
         void showDataSelectionMenu();
     private:

@@ -8,7 +8,7 @@
 
 class Edge;
 /**
- * @brief Class that processes everything that uses nodes.
+ * @brief Represents a node in the graph. Contains a station and a vector of adjacent edges.
  */
 class Node{
     public:
@@ -16,11 +16,11 @@ class Node{
         bool operator<(Node& node);
 
         Station& getStation();
-        vector<Edge *> getAdj();
+        vector<Edge *>& getAdj();
         bool isVisited();
         double getDistance();
         Edge *getPath();
-        vector<Edge *> getIncoming();
+        vector<Edge *>& getIncoming();
         string getStationName();
 
         void setVisited(bool visited);
@@ -40,7 +40,7 @@ class Node{
         Edge *path = nullptr;
 };
 /**
- * @brief Class that processes everything that uses edges.
+ * @brief Represents an edge in the graph. Contains a destination node, a capacity, a service type and a flow.
  */
 class Edge {
 public:
@@ -56,7 +56,6 @@ public:
 
     void setFlow(double flow);
     void setReverse(Edge* reverse);
-    void setSelected(bool selected);
     void setCapacity(int capacity);
 
     bool operator<(Edge& edge);

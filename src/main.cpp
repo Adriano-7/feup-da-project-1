@@ -1,7 +1,7 @@
 #include "headers/Database.h"
 #include "headers/Menu.h"
 
-/*
+/**
  * @brief Initializes Program
  */
 int main(){

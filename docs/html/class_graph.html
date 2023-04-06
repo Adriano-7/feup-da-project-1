@@ -75,6 +75,11 @@ $(function() {
   <div class="headertitle"><div class="title">Graph Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Class that represents a graph. Contains a map of nodes, where the key is the station name. Each node has a set of edges.  
+ <a href="class_graph.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_graph_8h_source.html">Graph.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -82,52 +87,51 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a0da59714ff8914a1762adf160c72aa0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a node to the graph.  <br /></td></tr>
 <tr class="separator:a0da59714ff8914a1762adf160c72aa0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5bc74e5bbc17e50c26b3698061c715c9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a5bc74e5bbc17e50c26b3698061c715c9">addEdge</a> (<a class="el" href="class_node.html">Node</a> *source, <a class="el" href="class_node.html">Node</a> *dest, int capacity, ServiceType service)</td></tr>
-<tr class="memdesc:a5bc74e5bbc17e50c26b3698061c715c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds an edge to the graph.  <br /></td></tr>
+<tr class="memdesc:a5bc74e5bbc17e50c26b3698061c715c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a unidirectional edge to the graph.  <br /></td></tr>
 <tr class="separator:a5bc74e5bbc17e50c26b3698061c715c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3cc85821bda80afe8517d4699f2cacd0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a3cc85821bda80afe8517d4699f2cacd0">addBidirectionalEdge</a> (<a class="el" href="class_node.html">Node</a> *sourceNode, <a class="el" href="class_node.html">Node</a> *destNode, int capacity, ServiceType service)</td></tr>
-<tr class="memdesc:a3cc85821bda80afe8517d4699f2cacd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a Bidirectional <a class="el" href="class_edge.html">Edge</a> to the graph.  <br /></td></tr>
+<tr class="memdesc:a3cc85821bda80afe8517d4699f2cacd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a Bidirectional <a class="el" href="class_edge.html" title="Represents an edge in the graph. Contains a destination node, a capacity, a service type and a flow.">Edge</a> to the graph.  <br /></td></tr>
 <tr class="separator:a3cc85821bda80afe8517d4699f2cacd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac4f411aaa3c247488d42550d8dfd7553"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#ac4f411aaa3c247488d42550d8dfd7553">eraseNode</a> (<a class="el" href="class_node.html">Node</a> *node)</td></tr>
-<tr class="memdesc:ac4f411aaa3c247488d42550d8dfd7553"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a node.  <br /></td></tr>
+<tr class="memdesc:ac4f411aaa3c247488d42550d8dfd7553"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a node from the graph.  <br /></td></tr>
 <tr class="separator:ac4f411aaa3c247488d42550d8dfd7553"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afb4909a9f294f6f1af573d21f85fb1ab"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_node.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#afb4909a9f294f6f1af573d21f85fb1ab">getNode</a> (string stationName)</td></tr>
-<tr class="memdesc:afb4909a9f294f6f1af573d21f85fb1ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a node.  <br /></td></tr>
+<tr class="memdesc:afb4909a9f294f6f1af573d21f85fb1ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given the name of a station, returns the node associated with it.  <br /></td></tr>
 <tr class="separator:afb4909a9f294f6f1af573d21f85fb1ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a23825eeba3e8fbb811d4e1b67042e97f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_node.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a23825eeba3e8fbb811d4e1b67042e97f">getNode</a> (<a class="el" href="class_station.html">Station</a> *station)</td></tr>
-<tr class="memdesc:a23825eeba3e8fbb811d4e1b67042e97f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a node.  <br /></td></tr>
+<tr class="memdesc:a23825eeba3e8fbb811d4e1b67042e97f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given a station, returns the node associated with it.  <br /></td></tr>
 <tr class="separator:a23825eeba3e8fbb811d4e1b67042e97f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d35a32674f4cd52bf313596fa1ede80"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a6d35a32674f4cd52bf313596fa1ede80">getNumNodes</a> ()</td></tr>
-<tr class="memdesc:a6d35a32674f4cd52bf313596fa1ede80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of nodes.  <br /></td></tr>
-<tr class="separator:a6d35a32674f4cd52bf313596fa1ede80"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa93f64130d4c6ee4656a4f77457ca3fa"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#aa93f64130d4c6ee4656a4f77457ca3fa">bfs</a> (<a class="el" href="class_node.html">Node</a> *source, <a class="el" href="class_node.html">Node</a> *dest)</td></tr>
-<tr class="memdesc:aa93f64130d4c6ee4656a4f77457ca3fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">BFS.  <br /></td></tr>
+<tr class="memdesc:aa93f64130d4c6ee4656a4f77457ca3fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds paths between the source and the destination.  <br /></td></tr>
 <tr class="separator:aa93f64130d4c6ee4656a4f77457ca3fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac7e5157dcba34abbe92a3c06b905eefb"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#ac7e5157dcba34abbe92a3c06b905eefb">dijkstra</a> (<a class="el" href="class_node.html">Node</a> *source, <a class="el" href="class_node.html">Node</a> *dest)</td></tr>
-<tr class="memdesc:ac7e5157dcba34abbe92a3c06b905eefb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dijkstra.  <br /></td></tr>
+<tr class="memdesc:ac7e5157dcba34abbe92a3c06b905eefb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the shortest path between the source and the destination using the cost of the service (and the capacity).  <br /></td></tr>
 <tr class="separator:ac7e5157dcba34abbe92a3c06b905eefb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9af6a3a2293f47efb5b9d02adb16014a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a9af6a3a2293f47efb5b9d02adb16014a">EdmondsKarp</a> (<a class="el" href="class_node.html">Node</a> *source, <a class="el" href="class_node.html">Node</a> *dest)</td></tr>
-<tr class="memdesc:a9af6a3a2293f47efb5b9d02adb16014a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Edmonds Karp.  <br /></td></tr>
+<tr class="memdesc:a9af6a3a2293f47efb5b9d02adb16014a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Edmonds Karp - Finds the maximum flow in the network flow graph.  <br /></td></tr>
 <tr class="separator:a9af6a3a2293f47efb5b9d02adb16014a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a884cb113553eaeb2de930913e434f006"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="class_node.html">Node</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a884cb113553eaeb2de930913e434f006">BottleneckDijkstra</a> (<a class="el" href="class_node.html">Node</a> *source, <a class="el" href="class_node.html">Node</a> *dest, double *flow, double *cost)</td></tr>
-<tr class="memdesc:a884cb113553eaeb2de930913e434f006"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ford Fulkerson.  <br /></td></tr>
-<tr class="separator:a884cb113553eaeb2de930913e434f006"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43eca8ca3513afdbcfe5f0e73629678b"><td class="memItemLeft" align="right" valign="top">stack&lt; <a class="el" href="class_edge.html">Edge</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a43eca8ca3513afdbcfe5f0e73629678b">BottleneckDijkstra</a> (<a class="el" href="class_node.html">Node</a> *source, <a class="el" href="class_node.html">Node</a> *dest, double *flow, double *costService)</td></tr>
+<tr class="memdesc:a43eca8ca3513afdbcfe5f0e73629678b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uses the Dijkstra algorithm to find the shortest path (cost of service) and then calculates the bottleneck flow.  <br /></td></tr>
+<tr class="separator:a43eca8ca3513afdbcfe5f0e73629678b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1aa6a52e1f06afe31061695fb294d005"><td class="memItemLeft" align="right" valign="top">vector&lt; pair&lt; <a class="el" href="class_node.html">Node</a> *, <a class="el" href="class_node.html">Node</a> * &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a1aa6a52e1f06afe31061695fb294d005">maxFlowAllPairs</a> (int *max_flow)</td></tr>
-<tr class="memdesc:a1aa6a52e1f06afe31061695fb294d005"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum Flow.  <br /></td></tr>
+<tr class="memdesc:a1aa6a52e1f06afe31061695fb294d005"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterates through all pairs of nodes in the network and uses the Edmonds Karp algorithm to find the maximum flow between them.  <br /></td></tr>
 <tr class="separator:a1aa6a52e1f06afe31061695fb294d005"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad0441ca6aa58014b2922f57da01fba03"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#ad0441ca6aa58014b2922f57da01fba03">sumSomePairsFlow</a> (set&lt; <a class="el" href="class_node.html">Node</a> * &gt; nodes, int *max_flow)</td></tr>
-<tr class="memdesc:ad0441ca6aa58014b2922f57da01fba03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sum of the Maximum Flow.  <br /></td></tr>
-<tr class="separator:ad0441ca6aa58014b2922f57da01fba03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0280d09e3878357672dcfac7a3f9835"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#ab0280d09e3878357672dcfac7a3f9835">sumSomePairsFlow</a> (set&lt; <a class="el" href="class_node.html">Node</a> * &gt; nodes, int *sumFlow)</td></tr>
+<tr class="memdesc:ab0280d09e3878357672dcfac7a3f9835"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the sum of the maximum flows between all pairs of nodes in the input set.  <br /></td></tr>
+<tr class="separator:ab0280d09e3878357672dcfac7a3f9835"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1284d28d6a656e876188f5f8f4cf2263"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a1284d28d6a656e876188f5f8f4cf2263">maxIncomingFlow</a> (<a class="el" href="class_node.html">Node</a> *node)</td></tr>
-<tr class="memdesc:a1284d28d6a656e876188f5f8f4cf2263"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find the maximum incoming flow.  <br /></td></tr>
+<tr class="memdesc:a1284d28d6a656e876188f5f8f4cf2263"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the maximum incoming flow to the input node.  <br /></td></tr>
 <tr class="separator:a1284d28d6a656e876188f5f8f4cf2263"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab3ba5bda7040cb42001d35fb0684a02e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#ab3ba5bda7040cb42001d35fb0684a02e">checkConnection</a> (<a class="el" href="class_node.html">Node</a> *source, <a class="el" href="class_node.html">Node</a> *dest, int &amp;curCapacity)</td></tr>
-<tr class="memdesc:ab3ba5bda7040cb42001d35fb0684a02e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if there is a connection between two nodes.  <br /></td></tr>
-<tr class="separator:ab3ba5bda7040cb42001d35fb0684a02e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4762ccdb8e3f00e183e8eacb6f9c47cf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a4762ccdb8e3f00e183e8eacb6f9c47cf">checkConnection</a> (<a class="el" href="class_node.html">Node</a> *source, <a class="el" href="class_node.html">Node</a> *dest, int &amp;edgeCapacity)</td></tr>
+<tr class="memdesc:a4762ccdb8e3f00e183e8eacb6f9c47cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if two nodes are adjacent.  <br /></td></tr>
+<tr class="separator:a4762ccdb8e3f00e183e8eacb6f9c47cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1f04f528f54777e5559221cb22dbe62b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a1f04f528f54777e5559221cb22dbe62b">changeCapacity</a> (<a class="el" href="class_node.html">Node</a> *source, <a class="el" href="class_node.html">Node</a> *dest, int newCapacity)</td></tr>
 <tr class="memdesc:a1f04f528f54777e5559221cb22dbe62b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the capacity of an edge.  <br /></td></tr>
 <tr class="separator:a1f04f528f54777e5559221cb22dbe62b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Class that represents a graph. Contains a map of nodes, where the key is the station name. Each node has a set of edges. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a3cc85821bda80afe8517d4699f2cacd0" name="a3cc85821bda80afe8517d4699f2cacd0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3cc85821bda80afe8517d4699f2cacd0">&#9670;&#160;</a></span>addBidirectionalEdge()</h2>
 
@@ -166,13 +170,13 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Adds a Bidirectional <a class="el" href="class_edge.html">Edge</a> to the graph. </p>
-<p>Time Complexity: O(1) Adds a new bidirectional edge between two nodes to the graph. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Adds a Bidirectional <a class="el" href="class_edge.html" title="Represents an edge in the graph. Contains a destination node, a capacity, a service type and a flow.">Edge</a> to the graph. </p>
+<p>Time Complexity: O(1) </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">sourceNode</td><td></td></tr>
-    <tr><td class="paramname">destNode</td><td></td></tr>
-    <tr><td class="paramname">capacity</td><td></td></tr>
-    <tr><td class="paramname">service</td><td></td></tr>
+    <tr><td class="paramname">sourceNode</td><td>- The source node. </td></tr>
+    <tr><td class="paramname">destNode</td><td>- The destination node. </td></tr>
+    <tr><td class="paramname">capacity</td><td>- Number of trains that can pass through the edge.r </td></tr>
+    <tr><td class="paramname">service</td><td>- Which can be either Standard or AlfaPendular </td></tr>
   </table>
   </dd>
 </dl>
@@ -218,17 +222,17 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Adds an edge to the graph. </p>
-<p>Time Complexity: O(1) Adds a new edge between two nodes to the graph. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Adds a unidirectional edge to the graph. </p>
+<p>Time Complexity: O(1) </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">sourceNode</td><td></td></tr>
-    <tr><td class="paramname">destNode</td><td></td></tr>
-    <tr><td class="paramname">capacity</td><td></td></tr>
-    <tr><td class="paramname">service</td><td></td></tr>
+    <tr><td class="paramname">sourceNode</td><td>- The source node. </td></tr>
+    <tr><td class="paramname">destNode</td><td>- The destination node. </td></tr>
+    <tr><td class="paramname">capacity</td><td>- Number of trains that can pass through the edge.r </td></tr>
+    <tr><td class="paramname">service</td><td>- Which can be either Standard or AlfaPendular </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the edge was added successfully, false otherwise. </dd></dl>
 
 </div>
 </div>
@@ -249,13 +253,13 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Adds a node to the graph. </p>
-<p>Time Complexity: O(n) Adds a new node to the graph representing station. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Time Complexity: O(log n), where n is the number of nodes in the graph. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">station</td><td></td></tr>
+    <tr><td class="paramname">station</td><td>- The station of the node to be added. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the node was added successfully, false otherwise. </dd></dl>
 
 </div>
 </div>
@@ -285,15 +289,67 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>BFS. </p>
-<p>Time Complexity: O(E+V) Performs a breath first search on the graph starting from a source to a destination. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Finds paths between the source and the destination. </p>
+<p>Time Complexity: O(E+V), where E is the number of edges and V is the number of nodes. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">source</td><td></td></tr>
-    <tr><td class="paramname">dest</td><td></td></tr>
+    <tr><td class="paramname">source</td><td>- The source node. </td></tr>
+    <tr><td class="paramname">dest</td><td>- The destination node. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>True if there is a path between the source and the destination, false otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a43eca8ca3513afdbcfe5f0e73629678b" name="a43eca8ca3513afdbcfe5f0e73629678b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43eca8ca3513afdbcfe5f0e73629678b">&#9670;&#160;</a></span>BottleneckDijkstra()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">stack&lt; <a class="el" href="class_edge.html">Edge</a> * &gt; Graph::BottleneckDijkstra </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_node.html">Node</a> *&#160;</td>
+          <td class="paramname"><em>source</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_node.html">Node</a> *&#160;</td>
+          <td class="paramname"><em>dest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>flow</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>costService</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Uses the Dijkstra algorithm to find the shortest path (cost of service) and then calculates the bottleneck flow. </p>
+<p>Time Complexity: O((V+E log V), where E is the number of edges and V is the number of nodes. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">source</td><td>- Source node </td></tr>
+    <tr><td class="paramname">dest</td><td>- Destination node </td></tr>
+    <tr><td class="paramname">flow</td><td>- Pointer to that will be filled with the bottleneck flow </td></tr>
+    <tr><td class="paramname">costService</td><td>- Pointer to that will be filled with the cost of the service </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Stack with the edges of the path. </dd></dl>
 
 </div>
 </div>
@@ -330,19 +386,19 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Changes the capacity of an edge. </p>
-<p>Time Complexity: O(E) Changes the capacity of an existing edge in a graph, given the source and destination nodes of the edge and the new capacity value. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Time Complexity: O(E), where E is the number of adjacent edges. Changes the capacity of the edges between two nodes with the new capacity. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">source</td><td></td></tr>
-    <tr><td class="paramname">dest</td><td></td></tr>
-    <tr><td class="paramname">newCapacity</td><td></td></tr>
+    <tr><td class="paramname">source</td><td>- Source node of the edge. </td></tr>
+    <tr><td class="paramname">dest</td><td>- Destination node of the edge. </td></tr>
+    <tr><td class="paramname">newCapacity</td><td>- New capacity of the edge. </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="ab3ba5bda7040cb42001d35fb0684a02e" name="ab3ba5bda7040cb42001d35fb0684a02e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab3ba5bda7040cb42001d35fb0684a02e">&#9670;&#160;</a></span>checkConnection()</h2>
+<a id="a4762ccdb8e3f00e183e8eacb6f9c47cf" name="a4762ccdb8e3f00e183e8eacb6f9c47cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4762ccdb8e3f00e183e8eacb6f9c47cf">&#9670;&#160;</a></span>checkConnection()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -363,7 +419,7 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int &amp;&#160;</td>
-          <td class="paramname"><em>curCapacity</em>&#160;</td>
+          <td class="paramname"><em>edgeCapacity</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -373,16 +429,16 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Check if there is a connection between two nodes. </p>
-<p>Time Complexity: O(E) Checks if there is a connection (edge) between two nodes in a graph and updates the current capacity of the edge (if it exists) by reference. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Check if two nodes are adjacent. </p>
+<p>Time Complexity: O(E), where E is the number of adjacent edges. Checks if two nodes are adjacent, given the source and destination nodes of the edge. And updates the var edgeCapacity with the capacity of the edge. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">source</td><td></td></tr>
-    <tr><td class="paramname">dest</td><td></td></tr>
-    <tr><td class="paramname">curCapacity</td><td></td></tr>
+    <tr><td class="paramname">source</td><td>- Source node of the edge. </td></tr>
+    <tr><td class="paramname">dest</td><td>- Destination node of the edge. </td></tr>
+    <tr><td class="paramname">edgeCapacity</td><td>- Pointer to the variable that will store the capacity of the edge. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the nodes are adjacent, false otherwise. </dd></dl>
 
 </div>
 </div>
@@ -412,15 +468,15 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Dijkstra. </p>
-<p>Time Complexity: O(E*log(N)) Performs the Dijkstra's algorithm to find the shortest path between the source and the destination. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Finds the shortest path between the source and the destination using the cost of the service (and the capacity). </p>
+<p>Time Complexity: O((V+E log V), where E is the number of edges and V is the number of nodes. Taking into account the cost of Service and the number of trains that can pass through the edge finds the shortest path between the source and the destination. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">source</td><td></td></tr>
-    <tr><td class="paramname">dest</td><td></td></tr>
+    <tr><td class="paramname">source</td><td>- The source node. </td></tr>
+    <tr><td class="paramname">dest</td><td>- The destination node. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The cost of the path. </dd></dl>
 
 </div>
 </div>
@@ -450,15 +506,15 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Edmonds Karp. </p>
-<p>Time Complexity: O(VE^2) Performs the Edmonds Karp algorithm for finding the maximum flow in the network flow graph. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Edmonds Karp - Finds the maximum flow in the network flow graph. </p>
+<p>Time Complexity: O(VE^2), where E is the number of edges and V is the number of nodes. Using BFS finds the maximum flow in the network flow graph between the source and the destination. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">source</td><td></td></tr>
-    <tr><td class="paramname">dest</td><td></td></tr>
+    <tr><td class="paramname">source</td><td>- Source node </td></tr>
+    <tr><td class="paramname">dest</td><td>- Destination node </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The maximum flow. </dd></dl>
 
 </div>
 </div>
@@ -478,66 +534,14 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Removes a node. </p>
-<p>Time Complexity: O((number of edges connected)*log(n)) Removes a node from the graph. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Removes a node from the graph. </p>
+<p>Time Complexity: O(E+I), where E is the number of outgoing edges and I is the number of incoming edges. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">node</td><td></td></tr>
+    <tr><td class="paramname">node</td><td>- The node to be removed. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
-
-</div>
-</div>
-<a id="a884cb113553eaeb2de930913e434f006" name="a884cb113553eaeb2de930913e434f006"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a884cb113553eaeb2de930913e434f006">&#9670;&#160;</a></span>BottleneckDijkstra()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">vector&lt; <a class="el" href="class_node.html">Node</a> * &gt; Graph::BottleneckDijkstra </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_node.html">Node</a> *&#160;</td>
-          <td class="paramname"><em>source</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_node.html">Node</a> *&#160;</td>
-          <td class="paramname"><em>dest</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double *&#160;</td>
-          <td class="paramname"><em>flow</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double *&#160;</td>
-          <td class="paramname"><em>cost</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Ford Fulkerson. </p>
-<p>Time Complexity: O(f(E+V)log(V)) Performs the Ford Fulkerson algorithm using Dijkstra's to find the shortest augmenting path in each iteration. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">source</td><td></td></tr>
-    <tr><td class="paramname">dest</td><td></td></tr>
-    <tr><td class="paramname">flow</td><td></td></tr>
-    <tr><td class="paramname">cost</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the node was removed successfully, false otherwise. </dd></dl>
 
 </div>
 </div>
@@ -557,14 +561,14 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Gets a node. </p>
-<p>Time Complexity: O(1) Gets a node. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Given a station, returns the node associated with it. </p>
+<p>Time Complexity: O(log n), where n is the number of nodes in the graph. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">station</td><td></td></tr>
+    <tr><td class="paramname">station</td><td>- A pointer to the station. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to the node associated with the station, nullptr if the station does not exist. </dd></dl>
 
 </div>
 </div>
@@ -584,34 +588,14 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Gets a node. </p>
-<p>Time Complexity: O(1) Gets a node. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Given the name of a station, returns the node associated with it. </p>
+<p>Time Complexity: O(log n), where n is the number of nodes in the graph. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">stationName</td><td></td></tr>
+    <tr><td class="paramname">stationName</td><td>- The name of the station. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
-
-</div>
-</div>
-<a id="a6d35a32674f4cd52bf313596fa1ede80" name="a6d35a32674f4cd52bf313596fa1ede80"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6d35a32674f4cd52bf313596fa1ede80">&#9670;&#160;</a></span>getNumNodes()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int Graph::getNumNodes </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Gets the number of nodes. </p>
-<p>Time Complexity: O(1) Gets the number of nodes from the graph. </p><dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to the node associated with the station, nullptr if the station does not exist. </dd></dl>
 
 </div>
 </div>
@@ -631,14 +615,14 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Maximum Flow. </p>
-<p>Time Complexity: O(n^3*f) Finds the maximum flow that can be achieved between all pairs of nodes in the graph using Edmonds Karp algorithm. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Iterates through all pairs of nodes in the network and uses the Edmonds Karp algorithm to find the maximum flow between them. </p>
+<p>Time Complexity: O(V^3E^2), where E is the number of edges and V is the number of nodes. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">maxFlow</td><td></td></tr>
+    <tr><td class="paramname">maxFlow</td><td>- Pointer to the variable that will store the maximum flow. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A vector with the pairs of nodes that have the maximum flow. </dd></dl>
 
 </div>
 </div>
@@ -658,19 +642,19 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Find the maximum incoming flow. </p>
-<p>Time Complexity: O(N^2) Find the maximum incoming flow to the input node from its adjacent nodes in the graph. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Calculates the maximum incoming flow to the input node. </p>
+<p>Time Complexity: O(V E^2), where E is the number of edges and V is the number of nodes. Creates a super source node and connects it to all nodes that have only one outgoing edge. Then uses the Edmonds Karp algorithm to find the maximum flow between the super source and the input node. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">node</td><td></td></tr>
+    <tr><td class="paramname">node</td><td>- <a class="el" href="class_node.html" title="Represents a node in the graph. Contains a station and a vector of adjacent edges.">Node</a> to calculate the maximum incoming flow. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The maximum incoming flow to the input node. </dd></dl>
 
 </div>
 </div>
-<a id="ad0441ca6aa58014b2922f57da01fba03" name="ad0441ca6aa58014b2922f57da01fba03"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad0441ca6aa58014b2922f57da01fba03">&#9670;&#160;</a></span>sumSomePairsFlow()</h2>
+<a id="ab0280d09e3878357672dcfac7a3f9835" name="ab0280d09e3878357672dcfac7a3f9835"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0280d09e3878357672dcfac7a3f9835">&#9670;&#160;</a></span>sumSomePairsFlow()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -685,7 +669,7 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int *&#160;</td>
-          <td class="paramname"><em>max_flow</em>&#160;</td>
+          <td class="paramname"><em>sumFlow</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -695,11 +679,11 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Sum of the Maximum Flow. </p>
-<p>Time Complexity: O(n^2*E^2*V) Calculates the sum of the maximum flow between all possible pairs of nodes in the input set and stores the result in a variable pointed to by an input integer pointer. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Calculates the sum of the maximum flows between all pairs of nodes in the input set. </p>
+<p>Time Complexity: O(V E^2 * P^2), where E is the number of edges, V is the number of nodes in the graph and P is the number of nodes in the input set. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">nodes</td><td></td></tr>
-    <tr><td class="paramname">max_flow</td><td></td></tr>
+    <tr><td class="paramname">nodes</td><td>- Set of nodes to calculate the sum of the maximum flows between them. </td></tr>
+    <tr><td class="paramname">sumFlow</td><td>- Pointer to the variable that will store the sum of the maximum flows. </td></tr>
   </table>
   </dd>
 </dl>

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['maxflowallpairs_0',['maxFlowAllPairs',['../class_graph.html#a1aa6a52e1f06afe31061695fb294d005',1,'Graph']]],
-  ['maxincomingflow_1',['maxIncomingFlow',['../class_graph.html#a1284d28d6a656e876188f5f8f4cf2263',1,'Graph']]]
+  ['loaddata_0',['loadData',['../class_database.html#ad27eb07b934c6938d95713d87045d16f',1,'Database']]]
 ];

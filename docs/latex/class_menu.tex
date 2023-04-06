@@ -1,113 +1,43 @@
 \hypertarget{class_menu}{}\doxysection{Menu Class Reference}
 \label{class_menu}\index{Menu@{Menu}}
+
+
+Class responsible for the user interface.  
+
+
+
+
+{\ttfamily \#include $<$Menu.\+h$>$}
+
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_menu_ad9ce6d538552c465bbc0b419698d54a6}\label{class_menu_ad9ce6d538552c465bbc0b419698d54a6}} 
-{\bfseries Menu} (\mbox{\hyperlink{class_database}{Database}} \&database)
-\item 
+\mbox{\hyperlink{class_menu_ad9ce6d538552c465bbc0b419698d54a6}{Menu}} (\mbox{\hyperlink{class_database}{Database}} \&database)
+\begin{DoxyCompactList}\small\item\em Class constructor of \mbox{\hyperlink{class_menu}{Menu}} that sets the database. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_menu_a5e632cf1c852e11445e43b5d64d339a0}\label{class_menu_a5e632cf1c852e11445e43b5d64d339a0}} 
 void {\bfseries show\+Data\+Selection\+Menu} ()
-\begin{DoxyCompactList}\small\item\em Creates Data Selection \mbox{\hyperlink{class_menu}{Menu}}. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{class_menu_a00fb77e5e7d27c559e7674bbb26b672c}\label{class_menu_a00fb77e5e7d27c559e7674bbb26b672c}} 
-void {\bfseries show\+Main\+Menu} ()
-\begin{DoxyCompactList}\small\item\em Creates Main \mbox{\hyperlink{class_menu}{Menu}}. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{class_menu_a63c35e5fe9f3c5a92ca260282a4e4fa7}\label{class_menu_a63c35e5fe9f3c5a92ca260282a4e4fa7}} 
-void {\bfseries show\+Subset\+Menu} ()
-\begin{DoxyCompactList}\small\item\em Creates Subset \mbox{\hyperlink{class_menu}{Menu}}. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{class_menu_a7e195d82c031cbf986141dc2e6541449}\label{class_menu_a7e195d82c031cbf986141dc2e6541449}} 
-void {\bfseries show\+Station\+Info\+Menu} ()
-\begin{DoxyCompactList}\small\item\em Creates \mbox{\hyperlink{class_station}{Station}} Info \mbox{\hyperlink{class_menu}{Menu}}. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{class_menu_adb2f69105eda46cb09e302a7dc6e8bc3}\label{class_menu_adb2f69105eda46cb09e302a7dc6e8bc3}} 
-void {\bfseries show\+Two\+Stations\+Info\+Menu} ()
-\begin{DoxyCompactList}\small\item\em Creates Two Stations Info \mbox{\hyperlink{class_menu}{Menu}}. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{class_menu_a28dd413cd9df8521c98193d7a7e64c58}\label{class_menu_a28dd413cd9df8521c98193d7a7e64c58}} 
-void {\bfseries show\+Network\+Info\+Menu} ()
-\begin{DoxyCompactList}\small\item\em Creates Network Info \mbox{\hyperlink{class_menu}{Menu}}. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{class_menu_a1ddfaaf060c56c3d7f6c7d86d03f619f}\label{class_menu_a1ddfaaf060c56c3d7f6c7d86d03f619f}} 
-\mbox{\hyperlink{class_station}{Station}} \& {\bfseries select\+Station} ()
-\item 
-set$<$ string $>$ \mbox{\hyperlink{class_menu_a4842606b4d9e107c7bf41a7669776d0a}{get\+Strings\+From\+User}} ()
-\begin{DoxyCompactList}\small\item\em Gets the input from the User. \end{DoxyCompactList}\item 
-string \mbox{\hyperlink{class_menu_ad7c9835984cb74163f2c7d008535e8d1}{get\+String\+From\+User}} ()
-\begin{DoxyCompactList}\small\item\em Gets input from the User. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{class_station}{Station}} $\ast$ \mbox{\hyperlink{class_menu_a4c274f01e49582a5d199317a389e9323}{get\+Station\+From\+User}} ()
-\begin{DoxyCompactList}\small\item\em Gets input from the User. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{class_station}{Station}} $\ast$ \mbox{\hyperlink{class_menu_aa795fb7f78610c28fd7a0ae006de8bcd}{select\+Station\+From\+List}} ()
-\begin{DoxyCompactList}\small\item\em Gets input from the User. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{class_menu_a73cdbcd6379c08cfd56d45f4575d2d68}{get\+Int\+From\+User}} ()
-\begin{DoxyCompactList}\small\item\em Gets input from the User. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{class_menu_a537a69bfbe3b8c29e3dfd3e2f5dd88b5}\label{class_menu_a537a69bfbe3b8c29e3dfd3e2f5dd88b5}} 
-void {\bfseries wait\+For\+Input} ()
-\begin{DoxyCompactList}\small\item\em Waits for input from the User. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_menu}{Menu}} that allows the user to select the data to be loaded. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{class_menu_a73cdbcd6379c08cfd56d45f4575d2d68}\label{class_menu_a73cdbcd6379c08cfd56d45f4575d2d68}} 
-\index{Menu@{Menu}!getIntFromUser@{getIntFromUser}}
-\index{getIntFromUser@{getIntFromUser}!Menu@{Menu}}
-\doxysubsubsection{\texorpdfstring{getIntFromUser()}{getIntFromUser()}}
-{\footnotesize\ttfamily int Menu\+::get\+Int\+From\+User (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\doxysubsection{Detailed Description}
+Class responsible for the user interface. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_menu_ad9ce6d538552c465bbc0b419698d54a6}\label{class_menu_ad9ce6d538552c465bbc0b419698d54a6}} 
+\index{Menu@{Menu}!Menu@{Menu}}
+\index{Menu@{Menu}!Menu@{Menu}}
+\doxysubsubsection{\texorpdfstring{Menu()}{Menu()}}
+{\footnotesize\ttfamily Menu\+::\+Menu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_database}{Database}} \&}]{database }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
-Gets input from the User. 
+Class constructor of \mbox{\hyperlink{class_menu}{Menu}} that sets the database. 
 
-\begin{DoxyReturn}{Returns}
-
-\end{DoxyReturn}
-\mbox{\Hypertarget{class_menu_a4c274f01e49582a5d199317a389e9323}\label{class_menu_a4c274f01e49582a5d199317a389e9323}} 
-\index{Menu@{Menu}!getStationFromUser@{getStationFromUser}}
-\index{getStationFromUser@{getStationFromUser}!Menu@{Menu}}
-\doxysubsubsection{\texorpdfstring{getStationFromUser()}{getStationFromUser()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{class_station}{Station}} $\ast$ Menu\+::get\+Station\+From\+User (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-
-
-Gets input from the User. 
-
-\begin{DoxyReturn}{Returns}
-
-\end{DoxyReturn}
-\mbox{\Hypertarget{class_menu_ad7c9835984cb74163f2c7d008535e8d1}\label{class_menu_ad7c9835984cb74163f2c7d008535e8d1}} 
-\index{Menu@{Menu}!getStringFromUser@{getStringFromUser}}
-\index{getStringFromUser@{getStringFromUser}!Menu@{Menu}}
-\doxysubsubsection{\texorpdfstring{getStringFromUser()}{getStringFromUser()}}
-{\footnotesize\ttfamily string Menu\+::get\+String\+From\+User (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-
-
-Gets input from the User. 
-
-\begin{DoxyReturn}{Returns}
-
-\end{DoxyReturn}
-\mbox{\Hypertarget{class_menu_a4842606b4d9e107c7bf41a7669776d0a}\label{class_menu_a4842606b4d9e107c7bf41a7669776d0a}} 
-\index{Menu@{Menu}!getStringsFromUser@{getStringsFromUser}}
-\index{getStringsFromUser@{getStringsFromUser}!Menu@{Menu}}
-\doxysubsubsection{\texorpdfstring{getStringsFromUser()}{getStringsFromUser()}}
-{\footnotesize\ttfamily set$<$ string $>$ Menu\+::get\+Strings\+From\+User (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-
-
-Gets the input from the User. 
-
-\begin{DoxyReturn}{Returns}
-
-\end{DoxyReturn}
-\mbox{\Hypertarget{class_menu_aa795fb7f78610c28fd7a0ae006de8bcd}\label{class_menu_aa795fb7f78610c28fd7a0ae006de8bcd}} 
-\index{Menu@{Menu}!selectStationFromList@{selectStationFromList}}
-\index{selectStationFromList@{selectStationFromList}!Menu@{Menu}}
-\doxysubsubsection{\texorpdfstring{selectStationFromList()}{selectStationFromList()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{class_station}{Station}} $\ast$ Menu\+::select\+Station\+From\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-
-
-Gets input from the User. 
-
-\begin{DoxyReturn}{Returns}
-
-\end{DoxyReturn}
+Time complexity\+: O(1) 
+\begin{DoxyParams}{Parameters}
+{\em database} & -\/ \mbox{\hyperlink{class_database}{Database}} to be used \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

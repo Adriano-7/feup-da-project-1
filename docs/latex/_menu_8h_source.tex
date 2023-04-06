@@ -7,31 +7,31 @@
 \DoxyCodeLine{00003\ }
 \DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Database.h"{}}}
 \DoxyCodeLine{00005\ }
-\DoxyCodeLine{00006\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_menu}{Menu}}\ \{}
-\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00008\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_menu}{Menu}}(\mbox{\hyperlink{class_database}{Database}}\&\ database)\ :\ database(database)\ \{\};}
-\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_menu_a5e632cf1c852e11445e43b5d64d339a0}{showDataSelectionMenu}}();}
-\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_menu_a00fb77e5e7d27c559e7674bbb26b672c}{showMainMenu}}();}
-\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_menu_a63c35e5fe9f3c5a92ca260282a4e4fa7}{showSubsetMenu}}();}
-\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_menu_a7e195d82c031cbf986141dc2e6541449}{showStationInfoMenu}}();}
-\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_menu_adb2f69105eda46cb09e302a7dc6e8bc3}{showTwoStationsInfoMenu}}();}
-\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_menu_a28dd413cd9df8521c98193d7a7e64c58}{showNetworkInfoMenu}}();}
-\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_station}{Station}}\&\ selectStation();}
-\DoxyCodeLine{00016\ }
-\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ set<string>\ \mbox{\hyperlink{class_menu_a4842606b4d9e107c7bf41a7669776d0a}{getStringsFromUser}}();}
-\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_menu_ad7c9835984cb74163f2c7d008535e8d1}{getStringFromUser}}();}
-\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_station}{Station}}*\ \mbox{\hyperlink{class_menu_a4c274f01e49582a5d199317a389e9323}{getStationFromUser}}();}
-\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_station}{Station}}*\ \mbox{\hyperlink{class_menu_aa795fb7f78610c28fd7a0ae006de8bcd}{selectStationFromList}}();}
-\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_menu_a73cdbcd6379c08cfd56d45f4575d2d68}{getIntFromUser}}();}
-\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_menu_a537a69bfbe3b8c29e3dfd3e2f5dd88b5}{waitForInput}}();}
-\DoxyCodeLine{00023\ }
-\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_database}{Database}}\ database;}
-\DoxyCodeLine{00026\ }
-\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{void}\ showChangeCapacityMenu();}
-\DoxyCodeLine{00028\ \};}
-\DoxyCodeLine{00029\ }
-\DoxyCodeLine{00030\ }
-\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//PROJECT\_DA\_MENU\_H}}
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_menu}{Menu}}\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_menu_ad9ce6d538552c465bbc0b419698d54a6}{Menu}}(\mbox{\hyperlink{class_database}{Database}}\&\ database)\ :\ database(database)\ \{\};}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_menu_a5e632cf1c852e11445e43b5d64d339a0}{showDataSelectionMenu}}();}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_database}{Database}}\ database;}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ showSubsetMenu();}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ showMainMenu();}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ showStationInfoMenu();}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ showTwoStationsInfoMenu();}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ showNetworkInfoMenu();}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ showChangeCapacityMenu();}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ set<string>\ getStringsFromUser();}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ getStringFromUser();}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_station}{Station}}*\ getStationFromUser();}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_station}{Station}}*\ selectStationFromList();}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ getIntFromUser();}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ serviceToString(ServiceType\ service);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ waitForInput();}
+\DoxyCodeLine{00036\ \};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//PROJECT\_DA\_MENU\_H}}
 
 \end{DoxyCode}

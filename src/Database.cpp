@@ -7,80 +7,93 @@
 
 using namespace std;
 
-/*
+/**
  * @brief Reads csv files and populates the data structures (The arguments are filters, if empty, all stations are read)
  * @param stations - set of stations to read (if empty, all stations are read)
  * @param lines - set of railway lines to read (if empty, all lines are read)
- * @details Time complexity: O()
+ * @details Time complexity: O(A) + O(B), where A is the number of lines in stations.csv and B is the number of lines in network.csv
 */
 void Database::loadData(set<string> stations, set<string> lines) {
     readStations(stations, lines);
     readNetwork();
 }
 
-/*
+/**
  * @brief Given a station name, returns a pointer to the station.
  * @details Time complexity: O(1)
+ * @param stationName - Name of the station to be returned.
+ * @return Pointer to the station.
  */
 Station* Database::getStation(string stationName) {
     return nameToStation[stationName];
 }
 
-/*
+/**
  * @brief Returns the pairs of nodes with the maximum flow between them and the value of the maximum flow(by reference).
- * @details Time complexity: O()
+ * @details Time Complexity: O(V^3E^2), where E is the number of edges and V is the number of nodes.
+ * @param maxFlow - Pointer to the variable that will store the value of the maximum flow.
+ * @return Vector of pairs of nodes with the maximum flow between them.
  */
 vector<pair<Node *, Node *>> Database::maxFlowAllPairs(int *maxFlow){
     return graph.maxFlowAllPairs(maxFlow);
 }
 
-/*
+/**
  * @brief Returns the map that associates each district to the set of municipalities in that district.
  * @details Time complexity: O(1)
+ * @return Map that associates each district to the set of municipalities in that district.
  */
 map<string, set<string>>& Database::getDistrictToMunicipalities(){
     return districtToMunicipalities;
 }
 
-/*
+/**
  * @brief Returns the set of stations in a given municipality.
  * @details Time complexity: O(1)
+ * @param municipality - municipality to check
+ * @return Set of stations in the given municipality.
 */
 set<string> Database::getStationsFromMunicipality(string municipality){
     return municipalityToStations[municipality];
 }
 
-/*
+/**
  * @brief Using Edmonds-Karp algorithm, calculates the maximum flow between two stations.
- * @details Time complexity: O()
+ * @details Time Complexity: O(VE^2), where E is the number of edges and V is the number of nodes.
+ * @param station1 - source station
+ * @param station2 - destination station
+ * @return maximum flow between the two stations
  */
 int Database::getMaxFlowBetweenStations(Station* station1, Station* station2) {
     return graph.EdmondsKarp(graph.getNode(station1), graph.getNode(station2));
 }
 
-/*
+/**
  * @brief Using dijkstra algorithm, calculates the minimum cost(cost of service * capacity) flow between two stations
- * @details Time complexity: O()
+ * @details Time Complexity: O((V+E log V), where E is the number of edges and V is the number of nodes.
  * @param station1 - source station
  * @param station2 - destination station
+ * @param flow - pointer to the variable that will store the value of the flow
+ * @param costService - pointer to the variable that will store the value of the cost of service
  * @return stack of edges of the path with the minimum cost
 */
 stack<Edge*> Database::getMinCostFlow(Station* station1, Station* station2, double *flow, double *costService){
     return graph.BottleneckDijkstra(graph.getNode(station1), graph.getNode(station2), flow, costService);
 }
 
-/*
+/**
  * @brief Returns the maximum number of trains that can be in a station at the same time.
- * @details Time complexity: O()
+ * @details Time Complexity: O(V E^2), where E is the number of edges and V is the number of nodes.
  * @param station - station to check
+ * @return maximum number of trains that can be in the station at the same time
 */
 int Database::getMaxTrainsStation(Station* station){
     return graph.maxIncomingFlow(graph.getNode(station));
 }
 
-/*
+/**
  * @brief Get the top "k" municipalities based on the sum of the flow values of all of their stations.
- * @details Time Complexity: O()
+ * @details Time Complexity: O(VE^2P^2*M), where E is the number of edges, V is the number of nodes in the graph, P is the number of nodes in the input set and M is the number of municipalities.
  * @param k - number of municipalities to return
  * @return vector of pairs of municipality name and total flow
  */
@@ -107,9 +120,9 @@ vector<pair<string, int>> Database::getTopMunicipalities(int k){
     return topMunicipalities;
 }
 
-/*
+/**
  * @brief Get the top "k" districts based on the sum of the flow values of all of their stations.
- * @details Time Complexity: O()
+ * @details Time Complexity: O(VE^2P^2*D), where E is the number of edges, V is the number of nodes in the graph, P is the number of nodes in the input set and D is the number of districts.
  * @param k - number of districts to return
  * @return vector of pairs of district name and total flow
  */
@@ -136,9 +149,9 @@ vector<pair<string, int>> Database::getTopDistricts(int k){
     return topDistricts;
 }
 
-/*
+/**
  * @brief Reads stations.csv and creates the nodes of the graph.
- * @details Time Complexity: O()
+ * @details Time Complexity: O(A), where A is the number of lines in stations.csv
  * @param stations - set of stations to read (if empty, all stations are read)
  * @param lines - set of railway lines to read (if empty, all lines are read)
  */
@@ -188,9 +201,9 @@ void Database::readStations(set<string> stations, set<string> lines) {
     return;
 }
 
-/*
+/**
  * @brief Reads network.csv and creates the edges of the graph.
- * @details Time Complexity: O()
+ * @details Time Complexity: O(B), where B is the number of lines in network.csv
  */
 void Database::readNetwork() {
     ifstream file("../data/network.csv");
@@ -240,9 +253,9 @@ void Database::readNetwork() {
     return;
 }
 
-/*
+/**
  * @brief Boolean function that checks if there is a direct connection between two stations.
- * @details Time Complexity: O()
+ * @details Time Complexity: O(E), where E is the number of adjacent edges.
  * @param station1 - pointer to the first station
  * @param station2 - pointer to the second station
  * @param edgeCapacity - reference to an integer that will be filled with the capacity of the edge
@@ -252,9 +265,9 @@ bool Database::checkConnection(Station* station1, Station* station2, int& edgeCa
     return graph.checkConnection(graph.getNode(station1), graph.getNode(station2), edgeCapacity);
 }
 
-/*
+/**
  * @brief Changes the capacity of an edge between two stations.
- * @details Time Complexity: O()
+ * @details Time Complexity: O(E), where E is the number of adjacent edges.
  * @param station1 - pointer to the first station
  * @param station2 - pointer to the second station
  * @param newCapacity - new capacity of the edge

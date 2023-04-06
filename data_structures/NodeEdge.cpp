@@ -3,14 +3,14 @@
 
 /************************* Node  **************************/
 
-/*
+/**
  * @brief Constructor of the Node class.
  * @details Time Complexity: O(1) Creates a node with a given station.
  * @param station - Station to be added to the node.
  * */
 Node::Node(Station &station) : station(station) {}
 
-/*
+/**
  * @brief Overloads the < operator.
  * @details Time Complexity: O(1) Compares the distance of two nodes.
  * @param node - Node to be compared.
@@ -19,7 +19,7 @@ bool Node::operator<(Node &node) {
     return this->distance < node.distance;
 }
 
-/*
+/**
  * @brief Returns the station of the node.
  * @details Time Complexity: O(1)
  * @return Reference to the station of the node.
@@ -28,16 +28,16 @@ Station& Node::getStation() {
     return station;
 }
 
-/*
+/**
  * @brief Returns the adjacency vector of the node.
  * @details Time Complexity: O(1)
  * @return Vector of edges that are adjacent to the node.
  * */
-vector<Edge *> Node::getAdj() {
+vector<Edge *>& Node::getAdj() {
     return adj;
 }
 
-/*
+/**
  * @brief Returns the visited status of the node.
  * @details Time Complexity: O(1)
  * @return True if the node has been visited, false otherwise.
@@ -46,7 +46,7 @@ bool Node::isVisited() {
     return visited;
 }
 
-/*
+/**
  * @brief Returns the distance of the node.
  * @details Time Complexity: O(1)
  * @return Distance of the node.
@@ -55,7 +55,7 @@ double Node::getDistance() {
     return distance;
 }
 
-/*
+/**
  * @brief Returns the edge that leads to the parent of the node.
  * @details Time Complexity: O(1)
  * @return Edge that leads to the parent of the node.
@@ -64,16 +64,16 @@ Edge* Node::getPath() {
     return path;
 }
 
-/*
+/**
  * @brief Returns the incoming edges of the node.
  * @details Time Complexity: O(1)
  * @return Vector of pointers to the edges that lead to the node.
  * */
-vector<Edge *> Node::getIncoming() {
+vector<Edge *>& Node::getIncoming() {
     return incoming;
 }
 
-/*
+/**
  * @brief Returns the name of the station of the node.
  * @details Time Complexity: O(1)
  * @return Name of the station of the node.
@@ -82,7 +82,7 @@ string Node::getStationName() {
     return station.getName();
 }
 
-/*
+/**
  * @brief Sets the visited status of the node.
  * @details Time Complexity: O(1)
  * @param visited - True to set the node as visited, false otherwise.
@@ -91,7 +91,7 @@ void Node::setVisited(bool visited) {
     this->visited = visited;
 }
 
-/*
+/**
  * @brief Sets the distance of the node.
  * @details Time Complexity: O(1)
  * @param distance - Distance to be set.
@@ -100,7 +100,7 @@ void Node::setDistance(double distance) {
     this->distance = distance;
 }
 
-/*
+/**
  * @brief Sets the edge that leads to the parent of the node.
  * @details Time Complexity: O(1)
  * @param path - Edge that leads to the parent of the node.
@@ -111,7 +111,7 @@ void Node::setPath(Edge *path) {
 
 /**
  * @brief Creates a edge from the current node to a destination node with a given capacity and service type.
- * @details Time Complexity: O()
+ * @details Time Complexity: O(1)
  * @param dest - Destination node.
  * @param capacity - Capacity of the edge.
  * @param service - Service type of the edge.
@@ -123,9 +123,10 @@ Edge* Node::addEdge(Node *dest, int capacity, ServiceType service) {
     dest->incoming.push_back(edge);
     return edge;
 }
+
 /**
  * @brief Removes an edge from the adjacency vector of the current node.
- * @details Time Complexity: O()
+ * @details Time Complexity: O(E), where E is the number of adjacent edges.
  * @param dest
  * @return
  */
@@ -146,68 +147,75 @@ bool Node::removeEdgeTo(Node *dest) {
 
 /********************** Edge  ****************************/
 
-/*
+/**
  * @brief Constructor of the Edge class.
- * @details Time Complexity: O(1) Creates an edge with a given origin, destination, capacity and service type.
+ * @details Time Complexity: O(1) \n Creates an edge with a given origin, destination, capacity and service type.
  * */
 Edge::Edge(Node *orig, Node *dest, int capacity, ServiceType service): orig(orig), dest(dest), capacity(capacity), service(service) {}
 
-/*
+/**
  * @brief Returns a pointer to the destination node of the edge.
  * @details Time Complexity: O(1)
+ * @return Pointer to the destination node of the edge.
  * */
-Node *Edge::getDest(){return this->dest;}
+Node* Edge::getDest(){return this->dest;}
 
-/*
+/**
  * @brief Returns the capacity of the edge.
  * @details Time Complexity: O(1)
+ * @return Capacity of the edge.
 */
 int Edge::getCapacity() {
     return this->capacity;
 }
 
-/*
+/**
  * @brief Returns the service type of the edge.
  * @details Time Complexity: O(1)
+ * @return Service type of the edge (Standard or Alfa-Pendular)
 */
 ServiceType Edge::getService() {
     return this->service;
 }
 
-/*
+/**
  * @brief Returns the origin node of the edge.
  * @details Time Complexity: O(1)
+ * @return Pointer to the origin node of the edge.
 */
 Node* Edge::getOrig() {
     return this->orig;
 }
 
-/*
+/**
  * @brief Returns the reverse edge of the current edge.
  * @details Time Complexity: O(1)
+ * @return Pointer to the reverse edge of the current edge.
 */
 Edge* Edge::getReverse() {
     return this->reverse;
 }
 
-/*
+/**
  * @brief Returns the flow of the current edge.
  * @details Time Complexity: O(1)
+ * @return Flow of the current edge.
 */
 double Edge::getFlow() {
     return this->flow;
 }
 
-/*
+/**
  * @brief Returns the cost of the current edge (2 for standard, 4 for alfa-pendular)
- * @details Time Complexity: O(1)
+ * @details Time Complexity: O(1) (map has always 2 elements)
+ * @return Cost of the current edge.
  */
 double Edge::getCostService(){
     map<ServiceType, double> serviceCosts = {{ServiceType::STANDARD,2}, {ServiceType::ALFA_PENDULAR, 4}};
     return serviceCosts[this->getService()];
 }
 
-/*
+/**
  * @brief Sets the flow of the current edge.
  * @details Time Complexity: O(1)
  * @param flow - Flow to be set.
@@ -216,7 +224,7 @@ void Edge::setFlow(double flow) {
     this->flow = flow;
 }
 
-/*
+/**
  * @brief Sets the reverse edge of the current edge.
  * @details Time Complexity: O(1)
  * @param reverse - Reverse edge to be set.
@@ -225,14 +233,16 @@ void Edge::setReverse(Edge* reverse) {
     this->reverse = reverse;
 }
 
-/*
+/**
  * @brief Overload of the < operator (alphabetical order)
+ * @details Time Complexity: O(1)
+ * @param edge - Edge to be compared.
 */
 bool Edge::operator<(Edge& edge) {
     return this->orig->getStation().getName() < edge.orig->getStation().getName();
 }
 
-/*
+/**
  * @brief Sets the capacity of the current edge.
  * @details Time Complexity: O(1)
  * @param capacity - Capacity to be set.

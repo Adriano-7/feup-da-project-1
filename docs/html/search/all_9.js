@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['removeedgeto_0',['removeEdgeTo',['../class_node.html#a031d3a393947dfd1abc68774904bb349',1,'Node']]]
+  ['node_0',['Node',['../class_node.html',1,'Node'],['../class_node.html#a8bfa4cd2807a1f703232b0b42feae3bf',1,'Node::Node()']]]
 ];
