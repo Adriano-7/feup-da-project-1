@@ -4,9 +4,7 @@
 #include <string>
 
 using namespace std;
-/**
- * @brief Class that represents a station (name, district, municipality, township, line)
- */
+
 class Station {
 public:
     Station(string name, string district, string municipality, string township, string line);

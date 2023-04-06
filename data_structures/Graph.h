@@ -10,9 +10,6 @@
 #include <stack>
 using namespace std;
 
-/**
- * @brief Class that represents a graph. Contains a map of nodes, where the key is the station name. Each node has a set of edges.
- */
 class Graph {
     public:
         bool addNode(Station& station);
@@ -26,12 +23,12 @@ class Graph {
         bool bfs(Node* source, Node* dest);
         double dijkstra(Node* source, Node* dest);
         int EdmondsKarp(Node* source, Node* dest);
-        stack<Edge*> BottleneckDijkstra(Node* source, Node* dest, double *flow, double *costService);
+        stack<Edge*> FordFulkersonDijkstra(Node* source, Node* dest, double *flow, double *cost);
         vector<pair<Node*, Node*>> maxFlowAllPairs(int *max_flow);
-        void sumSomePairsFlow(set<Node*> nodes, int *sumFlow);
+        void sumSomePairsFlow(set<Node*> nodes, int *max_flow);
         int maxIncomingFlow(Node* node);
 
-        bool checkConnection(Node* source, Node* dest, int& edgeCapacity);
+        bool checkConnection(Node* source, Node* dest, int& curCapacity);
         void changeCapacity(Node* source, Node* dest, int newCapacity);
 
 private:

@@ -4,9 +4,6 @@
 #include <unistd.h>
 #include <algorithm>
 
-/**
- * @brief Menu that allows the user to select the data to be loaded.
- */
 void Menu::showDataSelectionMenu() {
     cout << "_________________________________________________" << endl;
     cout << "Welcome to the railway network management system!" << endl;
@@ -25,7 +22,7 @@ void Menu::showDataSelectionMenu() {
     else {
         switch (option) {
             case 1:
-                database.loadData({}, {});
+                database.loadWithoutFilters();
                 showMainMenu();
                 break;
             case 2:
@@ -38,9 +35,6 @@ void Menu::showDataSelectionMenu() {
     }
 }
 
-/**
- * @brief Menu that asks if the user wants to filter by stations or lines.
- */
 void Menu::showSubsetMenu() {
     set<string> stations;
     set<string> lines;
@@ -64,14 +58,10 @@ void Menu::showSubsetMenu() {
             break;
     }
 
-    database.loadData(stations, lines);
+    database.loadWithFilters(stations, lines);
     showMainMenu();
 }
 
-/**
- * @brief Main menu
- * @details that asks if the user wants to see information about a single station, two stations, the entire network or make a change to the capacity of a connection.
- */
 void Menu::showMainMenu(){
     while (true){
         cout << "_________________________________________________" << endl;
@@ -108,10 +98,6 @@ void Menu::showMainMenu(){
     }
 }
 
-/**
- * @brief Menu for a single station
- * @details allows the user to see the maximum number of trains that can arrive to the station or more information about the station.
- */
 void Menu::showStationInfoMenu() {
     Station* station = getStationFromUser();
     if (station == nullptr) {
@@ -151,10 +137,6 @@ void Menu::showStationInfoMenu() {
     }
 }
 
-/**
- * @brief Menu for two stations
- * @details allows the user to see the maximum number of trains that can travel between the two stations taking or not the cost into account.
-*/
 void Menu::showTwoStationsInfoMenu() {
     cout << "_________________________________________________" << endl;
     cout << "First station:" << endl;
@@ -220,10 +202,6 @@ void Menu::showTwoStationsInfoMenu() {
     }
 }
 
-/**
- * @brief Menu for information about the entire network
- * @details allows the user to see the pairs of stations with the maximum number of trains that can travel between them or the top-k municipalities and districts.
- */
 void Menu::showNetworkInfoMenu() {
     cout << "_________________________________________________" << endl;
     cout<< "Please select an option:" << endl;
@@ -278,9 +256,6 @@ void Menu::showNetworkInfoMenu() {
     }
 }
 
-/**
- * @brief Menu for changing the capacity of a path
- */
 void Menu::showChangeCapacityMenu() {
     cout << "_________________________________________________" << endl;
     cout << "Do you wish to receive a report of the changes made? (y/n)" << endl;
@@ -340,10 +315,6 @@ void Menu::showChangeCapacityMenu() {
     cout << "If you wish to undo your changes you must restart the program." << endl;
 }
 
-/**
- * @brief Allows the user to input a set of strings.
- * @return set of strings input by the user.
- */
 set<string> Menu::getStringsFromUser() {
     set<string> strings;
     string input;
@@ -363,22 +334,16 @@ set<string> Menu::getStringsFromUser() {
         firstTime = false;
     }
 }
-/**
- * @brief Allows the user to input a single string.
- * @return string input by the user.
- */
+
 string Menu::getStringFromUser() {
-    string input = "";
+    string input;
     while (input.empty()) {
         getline(cin, input);
     }
 
     return input;
 }
-/**
- * @brief Allows the user to input a station by writing its name or selecting it from a list.
- * @return Pointer to the station selected by the user.
- */
+
 Station* Menu::getStationFromUser(){
     cout << "Please select an option" << endl;
     cout << "1 - Write the name of the station" << endl;
@@ -386,38 +351,47 @@ Station* Menu::getStationFromUser(){
 
     int option = getIntFromUser();
 
+    Station* station;
     switch(option){
         case 1:
             cout << "Please enter the name of the station" << endl;
-            return database.getStation(getStringFromUser());
+            station = database.getStation(getStringFromUser());
+            while (station== nullptr){
+                cout << "Station not found, please try again" << endl;
+                station = database.getStation(getStringFromUser());
+            }
+            break;
         case 2:
             cout << "Please select a station from the list" << endl;
-            return selectStationFromList();
+            station = selectStationFromList();
+            while (station== nullptr){
+                cout << "Station not found, please try again" << endl;
+                station = selectStationFromList();
+            }
+            break;
         default:
             cout << "Invalid option" << endl;
             return getStationFromUser();
     }
+    return station;
 }
-/**
- * @brief Allows the user to select a station from a list.
- * @return Pointer to the station selected by the user.
- */
+
 Station* Menu::selectStationFromList(){
     cout<< "_________________________________________________" << endl;
     cout<< "Select the District:" << endl;
 
     map<string, set<string>> districtMunicipalities = database.getDistrictToMunicipalities();
-    map<string, set<string>>::iterator it = districtMunicipalities.begin();
+    auto it = districtMunicipalities.begin();
     int i = 1;
     for(; it != districtMunicipalities.end(); it++){
         cout << i << " - " << it->first << endl;
         i++;
     }
 
-    int option = getIntFromUser();
-    if(option < 1 || option > districtMunicipalities.size()){
-        cout << "Invalid option" << endl;
-        return selectStationFromList();
+    int option = -1;
+    while(option < 1 || option > districtMunicipalities.size()){
+        cout << "Please select an option" << endl;
+        option = getIntFromUser();
     }
 
     it = districtMunicipalities.begin();
@@ -428,17 +402,17 @@ Station* Menu::selectStationFromList(){
     cout<< "Select the Municipality:" << endl;
     set<string> municipalities = it->second;
 
-    set<string>::iterator it2 = municipalities.begin();
+    auto it2 = municipalities.begin();
     i = 1;
     for(; it2 != municipalities.end(); it2++){
         cout << i << " - " << *it2 << endl;
         i++;
     }
 
-    option = getIntFromUser();
-    if(option < 1 || option > municipalities.size()){
-        cout << "Invalid option" << endl;
-        return selectStationFromList();
+    option = -1;
+    while(option < 1 || option > municipalities.size()){
+        cout << "Please select an option" << endl;
+        option = getIntFromUser();
     }
 
     it2 = municipalities.begin();
@@ -448,17 +422,17 @@ Station* Menu::selectStationFromList(){
     cout<< "Select the Station:" << endl;
     set<string> stations = database.getStationsFromMunicipality(*it2);
 
-    set<string>::iterator it3 = stations.begin();
+    auto it3 = stations.begin();
     i = 1;
     for(; it3 != stations.end(); it3++){
         cout << i << " - " << *it3 << endl;
         i++;
     }
 
-    option = getIntFromUser();
-    if(option < 1 || option > stations.size()){
-        cout << "Invalid option" << endl;
-        return selectStationFromList();
+    option = -1;
+    while(option < 1 || option > stations.size()){
+        cout << "Please select an option" << endl;
+        option = getIntFromUser();
     }
 
     it3 = stations.begin();
@@ -467,10 +441,6 @@ Station* Menu::selectStationFromList(){
     return database.getStation(*it3);
 }
 
-/**
- * @brief Allows the user to input an integer.
- * @return Integer input by the user.
- */
 int Menu::getIntFromUser() {
     int input;
     cin >> input;
@@ -483,9 +453,6 @@ int Menu::getIntFromUser() {
     return input;
 }
 
-/**
- * @brief transforms a service type into a string
-*/
 string Menu::serviceToString(ServiceType service){
     switch(service){
         case ServiceType::STANDARD:
@@ -497,9 +464,6 @@ string Menu::serviceToString(ServiceType service){
     }
 }
 
-/**
- * @brief Waits for the user to press any key.
- */
 void Menu::waitForInput() {
     usleep(800000);
     string q;
