@@ -74,7 +74,6 @@ private:
     ServiceType service;
 
     bool selected = false;
-
     double flow;
 
     //Used for bidirectional edges

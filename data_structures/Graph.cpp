@@ -53,18 +53,10 @@ bool Graph::addBidirectionalEdge(Node* sourceNode, Node* destNode, int capacity,
     return true;
 }
 
-
-bool Graph::eraseNode(Node* node){
-    for(Edge* e: node->getAdj()){
-        Node* w = e->getDest();
-        if(!node->removeEdgeTo(w)){
-            return false;
-        }
-    }
-    for(Edge* e: node->getIncoming()){
-        Node* w = e->getOrig();
-
-        if(!w->removeEdgeTo(node)){
+bool Graph::eraseNode(Node *node) {
+    for (Edge *e: node->getAdj()) {
+        Node *w = e->getDest();
+        if (!node->removeEdgeTo(w)) {
             return false;
         }
     }
@@ -307,7 +299,6 @@ int Graph::maxIncomingFlow(Node* node){
     }
 
     int max =  EdmondsKarp(superSource, node);
-
     if(!eraseNode(superSource)){ cout << "Error erasing super source" << endl;}
     return max;
 }
@@ -323,8 +314,8 @@ bool Graph::checkConnection(Node* source, Node* dest, int& curCapacity) {
 }
 
 void Graph::changeCapacity(Node* source, Node* dest, int newCapacity) {
-    for (auto edge : source->getAdj()) {
-        if (edge->getDest() == dest) {
+    for(Edge* edge: source->getAdj()){
+        if(edge->getDest() == dest){
             edge->setCapacity(newCapacity);
             edge->getReverse()->setCapacity(newCapacity);
         }
