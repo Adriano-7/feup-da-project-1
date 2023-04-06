@@ -3,6 +3,9 @@
 
 #include "Database.h"
 
+/**
+ * @brief Class responsible for the user interface
+ */
 class Menu {
     public:
         Menu(Database& database) : database(database) {};

@@ -1,0 +1,227 @@
+\hypertarget{class_edge}{}\doxysection{Edge Class Reference}
+\label{class_edge}\index{Edge@{Edge}}
+
+
+Represents an edge in the graph. Contains a destination node, a capacity, a service type and a flow.  
+
+
+
+
+{\ttfamily \#include $<$Node\+Edge.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_edge_af61c9bb878988c00792ce9c14c90832a}{Edge}} (\mbox{\hyperlink{class_node}{Node}} $\ast$orig, \mbox{\hyperlink{class_node}{Node}} $\ast$dest, int capacity, Service\+Type service)
+\begin{DoxyCompactList}\small\item\em Constructor of the \mbox{\hyperlink{class_edge}{Edge}} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_node}{Node}} $\ast$ \mbox{\hyperlink{class_edge_a98dfeefa18dca75604a7f31bf2b34074}{get\+Dest}} ()
+\begin{DoxyCompactList}\small\item\em Returns a pointer to the destination node of the edge. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_edge_aaa4559d8ef63e55e784f8df6cecfc36f}{get\+Capacity}} ()
+\begin{DoxyCompactList}\small\item\em Returns the capacity of the edge. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_edge_a9f7141f54b258db8da7127fc577c9e01}\label{class_edge_a9f7141f54b258db8da7127fc577c9e01}} 
+bool {\bfseries is\+Selected} ()
+\item 
+Service\+Type \mbox{\hyperlink{class_edge_a7c5544b1cd0da9082b363dfab80f8325}{get\+Service}} ()
+\begin{DoxyCompactList}\small\item\em Returns the service type of the edge. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_node}{Node}} $\ast$ \mbox{\hyperlink{class_edge_a1f940794e5983f2e163e81f5244c23b5}{get\+Orig}} ()
+\begin{DoxyCompactList}\small\item\em Returns the origin node of the edge. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_edge}{Edge}} $\ast$ \mbox{\hyperlink{class_edge_a3794f82c97be1bbc15c5638a965d3d4c}{get\+Reverse}} ()
+\begin{DoxyCompactList}\small\item\em Returns the reverse edge of the current edge. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_edge_a089f55a39ff21b1d414d3efd538e222e}{get\+Flow}} ()
+\begin{DoxyCompactList}\small\item\em Returns the flow of the current edge. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_edge_acecdc2c24383d7dd273f69456e29900f}{get\+Cost\+Service}} ()
+\begin{DoxyCompactList}\small\item\em Returns the cost of the current edge (2 for standard, 4 for alfa-\/pendular) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_edge_a788cfe1f98772af4e7bbfe6310d0ccaa}{set\+Flow}} (double flow)
+\begin{DoxyCompactList}\small\item\em Sets the flow of the current edge. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_edge_a8e89005ae96cc7243af8b4af34bbc4f9}\label{class_edge_a8e89005ae96cc7243af8b4af34bbc4f9}} 
+void {\bfseries add\+Flow} (double flow)
+\item 
+\mbox{\Hypertarget{class_edge_a20a332f1378294ab940f3d187c014013}\label{class_edge_a20a332f1378294ab940f3d187c014013}} 
+void {\bfseries remove\+Flow} (double flow)
+\item 
+void \mbox{\hyperlink{class_edge_a64881280015bd83702fe3b2c6234b7e5}{set\+Reverse}} (\mbox{\hyperlink{class_edge}{Edge}} $\ast$reverse)
+\begin{DoxyCompactList}\small\item\em Sets the reverse edge of the current edge. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_edge_a8ab1cf2fe7fd16152d1dba3822853894}\label{class_edge_a8ab1cf2fe7fd16152d1dba3822853894}} 
+void {\bfseries set\+Selected} (bool selected)
+\item 
+void \mbox{\hyperlink{class_edge_a8e0f0c2e2720d76b1f1f765e4fba8405}{set\+Capacity}} (int capacity)
+\begin{DoxyCompactList}\small\item\em Sets the capacity of the current edge. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_edge_aa2dfc34022c8998299b9b35a4a0fb3a3}{operator$<$}} (\mbox{\hyperlink{class_edge}{Edge}} \&edge)
+\begin{DoxyCompactList}\small\item\em Overload of the \texorpdfstring{$<$}{<} operator (alphabetical order) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents an edge in the graph. Contains a destination node, a capacity, a service type and a flow. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_edge_af61c9bb878988c00792ce9c14c90832a}\label{class_edge_af61c9bb878988c00792ce9c14c90832a}} 
+\index{Edge@{Edge}!Edge@{Edge}}
+\index{Edge@{Edge}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{Edge()}{Edge()}}
+{\footnotesize\ttfamily Edge\+::\+Edge (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} $\ast$}]{orig,  }\item[{\mbox{\hyperlink{class_node}{Node}} $\ast$}]{dest,  }\item[{int}]{capacity,  }\item[{Service\+Type}]{service }\end{DoxyParamCaption})}
+
+
+
+Constructor of the \mbox{\hyperlink{class_edge}{Edge}} class. 
+
+Time Complexity\+: O(1) ~\newline
+ Creates an edge with a given origin, destination, capacity and service type. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_edge_aaa4559d8ef63e55e784f8df6cecfc36f}\label{class_edge_aaa4559d8ef63e55e784f8df6cecfc36f}} 
+\index{Edge@{Edge}!getCapacity@{getCapacity}}
+\index{getCapacity@{getCapacity}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{getCapacity()}{getCapacity()}}
+{\footnotesize\ttfamily int Edge\+::get\+Capacity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the capacity of the edge. 
+
+Time Complexity\+: O(1) \begin{DoxyReturn}{Returns}
+Capacity of the edge. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_edge_acecdc2c24383d7dd273f69456e29900f}\label{class_edge_acecdc2c24383d7dd273f69456e29900f}} 
+\index{Edge@{Edge}!getCostService@{getCostService}}
+\index{getCostService@{getCostService}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{getCostService()}{getCostService()}}
+{\footnotesize\ttfamily double Edge\+::get\+Cost\+Service (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the cost of the current edge (2 for standard, 4 for alfa-\/pendular) 
+
+Time Complexity\+: O(1) (map has always 2 elements) \begin{DoxyReturn}{Returns}
+Cost of the current edge. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_edge_a98dfeefa18dca75604a7f31bf2b34074}\label{class_edge_a98dfeefa18dca75604a7f31bf2b34074}} 
+\index{Edge@{Edge}!getDest@{getDest}}
+\index{getDest@{getDest}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{getDest()}{getDest()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_node}{Node}} $\ast$ Edge\+::get\+Dest (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns a pointer to the destination node of the edge. 
+
+Time Complexity\+: O(1) \begin{DoxyReturn}{Returns}
+Pointer to the destination node of the edge. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_edge_a089f55a39ff21b1d414d3efd538e222e}\label{class_edge_a089f55a39ff21b1d414d3efd538e222e}} 
+\index{Edge@{Edge}!getFlow@{getFlow}}
+\index{getFlow@{getFlow}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{getFlow()}{getFlow()}}
+{\footnotesize\ttfamily double Edge\+::get\+Flow (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the flow of the current edge. 
+
+Time Complexity\+: O(1) \begin{DoxyReturn}{Returns}
+Flow of the current edge. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_edge_a1f940794e5983f2e163e81f5244c23b5}\label{class_edge_a1f940794e5983f2e163e81f5244c23b5}} 
+\index{Edge@{Edge}!getOrig@{getOrig}}
+\index{getOrig@{getOrig}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{getOrig()}{getOrig()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_node}{Node}} $\ast$ Edge\+::get\+Orig (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the origin node of the edge. 
+
+Time Complexity\+: O(1) \begin{DoxyReturn}{Returns}
+Pointer to the origin node of the edge. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_edge_a3794f82c97be1bbc15c5638a965d3d4c}\label{class_edge_a3794f82c97be1bbc15c5638a965d3d4c}} 
+\index{Edge@{Edge}!getReverse@{getReverse}}
+\index{getReverse@{getReverse}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{getReverse()}{getReverse()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_edge}{Edge}} $\ast$ Edge\+::get\+Reverse (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the reverse edge of the current edge. 
+
+Time Complexity\+: O(1) \begin{DoxyReturn}{Returns}
+Pointer to the reverse edge of the current edge. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_edge_a7c5544b1cd0da9082b363dfab80f8325}\label{class_edge_a7c5544b1cd0da9082b363dfab80f8325}} 
+\index{Edge@{Edge}!getService@{getService}}
+\index{getService@{getService}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{getService()}{getService()}}
+{\footnotesize\ttfamily Service\+Type Edge\+::get\+Service (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the service type of the edge. 
+
+Time Complexity\+: O(1) \begin{DoxyReturn}{Returns}
+Service type of the edge (Standard or Alfa-\/\+Pendular) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_edge_aa2dfc34022c8998299b9b35a4a0fb3a3}\label{class_edge_aa2dfc34022c8998299b9b35a4a0fb3a3}} 
+\index{Edge@{Edge}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{operator$<$()}{operator<()}}
+{\footnotesize\ttfamily bool Edge\+::operator$<$ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_edge}{Edge}} \&}]{edge }\end{DoxyParamCaption})}
+
+
+
+Overload of the \texorpdfstring{$<$}{<} operator (alphabetical order) 
+
+Time Complexity\+: O(1) 
+\begin{DoxyParams}{Parameters}
+{\em edge} & -\/ \mbox{\hyperlink{class_edge}{Edge}} to be compared. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_edge_a8e0f0c2e2720d76b1f1f765e4fba8405}\label{class_edge_a8e0f0c2e2720d76b1f1f765e4fba8405}} 
+\index{Edge@{Edge}!setCapacity@{setCapacity}}
+\index{setCapacity@{setCapacity}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{setCapacity()}{setCapacity()}}
+{\footnotesize\ttfamily void Edge\+::set\+Capacity (\begin{DoxyParamCaption}\item[{int}]{capacity }\end{DoxyParamCaption})}
+
+
+
+Sets the capacity of the current edge. 
+
+Time Complexity\+: O(1) 
+\begin{DoxyParams}{Parameters}
+{\em capacity} & -\/ Capacity to be set. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_edge_a788cfe1f98772af4e7bbfe6310d0ccaa}\label{class_edge_a788cfe1f98772af4e7bbfe6310d0ccaa}} 
+\index{Edge@{Edge}!setFlow@{setFlow}}
+\index{setFlow@{setFlow}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{setFlow()}{setFlow()}}
+{\footnotesize\ttfamily void Edge\+::set\+Flow (\begin{DoxyParamCaption}\item[{double}]{flow }\end{DoxyParamCaption})}
+
+
+
+Sets the flow of the current edge. 
+
+Time Complexity\+: O(1) 
+\begin{DoxyParams}{Parameters}
+{\em flow} & -\/ Flow to be set. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_edge_a64881280015bd83702fe3b2c6234b7e5}\label{class_edge_a64881280015bd83702fe3b2c6234b7e5}} 
+\index{Edge@{Edge}!setReverse@{setReverse}}
+\index{setReverse@{setReverse}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{setReverse()}{setReverse()}}
+{\footnotesize\ttfamily void Edge\+::set\+Reverse (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_edge}{Edge}} $\ast$}]{reverse }\end{DoxyParamCaption})}
+
+
+
+Sets the reverse edge of the current edge. 
+
+Time Complexity\+: O(1) 
+\begin{DoxyParams}{Parameters}
+{\em reverse} & -\/ Reverse edge to be set. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+data\+\_\+structures/Node\+Edge.\+h\item 
+data\+\_\+structures/Node\+Edge.\+cpp\end{DoxyCompactItemize}

@@ -4,6 +4,9 @@
 #include "Graph.h"
 #include <unordered_map>
 
+/**
+ * @brief Class that reads the files and contains the dataStructures created
+ */
 class Database {
     public:
         Database() = default;

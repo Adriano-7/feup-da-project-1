@@ -10,6 +10,9 @@
 #include <stack>
 using namespace std;
 
+/**
+ * @brief Class that represents a graph. Contains a map of nodes, where the key is the station name. Each node has a set of edges.
+ */
 class Graph {
     public:
         bool addNode(Station& station);

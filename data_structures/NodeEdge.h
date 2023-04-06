@@ -8,6 +8,9 @@
 
 class Edge;
 
+/**
+ * @brief Represents a node in the graph. Contains a station and a vector of adjacent edges.
+ */
 class Node{
     public:
         Node(Station& station);
@@ -46,6 +49,9 @@ class Node{
         int queueIndex = 0; // required by MutablePriorityQueue
 };
 
+/**
+ * @brief Represents an edge in the graph. Contains a destination node, a capacity, a service type and a flow.
+ */
 class Edge {
 public:
     Edge(Node *orig, Node *dest, int capacity, ServiceType service);
