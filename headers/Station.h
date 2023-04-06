@@ -5,7 +5,7 @@
 
 using namespace std;
 /**
- * @brief Class that contains the information of all stations.
+ * @brief Class that represents a station (name, district, municipality, township, line)
  */
 class Station {
 public:

@@ -4,7 +4,7 @@
 #include <unistd.h>
 
 /**
- * @brief Creates Data Selection Menu.
+ * @brief Menu that allows the user to select the data to be loaded.
  */
 void Menu::showDataSelectionMenu() {
     cout << "_________________________________________________" << endl;
@@ -24,7 +24,7 @@ void Menu::showDataSelectionMenu() {
     else {
         switch (option) {
             case 1:
-                database.loadWithoutFilters();
+                database.loadData({}, {});
                 showMainMenu();
                 break;
             case 2:
@@ -38,7 +38,7 @@ void Menu::showDataSelectionMenu() {
 }
 
 /**
- * @brief Creates Subset Menu.
+ * @brief Menu that asks if the user wants to filter by stations or lines.
  */
 void Menu::showSubsetMenu() {
     set<string> stations;
@@ -63,12 +63,13 @@ void Menu::showSubsetMenu() {
             break;
     }
 
-    database.loadWithFilters(stations, lines);
+    database.loadData(stations, lines);
     showMainMenu();
 }
 
 /**
- * @brief Creates Main Menu.
+ * @brief Main menu
+ * @details that asks if the user wants to see information about a single station, two stations, the entire network or make a change to the capacity of a connection.
  */
 void Menu::showMainMenu(){
     while (true){
@@ -107,7 +108,8 @@ void Menu::showMainMenu(){
 }
 
 /**
- * @brief Creates Station Info Menu.
+ * @brief Menu for a single station
+ * @details allows the user to see the maximum number of trains that can arrive to the station or more information about the station.
  */
 void Menu::showStationInfoMenu() {
     Station* station = getStationFromUser();
@@ -148,6 +150,10 @@ void Menu::showStationInfoMenu() {
     }
 }
 
+/**
+ * @brief Menu for two stations
+ * @details allows the user to see the maximum number of trains that can travel between the two stations taking or not the cost into account.
+*/
 void Menu::showTwoStationsInfoMenu() {
     cout << "_________________________________________________" << endl;
     cout << "First station:" << endl;
@@ -214,7 +220,8 @@ void Menu::showTwoStationsInfoMenu() {
 }
 
 /**
- * @brief Creates Network Info Menu.
+ * @brief Menu for information about the entire network
+ * @details allows the user to see the pairs of stations with the maximum number of trains that can travel between them or the top-k municipalities and districts.
  */
 void Menu::showNetworkInfoMenu() {
     cout << "_________________________________________________" << endl;
@@ -271,7 +278,7 @@ void Menu::showNetworkInfoMenu() {
 }
 
 /**
- * @brief Creates Change Capacity Menu.
+ * @brief Menu for changing the capacity of a path
  */
 void Menu::showChangeCapacityMenu() {
     cout << "_________________________________________________" << endl;
@@ -280,20 +287,23 @@ void Menu::showChangeCapacityMenu() {
 
     cout << "Please enter the name of the second station:" << endl;
     Station* station2 = getStationFromUser();
-    int curCapacity;
-    if(!database.checkConnection(station1, station2, curCapacity)){
+    int edgeCapacity;
+    if(!database.checkConnection(station1, station2, edgeCapacity)){
         cout << "There is no path between the two stations" << endl;
         showMainMenu();
         return;
     }
     int newCapacity;
     while(true){
-        cout << "Please enter the new capacity. It must be less than " << curCapacity << endl;
+        cout << "Please enter the new capacity. It must be less than " << edgeCapacity << endl;
 
         newCapacity = getIntFromUser();
-        if(newCapacity > curCapacity){
-            cout << "The new capacity must be less than " << curCapacity << endl;
-        } else { break; }
+        if(newCapacity > edgeCapacity){
+            cout << "The new capacity must be less than " << edgeCapacity << endl;
+        }
+        else{
+            break;
+        }
     }
     database.changeCapacity(station1, station2, newCapacity);
     cout << "_________________________________________________" << endl;
@@ -302,8 +312,8 @@ void Menu::showChangeCapacityMenu() {
 }
 
 /**
- * @brief Gets the input from the User.
- * @return
+ * @brief Allows the user to input a set of strings.
+ * @return set of strings input by the user.
  */
 set<string> Menu::getStringsFromUser() {
     set<string> strings;
@@ -325,8 +335,8 @@ set<string> Menu::getStringsFromUser() {
     }
 }
 /**
- * @brief Gets input from the User.
- * @return
+ * @brief Allows the user to input a single string.
+ * @return string input by the user.
  */
 string Menu::getStringFromUser() {
     string input = "";
@@ -337,8 +347,8 @@ string Menu::getStringFromUser() {
     return input;
 }
 /**
- * @brief Gets input from the User.
- * @return
+ * @brief Allows the user to input a station by writing its name or selecting it from a list.
+ * @return Pointer to the station selected by the user.
  */
 Station* Menu::getStationFromUser(){
     cout << "Please select an option" << endl;
@@ -360,8 +370,8 @@ Station* Menu::getStationFromUser(){
     }
 }
 /**
- * @brief Gets input from the User.
- * @return
+ * @brief Allows the user to select a station from a list.
+ * @return Pointer to the station selected by the user.
  */
 Station* Menu::selectStationFromList(){
     cout<< "_________________________________________________" << endl;
@@ -429,8 +439,8 @@ Station* Menu::selectStationFromList(){
 }
 
 /**
- * @brief Gets input from the User.
- * @return
+ * @brief Allows the user to input an integer.
+ * @return Integer input by the user.
  */
 int Menu::getIntFromUser() {
     int input;
@@ -444,6 +454,9 @@ int Menu::getIntFromUser() {
     return input;
 }
 
+/**
+ * @brief transforms a service type into a string
+*/
 string Menu::serviceToString(ServiceType service){
     switch(service){
         case ServiceType::STANDARD:
@@ -455,6 +468,9 @@ string Menu::serviceToString(ServiceType service){
     }
 }
 
+/**
+ * @brief Waits for the user to press any key.
+ */
 void Menu::waitForInput() {
     usleep(800000);
     string q;

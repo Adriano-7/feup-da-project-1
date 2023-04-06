@@ -3,17 +3,17 @@
 
 #include "Graph.h"
 #include <unordered_map>
+
 /**
- * @brief Class that contains all the data management and usefull data structures.
+ * @brief Class that reads the files and contains the dataStructures created
  */
 class Database {
     public:
         Database() = default;
-        void loadWithoutFilters();
-        void loadWithFilters(set<string> stations, set<string> lines);
+        void loadData(set<string> stations, set<string> lines);
         Station* getStation(string stationName);
         vector<pair<Node *, Node *>> maxFlowAllPairs(int *maxFlow);
-        map<string, set<string>> getDistrictToMunicipalities();
+        map<string, set<string>>& getDistrictToMunicipalities();
         set<string> getStationsFromMunicipality(string municipality);
 
         int getMaxFlowBetweenStations(Station* station1, Station* station2);
@@ -22,7 +22,7 @@ class Database {
         vector<pair<string, int>> getTopMunicipalities(int k);
         vector<pair<string, int>> getTopDistricts(int k);
 
-        bool checkConnection(Station* station1, Station* station2, int& curCapacity);
+        bool checkConnection(Station* station1, Station* station2, int& edgeCapacity);
         void changeCapacity(Station* station1, Station* station2, int newCapacity);
 
     private:

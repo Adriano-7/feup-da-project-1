@@ -25,12 +25,12 @@ class Graph {
         bool bfs(Node* source, Node* dest);
         double dijkstra(Node* source, Node* dest);
         int EdmondsKarp(Node* source, Node* dest);
-        stack<Edge*> FordFulkersonDijkstra(Node* source, Node* dest, double *flow, double *cost);
+        stack<Edge*> BottleneckDijkstra(Node* source, Node* dest, double *flow, double *costService);
         vector<pair<Node*, Node*>> maxFlowAllPairs(int *max_flow);
-        void sumSomePairsFlow(set<Node*> nodes, int *max_flow);
+        void sumSomePairsFlow(set<Node*> nodes, int *sumFlow);
         int maxIncomingFlow(Node* node);
 
-        bool checkConnection(Node* source, Node* dest, int& curCapacity);
+        bool checkConnection(Node* source, Node* dest, int& edgeCapacity);
         void changeCapacity(Node* source, Node* dest, int newCapacity);
 
 private:

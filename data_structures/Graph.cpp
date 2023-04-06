@@ -9,9 +9,9 @@
 using namespace std;
 /**
  * @brief Adds a node to the graph.
- * @details Time Complexity: O() Adds a new node to the graph representing station.
- * @param station
- * @return
+ * @details Time Complexity: O()
+ * @param station - The station of the node to be added.
+ * @return True if the node was added successfully, false otherwise.
  */
 bool Graph::addNode(Station& station) {
     if (nodes.find(station.getName()) != nodes.end()){
@@ -23,13 +23,13 @@ bool Graph::addNode(Station& station) {
     return true;
 }
 /**
- * @brief Adds an edge to the graph.
- * @details Time Complexity: O() Adds a new edge between two nodes to the graph.
- * @param sourceNode
- * @param destNode
- * @param capacity
- * @param service
- * @return
+ * @brief Adds a unidirectional edge to the graph.
+ * @details Time Complexity: O()
+ * @param sourceNode - The source node.
+ * @param destNode - The destination node.
+ * @param capacity - Number of trains that can pass through the edge.r
+ * @param service - Which can be either Standard or AlfaPendular
+ * @return True if the edge was added successfully, false otherwise.
  */
 bool Graph::addEdge(Node* sourceNode, Node* destNode, int capacity, ServiceType service) {
     if (sourceNode== nullptr){
@@ -47,11 +47,11 @@ bool Graph::addEdge(Node* sourceNode, Node* destNode, int capacity, ServiceType 
 }
 /**
  * @brief Adds a Bidirectional Edge to the graph.
- * @details Time Complexity: O() Adds a new bidirectional edge between two nodes to the graph.
- * @param sourceNode
- * @param destNode
- * @param capacity
- * @param service
+ * @details Time Complexity: O()
+ * @param sourceNode - The source node.
+ * @param destNode - The destination node.
+ * @param capacity - Number of trains that can pass through the edge.r
+ * @param service - Which can be either Standard or AlfaPendular
  * @return
  */
 bool Graph::addBidirectionalEdge(Node* sourceNode, Node* destNode, int capacity, ServiceType service) {
@@ -74,10 +74,10 @@ bool Graph::addBidirectionalEdge(Node* sourceNode, Node* destNode, int capacity,
     return true;
 }
 /**
- * @brief Removes a node.
+ * @brief Removes a node from the graph.
  * @details Time Complexity: O()
- * @param node
- * @return
+ * @param node - The node to be removed.
+ * @return True if the node was removed successfully, false otherwise.
  */
 bool Graph::eraseNode(Node* node){
     for(Edge* e: node->getAdj()){
@@ -97,10 +97,10 @@ bool Graph::eraseNode(Node* node){
     return true;
 }
 /**
- * @brief Gets a node.
+ * @brief Given the name of a station, returns the node associated with it.
  * @details Time Complexity: O()
- * @param stationName
- * @return
+ * @param stationName - The name of the station.
+ * @return A pointer to the node associated with the station, nullptr if the station does not exist.
  */
 Node* Graph::getNode(string stationName) {
     if (nodes.find(stationName) != nodes.end())
@@ -109,21 +109,21 @@ Node* Graph::getNode(string stationName) {
         return nullptr;
 }
 /**
- * @brief Gets a node.
+ * @brief Given a station, returns the node associated with it.
  * @details Time Complexity: O()
- * @param station
- * @return
+ * @param station - A pointer to the station.
+ * @return A pointer to the node associated with the station, nullptr if the station does not exist.
  */
 Node* Graph::getNode(Station* station) {
     return getNode(station->getName());
 }
 
 /**
- * @brief BFS.
- * @details Time Complexity: O(E+V) Performs a breath first search on the graph starting from a source to a destination.
- * @param source
- * @param dest
- * @return
+ * @brief Finds paths between the source and the destination.
+ * @details Time Complexity: O()
+ * @param source - The source node.
+ * @param dest - The destination node.
+ * @return True if there is a path between the source and the destination, false otherwise.
  */
 bool Graph::bfs(Node* source, Node* dest){
     for(pair<string, Node*> nodePair : nodes) {
@@ -161,11 +161,11 @@ bool Graph::bfs(Node* source, Node* dest){
     return dest->isVisited();
 }
 /**
- * @brief Dijkstra.
- * @details Time Complexity: O(E*log(N)) Performs the Dijkstra's algorithm to find the shortest path between the source and the destination.
- * @param source
- * @param dest
- * @return
+ * @brief Finds the shortest path between the source and the destination using the cost of the service (and the capacity).
+ * @details Time Complexity: O(E*log(N)) \n Taking into account the cost of Service and the number of trains that can pass through the edge finds the shortest path between the source and the destination.
+ * @param source - The source node.
+ * @param dest - The destination node.
+ * @return The cost of the path.
  */
 double Graph::dijkstra(Node* source, Node* dest){
     queue<Node*> q;
@@ -207,11 +207,11 @@ double Graph::dijkstra(Node* source, Node* dest){
     return dest->getPath() == nullptr ? -1 : dest->getDistance();
 }
 /**
- * @brief Edmonds Karp.
- * @details Time Complexity: O(VE^2) Performs the Edmonds Karp algorithm for finding the maximum flow in the network flow graph.
- * @param source
- * @param dest
- * @return
+ * @brief Edmonds Karp - Finds the maximum flow in the network flow graph
+ * @details Time Complexity: O() \n Using BFS finds the maximum flow in the network flow graph between the source and the destination.
+ * @param source - Source node
+ * @param dest - Destination node
+ * @return The maximum flow.
  */
 int Graph::EdmondsKarp(Node* source, Node* dest){
     if(source == nullptr || dest == nullptr || source == dest){
@@ -258,15 +258,15 @@ int Graph::EdmondsKarp(Node* source, Node* dest){
 }
 
 /**
- * @brief Ford Fulkerson.
+ * @brief Uses the Dijkstra algorithm to find the shortest path (cost of service) and then calculates the bottleneck flow.
  * @details Time Complexity: O()
- * @param source
- * @param dest
- * @param flow
- * @param cost
+ * @param source - Source node
+ * @param dest - Destination node
+ * @param flow - Pointer to that will be filled with the bottleneck flow
+ * @param cost - Pointer to that will be filled with the cost of the path
  * @return
  */
-stack<Edge*> Graph::FordFulkersonDijkstra(Node* source, Node* dest, double* flow, double* costService){
+stack<Edge*> Graph::BottleneckDijkstra(Node* source, Node* dest, double* flow, double* costService){
     stack<Edge*> path;
     if(source == nullptr || dest == nullptr || source == dest){
         cout << "Invalid source or destination" << endl;
@@ -295,6 +295,7 @@ stack<Edge*> Graph::FordFulkersonDijkstra(Node* source, Node* dest, double* flow
             pathFlow = std::min(pathFlow, residualCapacity);
             v = edge->getOrig();
         }
+
         else{
             pathFlow = std::min(pathFlow, edge->getFlow());
             v = edge->getDest();
@@ -319,11 +320,12 @@ stack<Edge*> Graph::FordFulkersonDijkstra(Node* source, Node* dest, double* flow
     *flow = pathFlow;
     return path;
 }
+
 /**
- * @brief Maximum Flow.
- * @details Time Complexity: O(n^3*f) Finds the  maximum flow that can be achieved between all pairs of nodes in the graph using Edmonds Karp algorithm.
- * @param maxFlow
- * @return
+ * @brief Iterates through all pairs of nodes in the network and uses the Edmonds Karp algorithm to find the maximum flow between them.
+ * @details Time Complexity: O()
+ * @param maxFlow - Pointer to the variable that will store the maximum flow.
+ * @return A vector with the pairs of nodes that have the maximum flow.
  */
 vector<pair<Node *, Node *>> Graph::maxFlowAllPairs(int *maxFlow) {
     *maxFlow = INT_MIN;
@@ -350,12 +352,12 @@ vector<pair<Node *, Node *>> Graph::maxFlowAllPairs(int *maxFlow) {
     return result;
 }
 /**
- * @brief Sum of the Maximum Flow.
- * @details Time Complexity: O(n^2*E^2*V) Calculates the sum of the maximum flow between all possible pairs of nodes in the input set and stores the result in a variable pointed to by an input integer pointer.
- * @param nodes
- * @param max_flow
+ * @brief Calculates the sum of the maximum flows between all pairs of nodes in the input set.
+ * @details Time Complexity: O()
+ * @param nodes - Set of nodes to calculate the sum of the maximum flows between them.
+ * @param sumFlow - Pointer to the variable that will store the sum of the maximum flows.
  */
-void Graph::sumSomePairsFlow(set<Node*> nodes, int* max_flow) {
+void Graph::sumSomePairsFlow(set<Node*> nodes, int* sumFlow) {
     int sum = 0;
     for(auto it1 = nodes.begin(); it1 != nodes.end(); it1++){
         for(auto it2 = it1; it2 != nodes.end(); it2++){
@@ -364,13 +366,13 @@ void Graph::sumSomePairsFlow(set<Node*> nodes, int* max_flow) {
             sum += curFlow;
         }
     }
-    *max_flow = sum;
+    *sumFlow = sum;
 }
 /**
- * @brief Find the maximum incoming flow.
- * @details Time Complexity: O(N^2) Find the maximum incoming flow to the input node from its adjacent nodes in the graph.
- * @param node
- * @return
+ * @brief Calculates the maximum incoming flow to the input node.
+ * @details Time Complexity: O() \n Creates a super source node and connects it to all nodes that have only one outgoing edge. Then uses the Edmonds Karp algorithm to find the maximum flow between the super source and the input node.
+ * @param node - Node to calculate the maximum incoming flow.
+ * @return The maximum incoming flow to the input node.
  */
 int Graph::maxIncomingFlow(Node* node){
     Station* superSourceStation = new Station("SuperSource", "", "", "", "");
@@ -389,17 +391,17 @@ int Graph::maxIncomingFlow(Node* node){
     return max;
 }
 /**
- * @brief Check if there is a connection between two nodes.
- * @details Time Complexity: O(E) Checks if there is a connection (edge) between two nodes in a graph and updates the current capacity of the edge (if it exists) by reference.
- * @param source
- * @param dest
- * @param curCapacity
- * @return
+ * @brief Check if two nodes are adjacent.
+ * @details Time Complexity: O(E) \n Checks if two nodes are adjacent, given the source and destination nodes of the edge. And updates the var edgeCapacity with the capacity of the edge.
+ * @param source - Source node of the edge.
+ * @param dest - Destination node of the edge.
+ * @param curCapacity - Pointer to the variable that will store the capacity of the edge.
+ * @return True if the nodes are adjacent, false otherwise.
  */
-bool Graph::checkConnection(Node* source, Node* dest, int& curCapacity) {
+bool Graph::checkConnection(Node* source, Node* dest, int& edgeCapacity) {
     for (auto edge : source->getAdj()) {
         if (edge->getDest() == dest) {
-            curCapacity = edge->getCapacity();
+            edgeCapacity = edge->getCapacity();
             return true;
         }
     }
@@ -407,10 +409,10 @@ bool Graph::checkConnection(Node* source, Node* dest, int& curCapacity) {
 }
 /**
  * @brief Changes the capacity of an edge.
- * @details Time Complexity: O(E) Changes the capacity of an existing edge in a graph, given the source and destination nodes of the edge and the new capacity value.
- * @param source
- * @param dest
- * @param newCapacity
+ * @details Time Complexity: O(E) \n Changes the capacity of the edges between two nodes with the new capacity.
+ * @param source - Source node of the edge.
+ * @param dest - Destination node of the edge.
+ * @param newCapacity - New capacity of the edge.
  */
 void Graph::changeCapacity(Node* source, Node* dest, int newCapacity) {
     for (auto edge : source->getAdj()) {
