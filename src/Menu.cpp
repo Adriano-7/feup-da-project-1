@@ -298,7 +298,7 @@ void Menu::showChangeCapacityMenu() {
 
     if(report) database.maxTrainAllStations(); //Calcular o max trains antes de alterar a capacidade
 
-    cout << "How many changes do you wish to make :" << endl;
+    cout << "How many changes do you wish to make : ";
     int nChanges = getIntFromUser();
     for (int i = 0; i < nChanges; i++) {
         cout << "_________________________________________________" << endl;
